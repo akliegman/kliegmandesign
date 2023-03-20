@@ -1,23 +1,33 @@
+import { MidDot } from "../../reusables/MidDot";
+import { HorizontalRule } from "../../reusables/HorizontalRule";
+
 export const ResumeSectionItem = ({ type, data }) => {
   return (
     <div className="ResumeSectionItem">
       <div className="ResumeSectionItem__Header">
         {(type === "experience" || type === "education") && (
           <>
-            <h3 className="ResumeSectionItem__Title">
-              <a href={data?.website} target="_blank">
-                {data?.name}
-              </a>
-            </h3>
-            {type === "experience" && (
-              <p className="ResumeSectionItem__Subtitle">
-                <span>{data?.type}</span>
-                <span> - </span>
-                <span>{data?.transaction_type}</span>
-              </p>
-            )}
-            <div className="ResumeSectionItem__Line" />
-            {/* <img src={data?.logo} alt={data?.name} /> */}
+            <div className="ResumeSectionItem__Header__Column">
+              <h3 className="ResumeSectionItem__Title">
+                <a href={data?.website} target="_blank">
+                  {data?.name}
+                </a>
+              </h3>
+              {type === "experience" && (
+                <>
+                  <MidDot color="red" />
+                  <p className="ResumeSectionItem__Subtitle">
+                    <span>{data?.type}</span>
+                    <MidDot color="red" />
+                    <span>{data?.transaction_type}</span>
+                  </p>
+                </>
+              )}
+            </div>
+            <div className="ResumeSectionItem__Header__Column">
+              <HorizontalRule />
+              <img src={data?.logo} alt={data?.name} height="34" width="34" />
+            </div>
           </>
         )}
       </div>

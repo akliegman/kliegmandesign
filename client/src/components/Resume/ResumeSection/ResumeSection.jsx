@@ -1,8 +1,8 @@
-import React from "react";
 import clsx from "clsx";
 import { toTitleCase } from "../../../helpers/toTitleCase";
 import { ResumeSectionItem } from "./ResumeSectionItem";
 import { ResumeSectionSkillsList } from "./ResumeSectionSkillsList";
+import "./ResumeSection.less";
 
 const ResumeSectionHeader = ({ children }) => {
   return <h2 className="ResumeSectionHeader">{children}</h2>;

@@ -1,13 +1,8 @@
-:root {
-  --black: #000;
-  --white: #fff;
-  --red: #cf113f;
-  --font-size: 17px;
-}
+@import (reference) "./styles/variables";
 
 html {
   box-sizing: border-box;
-  font-size: var(--font-size);
+  font-size: @font-size-default;
   font-size: 1rem;
 }
 
@@ -44,10 +39,9 @@ img {
 
 body {
   margin: 0;
-  color: var(--black);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  color: @color-black;
+  background: @color-white;
+  font-family: @font-family-sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

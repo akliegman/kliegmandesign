@@ -1,0 +1,26 @@
+@import (reference) "../../../styles/typography.less";
+@import (reference) "../../../styles/grid.less";
+@import (reference) "../../../styles/variables.less";
+
+.ResumeHeader {
+  .columns-2();
+
+  &__title {
+    .header-1();
+  }
+
+  &__links {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin-top: 0.375rem;
+    p,
+    a {
+      .paragraph();
+    }
+
+    a {
+      .paragraph-link-black();
+    }
+  }
+}

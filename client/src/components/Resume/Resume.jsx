@@ -1,5 +1,4 @@
-import React from "react";
-import "./Resume.css";
+import "./Resume.less";
 import { resumeData } from "../../data/resumeData";
 import { ResumeSection } from "./ResumeSection/ResumeSection";
 import { ResumeHeader } from "./ResumeHeader/ResumeHeader";

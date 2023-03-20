@@ -1,3 +1,10 @@
+import DemystLogo from "../assets/svg/DemystLogo.svg";
+import NoodleLogo from "../assets/svg/NoodleLogo.svg";
+import ShopletLogo from "../assets/svg/ShopletLogo.svg";
+import TigerspikeLogo from "../assets/svg/TigerspikeLogo.svg";
+import SvpgLogo from "../assets/svg/SvpgLogo.svg";
+import WiscLogo from "../assets/svg/WiscLogo.svg";
+
 export const resumeData = {
   objective: `Seeking a position that will leverage my expertise in product 
     development and frontend engineering to create user-friendly web 
@@ -9,7 +16,7 @@ export const resumeData = {
       type: "FinTech SaaS",
       transaction_type: "B2B",
       website: "https://demyst.com",
-      logo: "",
+      logo: DemystLogo,
       tech_stack: [
         "React",
         "Next.js",
@@ -55,7 +62,7 @@ export const resumeData = {
           ],
         },
         {
-          title: "Senior Technical Product Manager",
+          title: "Sr. Technical Product Manager",
           start_date: "Oct 2019",
           end_date: "Mar 2021",
           description: [
@@ -100,7 +107,7 @@ export const resumeData = {
       type: "EdTech",
       transaction_type: "B2B2C/B2C",
       website: "https://noodle.com",
-      logo: "",
+      logo: NoodleLogo,
       tech_stack: [
         "Flask",
         "Jinja",
@@ -113,7 +120,7 @@ export const resumeData = {
         "Git",
         "Jira",
       ],
-      roles: [
+      items: [
         {
           title: "Senior Product Manager",
           start_date: "Feb 2018",
@@ -182,9 +189,9 @@ export const resumeData = {
       type: "eCommerce",
       transaction_type: "B2C",
       website: "https://shoplet.com",
-      logo: "",
+      logo: ShopletLogo,
       tech_stack: ["PHP", "MySQL", "jQuery", "CSS", "Git", "Atlassian"],
-      roles: [
+      items: [
         {
           title: "Frontend Developer",
           start_date: "Sep 2013",
@@ -214,9 +221,9 @@ export const resumeData = {
       type: "Agency",
       transaction_type: "acq. by Concentrix",
       website: "https://www.concentrix.com",
-      logo: "",
+      logo: TigerspikeLogo,
       tech_stack: [],
-      roles: [
+      items: [
         {
           title: "Business Analyst",
           start_date: "Aug 2012",
@@ -240,7 +247,7 @@ export const resumeData = {
       name: "Silicon Valley Product Group",
       type: "Bootcamp",
       website: "https://svpg.com",
-      logo: "",
+      logo: SvpgLogo,
       items: [
         {
           title: "Product Leaders Academy",
@@ -279,7 +286,7 @@ export const resumeData = {
       name: "University of Wisconsin-Madison",
       type: "University",
       website: "https://wisc.edu",
-      logo: "",
+      logo: WiscLogo,
       items: [
         {
           title: "B.S. in Psychology",
@@ -391,7 +398,7 @@ export const resumeData = {
         level: 2,
       },
       {
-        title: "RoR",
+        title: "Ruby on Rails",
         level: 2,
       },
       {
@@ -459,15 +466,31 @@ export const resumeData = {
     ],
     "project management": [
       {
+        title: "GitHub",
+        level: 5,
+      },
+      {
         title: "Jira",
         level: 5,
       },
       {
-        title: "Agile",
+        title: "Trello",
         level: 5,
       },
       {
-        title: "Scrum",
+        title: "Asana",
+        level: 5,
+      },
+      {
+        title: "Roadmapping",
+        level: 5,
+      },
+      {
+        title: "Stratgic Planning",
+        level: 5,
+      },
+      {
+        title: "Iterative Development",
         level: 5,
       },
     ],

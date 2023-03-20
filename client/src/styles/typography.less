@@ -1,0 +1,70 @@
+@import (reference) "./variables.less";
+
+.header-1 {
+  font-size: 2rem;
+  line-height: 2.5rem;
+  font-weight: 400;
+  font-family: @font-family-serif;
+  color: @color-red;
+}
+
+.header-2 {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-family: @font-family-sans-serif;
+  text-transform: uppercase;
+  color: @color-black;
+  font-weight: 400;
+  letter-spacing: 0.1875rem;
+}
+
+.header-3 {
+  font-family: @font-family-sans-serif;
+  color: @color-red;
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.625rem;
+}
+
+.header-3-alt {
+  font-size: 1.0625rem;
+  line-height: 1.625rem;
+  color: @color-red;
+  font-family: @font-family-sans-serif;
+}
+
+.header-4 {
+  font-family: @font-family-serif;
+  font-size: 1.25rem;
+  line-height: 1.625rem;
+  color: @color-black;
+}
+
+.paragraph {
+  font-size: 1.0625rem;
+  line-height: 1.4375rem;
+  font-weight: 400;
+  color: @color-black;
+  font-family: @font-family-sans-serif;
+}
+
+.paragraph-bold {
+  .paragraph();
+  font-weight: 600;
+}
+
+.link {
+  transition: @transition-all;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  margin-bottom: -1px;
+  &:hover {
+    border-bottom: 1px solid @color-red-darkened;
+    color: @color-red-darkened;
+  }
+}
+
+.paragraph-link-black {
+  .link();
+  color: @color-black;
+}
