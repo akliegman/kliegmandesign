@@ -3,7 +3,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "./App.less";
 import { ResumePage } from "./pages/ResumePage";
 import { HomePage } from "./pages/HomePage";
-import { useEffect, useState } from "react";
+import { useEffect, useState, forwardRef } from "react";
 
 export const App = () => {
   const location = useLocation();
