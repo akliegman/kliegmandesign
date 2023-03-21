@@ -16,7 +16,7 @@ export const homeData = {
   social: [
     {
       name: "LinkedIn",
-      link: "https://www.linkedin.com/in/adam-kliegman/",
+      link: "https://www.linkedin.com/in/adamkliegman/",
     },
     {
       name: "GitHub",
