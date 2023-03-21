@@ -1,5 +1,9 @@
 # kliegmandesign
 
+# kliegmandesign
+
+Web app for adamkliegman.com.
+
 ## to start backend server
 
 ```
@@ -10,8 +14,7 @@ $ npm start
 ## to start frontend server
 
 ```
-$ cd client
-$ npm start
+$ npm run client
 ```
 
 ## deployment

@@ -1,5 +1,6 @@
 import { MidDot } from "../../reusables/MidDot";
 import { HorizontalRule } from "../../reusables/HorizontalRule";
+import "./ResumeSectionItem.less";
 
 export const ResumeSectionItem = ({ type, data }) => {
   return (
