@@ -2,19 +2,11 @@ import clsx from "clsx";
 import { toTitleCase } from "../../../helpers/toTitleCase";
 import { ResumeSectionItem } from "./ResumeSectionItem";
 import { ResumeSectionSkillsList } from "./ResumeSectionSkillsList";
+import { ResumeSectionHeader } from "./ResumeSectionHeader";
+import { ResumeSectionContent } from "./ResumeSectionContent";
+import { ResumeSectionParagraph } from "./ResumeSectionParagraph";
+
 import "./ResumeSection.less";
-
-const ResumeSectionHeader = ({ children }) => {
-  return <h2 className="ResumeSectionHeader">{children}</h2>;
-};
-
-const ResumeSectionContent = ({ children }) => {
-  return <div className="ResumeSectionContent">{children}</div>;
-};
-
-const ResumeSectionParagraph = ({ children }) => {
-  return <p className="ResumeSectionParagraph">{children}</p>;
-};
 
 export const ResumeSection = ({ type, data }) => {
   return (

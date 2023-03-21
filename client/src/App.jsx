@@ -1,9 +1,9 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "./App.less";
-import { ResumePage } from "./pages/ResumePage";
-import { HomePage } from "./pages/HomePage";
-import { useEffect, useState, forwardRef } from "react";
+import { ResumeLayout } from "./layouts/ResumeLayout";
+import { HomeLayout } from "./layouts/HomeLayout";
+import { useEffect, useState } from "react";
 
 export const App = () => {
   const location = useLocation();
@@ -27,8 +27,8 @@ export const App = () => {
             timeout={300}
           >
             <Routes location={location}>
-              <Route exact path="/" element={<HomePage data={apiData} />} />
-              <Route path="/resume" element={<ResumePage />} />
+              <Route exact path="/" element={<HomeLayout data={apiData} />} />
+              <Route path="/resume" element={<ResumeLayout />} />
             </Routes>
           </CSSTransition>
         </TransitionGroup>

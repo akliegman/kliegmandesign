@@ -1,5 +1,6 @@
 import { Resume } from "../components/Resume/Resume";
+import "./ResumeLayout.less";
 
-export const ResumePage = () => {
+export const ResumeLayout = () => {
   return <Resume />;
 };
