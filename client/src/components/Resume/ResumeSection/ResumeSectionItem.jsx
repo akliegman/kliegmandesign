@@ -10,7 +10,7 @@ export const ResumeSectionItem = ({ type, data }) => {
           <>
             <div className="ResumeSectionItem__Header__Column">
               <h3 className="ResumeSectionItem__Title">
-                <a href={data?.website} target="_blank">
+                <a href={data?.website} target="_blank" rel="noreferrer">
                   {data?.name}
                 </a>
               </h3>
@@ -27,6 +27,7 @@ export const ResumeSectionItem = ({ type, data }) => {
             </div>
             <div className="ResumeSectionItem__Header__Column">
               <HorizontalRule />
+
               <img src={data?.logo} alt={data?.name} height="34" width="34" />
             </div>
           </>

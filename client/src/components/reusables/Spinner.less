@@ -1,0 +1,24 @@
+@import (reference) "../../styles/variables";
+.Spinner {
+  svg {
+    animation: spin 4s linear infinite;
+    color: @color-gray-dark;
+  }
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

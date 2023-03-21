@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom";
+import "./HomeLayout.less";
+import { Masthead } from "../components/Masthead/Masthead";
+import { Footer } from "../components/Footer/Footer";
 
-export const HomeLayout = ({ data }) => {
+export const HomeLayout = () => {
   return (
     <div className="HomeLayout">
-      <h1>Home Page</h1>
-      <p>Here is some data from the server:</p>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-      <Link to="/resume">Resume</Link>
+      <Masthead />
+      <Footer className="HomeLayout__Footer" />
     </div>
   );
 };

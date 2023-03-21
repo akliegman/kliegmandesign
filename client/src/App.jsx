@@ -3,35 +3,36 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "./App.less";
 import { ResumeLayout } from "./layouts/ResumeLayout";
 import { HomeLayout } from "./layouts/HomeLayout";
-import { useEffect, useState } from "react";
+import { Spinner } from "./components/reusables/Spinner";
+import { useState, useEffect } from "react";
 
 export const App = () => {
   const location = useLocation();
-
-  const [apiData, setAPIData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setAPIData(data))
-      .catch((err) => console.log(err));
-  }, [apiData]);
+    setLoading(false);
+  }, []);
 
   return (
     <>
       <div className="App">
-        <TransitionGroup component={null}>
-          <CSSTransition
-            key={location.key}
-            classNames="AppPageTransition"
-            timeout={300}
-          >
-            <Routes location={location}>
-              <Route exact path="/" element={<HomeLayout data={apiData} />} />
-              <Route path="/resume" element={<ResumeLayout />} />
-            </Routes>
-          </CSSTransition>
-        </TransitionGroup>
+        {loading ? (
+          <Spinner />
+        ) : (
+          <TransitionGroup component={null}>
+            <CSSTransition
+              key={location.key}
+              classNames="AppPageTransition"
+              timeout={300}
+            >
+              <Routes location={location}>
+                <Route exact path="/" element={<HomeLayout />} />
+                <Route path="/resume" element={<ResumeLayout />} />
+              </Routes>
+            </CSSTransition>
+          </TransitionGroup>
+        )}
       </div>
     </>
   );

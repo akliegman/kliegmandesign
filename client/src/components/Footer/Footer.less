@@ -1,0 +1,14 @@
+@import (reference) "../../styles/variables";
+@import (reference) "../../styles/typography";
+
+.Footer {
+  display: flex;
+  height: 4rem;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0 2rem;
+  &__Copyright {
+    .paragraph-small();
+    color: @color-gray-dark;
+  }
+}

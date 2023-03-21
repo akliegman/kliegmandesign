@@ -1,0 +1,70 @@
+@import "../../styles/variables";
+@import "../../styles/typography";
+
+.Masthead {
+  background-color: @color-white;
+  display: flex;
+  padding: 2rem 3rem;
+  gap: 2rem;
+  max-width: 45rem;
+
+  &__Image {
+    width: 5em;
+    height: 5rem;
+    border-radius: 50%;
+    border: 1px solid @color-red-darkened;
+  }
+
+  &__Content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__Hr {
+    margin: 1.5rem 0;
+    max-width: 0.75rem;
+  }
+
+  &__Header {
+    .header-1();
+  }
+
+  &__Subheader {
+    .paragraph();
+    font-weight: 600;
+    color: @color-black;
+  }
+
+  &__Description {
+    .paragraph();
+  }
+  &__Social {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    > a {
+      svg {
+        stroke-width: 1;
+      }
+      height: 1.75rem;
+      width: 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      .link();
+      color: @color-black;
+      &:hover {
+        border-color: transparent;
+        background-color: rgba(@color-red, 0.1);
+      }
+    }
+  }
+}
+
+@media (max-width: @breakpoint-tablet) {
+  .Masthead {
+    padding: 0;
+    flex-direction: column;
+  }
+}
