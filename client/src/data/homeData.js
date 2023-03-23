@@ -10,7 +10,7 @@ export const homeData = {
     dependable, passionate, and ambitious, and am deeply committed to
     building great web applications from zero to one. With a background as
     a designer, product manager, and business analyst, I can not only
-    demonstrate a breadth functional skills, but also can interface
+    demonstrate a breadth of functional skills, but also can interface
     fluently across teams to ensure sound communication channels,
     well-delineated specifications, and viable design and data systems.`,
   social: [
