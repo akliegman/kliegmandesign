@@ -1,10 +1,9 @@
 import Headshot from "../assets/images/headshot.jpg";
-
 export const homeData = {
   image: Headshot,
   header: "Adam Kliegman",
   subheader: "NYC-based user-centric product engineer",
-  description: `I'm an experienced frontend engineer with a multifaceted background
+  description: `I'm a frontend developer with over ten years of experience
     who combines engineering best practices, design, data, psychology, and
     practicality to deliver value in fast-paced environments. I'm
     dependable, passionate, and ambitious, and am deeply committed to
@@ -13,6 +12,13 @@ export const homeData = {
     demonstrate a breadth of functional skills, but also can interface
     fluently across teams to ensure sound communication channels,
     well-delineated specifications, and viable design and data systems.`,
+  ctas: [
+    {
+      name: "resume",
+      label: "View Résumé",
+      link: "/resume",
+    },
+  ],
   social: [
     {
       name: "LinkedIn",

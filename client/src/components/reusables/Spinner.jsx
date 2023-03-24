@@ -1,10 +1,10 @@
-import { Loader } from "feather-icons-react";
+import { LoadingOutlined } from "@ant-design/icons";
 import "./Spinner.less";
 
 export const Spinner = () => {
   return (
     <div className="Spinner">
-      <Loader size="24" />
+      <LoadingOutlined />
     </div>
   );
 };

@@ -1,0 +1,72 @@
+@import "../../../styles/variables";
+@import "../../../styles/typography";
+
+.Button {
+  .link();
+  font-weight: 600;
+  color: @color-white;
+  background-color: @color-red-600;
+  height: 3rem;
+  width: fit-content;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.675rem;
+  padding: 0 1.25rem;
+  border-radius: @border-radius-default;
+  outline: none;
+  border: 0;
+
+  // &--WithIcon {
+  //   &--Right {
+  //     padding: 0 1rem 0 1.5rem;
+  //   }
+  //   &--Left {
+  //     padding: 0 1.5rem 0 1rem;
+  //   }
+  // }
+
+  &--Transparent {
+    background-color: transparent;
+  }
+
+  &:hover {
+    border: 0;
+    cursor: pointer;
+    color: @color-white;
+    background-color: @color-red-800;
+    svg {
+      opacity: 0.75;
+    }
+  }
+
+  &:active {
+    border: 0;
+    background-color: rgba(@color-red-400, 0.2);
+    svg {
+      opacity: 0.75;
+    }
+  }
+
+  &:focus {
+    border: 0;
+    box-shadow: 0 0 0 0.125rem rgba(@color-red-600, 0.5);
+    svg {
+      opacity: 0.75;
+    }
+  }
+
+  &--NotFocusable {
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  svg {
+    transition: @transition-all;
+    width: 1.25rem;
+    height: 1.25rem;
+    opacity: 0.5;
+  }
+}

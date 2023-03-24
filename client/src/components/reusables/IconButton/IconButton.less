@@ -1,0 +1,136 @@
+@import "../../../styles/variables";
+@import "../../../styles/typography";
+
+.IconButton {
+  .link();
+  color: @color-gray-800;
+  background-color: @color-gray-200;
+  height: 3rem;
+  width: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.5rem;
+  outline: none;
+  border: 0;
+
+  &:hover {
+    border: 0;
+    cursor: pointer;
+    color: @color-gray-800;
+    background-color: @color-gray-300;
+    svg {
+      opacity: 1;
+    }
+  }
+
+  &:active {
+    border: 0;
+    color: @color-gray-800;
+    background-color: @color-gray-400;
+    svg {
+      opacity: 1;
+    }
+  }
+
+  &:focus {
+    border: 0;
+    box-shadow: 0 0 0 0.125rem rgba(@color-red-600, 0.5);
+    svg {
+      opacity: 1;
+    }
+  }
+
+  &--Large {
+    height: 4rem;
+    width: 4rem;
+    border-radius: 2rem;
+  }
+
+  &--WithShadow {
+    box-shadow: @box-shadow-large;
+    &:hover {
+      box-shadow: @box-shadow-large;
+    }
+    &:focus {
+      box-shadow: @box-shadow-large, 0 0 0.125rem rgba(@color-red-600, 0.75);
+    }
+  }
+
+  &--Transparent {
+    background-color: transparent;
+
+    &:hover {
+      background-color: transparent;
+    }
+    &:active {
+      background-color: transparent;
+    }
+  }
+
+  &--Primary {
+    background-color: @color-red-600;
+    color: @color-white;
+
+    svg {
+      opacity: 1 !important;
+    }
+
+    &:hover {
+      color: @color-white;
+      background-color: @color-red-800;
+    }
+
+    &:active {
+      color: @color-white;
+      background-color: darken(@color-red-800, 5%);
+    }
+
+    &:focus {
+      color: @color-white;
+      box-shadow: 0 0 0 0.125rem rgba(@color-red-600, 0.5);
+    }
+  }
+
+  &--Secondary {
+    background-color: @color-green-600;
+    color: @color-white;
+
+    &:hover {
+      color: @color-white;
+      background-color: @color-green-800;
+    }
+
+    &:active {
+      color: @color-white;
+      background-color: darken(@color-green-800, 5%);
+    }
+
+    &:focus {
+      color: @color-white;
+      box-shadow: 0 0 0 0.125rem rgba(@color-green-600, 0.5);
+    }
+  }
+
+  &--Nav {
+    border-radius: 0;
+    background-color: transparent;
+  }
+
+  &--Active {
+    color: @color-red-400;
+  }
+
+  &--NotFocusable {
+    &:focus {
+      box-shadow: none !important;
+    }
+  }
+
+  svg {
+    transition: @transition-all;
+    width: 1.25rem;
+    height: 1.25rem;
+    opacity: 0.5;
+  }
+}

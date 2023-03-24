@@ -6,10 +6,12 @@ import { ResumeHeader } from "./ResumeHeader/ResumeHeader";
 export const Resume = () => {
   return (
     <div className="Resume">
-      <ResumeHeader />
-      {Object.entries(resumeData).map(([key, value]) => (
-        <ResumeSection key={key} type={key} data={value} />
-      ))}
+      <ResumeHeader data={resumeData.header} />
+      {Object.entries(resumeData)
+        .filter(([key]) => key !== "header")
+        .map(([key, value]) => (
+          <ResumeSection key={key} type={key} data={value} />
+        ))}
     </div>
   );
 };

@@ -1,10 +1,11 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
-import "./App.less";
+import { useState, useEffect } from "react";
 import { ResumeLayout } from "./layouts/ResumeLayout";
 import { HomeLayout } from "./layouts/HomeLayout";
 import { Spinner } from "./components/reusables/Spinner";
-import { useState, useEffect } from "react";
+// import { Nav } from "./components/Nav/Nav";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import "./App.less";
 
 export const App = () => {
   const location = useLocation();
@@ -20,18 +21,21 @@ export const App = () => {
         {loading ? (
           <Spinner />
         ) : (
-          <TransitionGroup component={null}>
-            <CSSTransition
-              key={location.key}
-              classNames="AppPageTransition"
-              timeout={300}
-            >
-              <Routes location={location}>
-                <Route exact path="/" element={<HomeLayout />} />
-                <Route path="/resume" element={<ResumeLayout />} />
-              </Routes>
-            </CSSTransition>
-          </TransitionGroup>
+          <>
+            {/* <Nav location={location} /> */}
+            <TransitionGroup component={null}>
+              <CSSTransition
+                key={location.key}
+                classNames="AppPageTransition"
+                timeout={300}
+              >
+                <Routes location={location}>
+                  <Route exact path="/" element={<HomeLayout />} />
+                  <Route path="/resume" element={<ResumeLayout />} />
+                </Routes>
+              </CSSTransition>
+            </TransitionGroup>
+          </>
         )}
       </div>
     </>

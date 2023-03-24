@@ -1,7 +1,14 @@
 import "./Masthead.less";
 import { HorizontalRule } from "../reusables/HorizontalRule";
 import { homeData } from "../../data/homeData";
-import { Linkedin, Github, Mail } from "feather-icons-react";
+import { IconButton } from "../reusables/IconButton/IconButton";
+import { Button } from "../reusables/Button/Button";
+import {
+  LinkedinFilled,
+  GithubFilled,
+  MailFilled,
+  RightCircleFilled,
+} from "@ant-design/icons";
 
 export const Masthead = () => {
   return (
@@ -16,21 +23,40 @@ export const Masthead = () => {
       <div className="Masthead__Content">
         <h1 className="Masthead__Header">{homeData.header}</h1>
         <h2 className="Masthead__Subheader">{homeData.subheader}</h2>
-        <HorizontalRule color="gray" className="Masthead__Hr" />
+        <HorizontalRule color="gray-500" className="Masthead__Hr" />
         <p className="Masthead__Description">{homeData.description}</p>
-        <div className="Masthead__Social">
-          {homeData.social.map((social) => (
-            <a
-              key={social.name}
-              href={social.link}
-              target="_blank"
-              rel="noreferrer"
+        <div className="Masthead__Buttons">
+          {homeData.ctas.map((button) => (
+            <Button
+              type="link"
+              key={button.name}
+              to={button.link}
+              icon={button.name === "resume" && <RightCircleFilled />}
+              iconPosition="right"
             >
-              {social.name === "LinkedIn" && <Linkedin size="18" />}
-              {social.name === "GitHub" && <Github size="18" />}
-              {social.name === "Mail" && <Mail size="18" />}
-            </a>
+              {button.label}
+            </Button>
           ))}
+        </div>
+        <div className="Masthead__Social">
+          {homeData.social.map((social) => {
+            let icon =
+              social.name === "LinkedIn" ? (
+                <LinkedinFilled />
+              ) : social.name === "GitHub" ? (
+                <GithubFilled />
+              ) : (
+                <MailFilled />
+              );
+            return (
+              <IconButton
+                key={social.name}
+                to={social.link}
+                type="external"
+                icon={icon}
+              />
+            );
+          })}
         </div>
       </div>
     </div>

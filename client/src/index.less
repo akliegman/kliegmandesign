@@ -3,8 +3,10 @@
 html {
   box-sizing: border-box;
   font-size: @font-size-default;
-  font-size: 1rem;
   background-color: @color-white;
+  @media screen and (max-width: @breakpoint-mobile) {
+    font-size: 13px;
+  }
 }
 
 *,
@@ -40,6 +42,7 @@ img {
 
 body {
   margin: 0;
+  font-size: 1rem;
   color: @color-black;
   font-family: @font-family-sans-serif;
   -webkit-font-smoothing: antialiased;

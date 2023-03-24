@@ -1,16 +1,22 @@
 import { MidDot } from "../../reusables/MidDot";
+import { Link } from "react-router-dom";
 import "./ResumeHeader.less";
 
-export const ResumeHeader = () => {
+export const ResumeHeader = ({ data }) => {
   return (
     <div className="ResumeHeader">
-      <h1 className="ResumeHeader__title">Adam Kliegman</h1>
+      <h1 className="ResumeHeader__title">
+        <Link to="/">{data.name}</Link>
+      </h1>
       <div className="ResumeHeader__links">
-        <a href="mailto:adam.j.kliegman@gmail.com">adam.j.kiegman@gmail.com</a>
+        <Link to={data.website.link}>{data.website.name}</Link>
         <MidDot />
-        <p>+1 (516) 457-2014</p>
+
+        <a href={`mailto:${data.email}`}>{data.email}</a>
         <MidDot />
-        <p>Greater NYC Area</p>
+        <p>{data.phone}</p>
+        <MidDot />
+        <p>{data.location}</p>
       </div>
     </div>
   );

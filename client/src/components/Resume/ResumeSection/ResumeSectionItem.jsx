@@ -16,11 +16,15 @@ export const ResumeSectionItem = ({ type, data }) => {
               </h3>
               {type === "experience" && (
                 <>
-                  <MidDot color="red" />
+                  <MidDot color="red-400" />
                   <p className="ResumeSectionItem__Subtitle">
                     <span>{data?.type}</span>
-                    <MidDot color="red" />
-                    <span>{data?.transaction_type}</span>
+                    {data?.transaction_type && (
+                      <>
+                        <MidDot color="red-400" />
+                        <span>{data?.transaction_type}</span>
+                      </>
+                    )}
                   </p>
                 </>
               )}
