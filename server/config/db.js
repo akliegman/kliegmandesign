@@ -5,6 +5,7 @@ module.exports = {
   USER: process.env.POSTGRES_USER,
   PASSWORD: process.env.POSTGRES_PASSWORD,
   DB: process.env.POSTGRES_DB,
+  shouldUseSSL: process.env.ENV === "prod" ? true : false,
   dialect: "postgres",
   pool: {
     max: 5,
