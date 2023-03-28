@@ -1,5 +1,5 @@
 import { ResumeSectionStars } from "./ResumeSectionStars";
-import { toTitleCase } from "../../../helpers/toTitleCase";
+// import { toTitleCase } from "../../../helpers/toTitleCase";
 import "./ResumeSectionSkillsList.less";
 
 export const ResumeSectionSkillsList = ({ data }) => {

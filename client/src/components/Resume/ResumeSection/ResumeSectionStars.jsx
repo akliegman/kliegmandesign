@@ -4,7 +4,9 @@ import "./ResumeSectionStars.less";
 export const ResumeSectionStars = ({ count }) => {
   const stars = [];
   for (let i = 0; i < count; i++) {
-    stars.push(<img src={Star} key={i} className="ResumeSectionStars__Icon" />);
+    stars.push(
+      <img src={Star} key={i} className="ResumeSectionStars__Icon" alt="star" />
+    );
   }
   return <div className="ResumeSectionStars">{stars}</div>;
 };
