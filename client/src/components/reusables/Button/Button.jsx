@@ -8,7 +8,7 @@ export const Button = ({
   children,
   icon,
   iconPosition = "left",
-  type = "link",
+  type = "button",
   name,
   to,
   size = "md",

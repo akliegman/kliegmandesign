@@ -8,7 +8,7 @@
   background-color: @color-red-600;
   height: 3rem;
   width: fit-content;
-  font-size: 1rem;
+  font-size: 0.9375rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,7 +60,6 @@
     cursor: not-allowed !important;
     background-color: transparent !important;
     color: @color-gray-800!important;
-    opacity: 0.35 !important;
 
     svg {
       opacity: 0.5 !important;
@@ -70,15 +69,14 @@
     &:focus {
       background-color: transparent !important;
       color: @color-gray-800 !important;
-      opacity: 0.35 !important;
     }
   }
 
   &--Navlink {
     background-color: transparent;
-    color: @color-gray-700;
+    color: @color-gray-800;
     &:hover {
-      color: @color-gray-800;
+      color: @color-gray-900;
       background-color: @color-gray-300;
       svg {
         opacity: 1;
@@ -97,6 +95,18 @@
     &:focus {
       box-shadow: none !important;
     }
+  }
+
+  &--Small,
+  &--Sm {
+    height: 2.25rem;
+  }
+
+  &--Xsmall,
+  &--Xsm,
+  &--Xs {
+    height: 1.75rem;
+    font-size: 0.8125rem;
   }
 
   svg {

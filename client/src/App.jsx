@@ -8,6 +8,9 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { Header } from "./components/Header/Header";
 import { Footer } from "./components/Footer/Footer";
 import { PageHelmet } from "./components/PageHelmet/PageHelmet";
+import { CookiesMessage } from "./components/CookiesMessage/CookiesMessage";
+import { GoogleAnalytics } from "./components/GoogleAnalytics/GoogleAnalytics";
+
 import "./App.less";
 
 export const App = () => {
@@ -24,9 +27,9 @@ export const App = () => {
 
   return (
     <>
+      <GoogleAnalytics />
       <div className="App">
         {loading && <Spinner />}
-
         <CSSTransition
           in={!loading}
           classNames="AppPageFadeIn"
@@ -50,6 +53,7 @@ export const App = () => {
               </CSSTransition>
             </TransitionGroup>
             <Footer />
+            <CookiesMessage />
           </div>
         </CSSTransition>
       </div>
