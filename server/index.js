@@ -1,19 +1,33 @@
 const express = require("express");
+const cors = require("cors");
 const path = require("path");
+require("dotenv").config();
 
-const port = process.env.PORT || 3001;
 const app = express();
+const port = process.env.PORT || 3001;
 
-app.get("/api", (req, res) => {
-  res.json({ message: "Server is running..." });
-});
+const db = require("./models");
+const corsOptions = { origin: process.env.CORS_ORIGIN };
+
+app.use(cors(corsOptions));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+db.sequelize
+  .sync()
+  .then(() => console.log("Synced db."))
+  .catch((err) => console.log("Failed to sync db: " + err.message));
+
+require("./seed/photos")(db);
 
 app.use(express.static(path.join(__dirname, "../client/build")));
+app.use(express.static(path.join(__dirname, "public")));
 
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+app.get("/upload", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "upload.html"));
 });
 
-app.listen(port, () => {
-  console.log(`Server listening on ${port}`);
-});
+require("./routes/photos")(app);
+require("./routes/client")(app, path);
+
+app.listen(port, () => console.log(`Server is running on ${port}`));

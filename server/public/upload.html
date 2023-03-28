@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload</title>
+</head>
+<body>
+    <form enctype="multipart/form-data">
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <input type="submit" value="Upload Image" name="submit">
+    </form>
+
+    <script>
+        var form = document.querySelector("form");
+        form.addEventListener("submit", uploadFile);
+
+        function uploadFile(event) {
+            event.preventDefault();
+            var file = document.getElementById("fileToUpload");
+            var formData = new FormData();
+            formData.append("file", file.files[0]);
+           
+            fetch("http://localhost:3001/api/photos/create", {
+                method: "POST",
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+          
+        }
+     </script>
+</body>
+
+</html>

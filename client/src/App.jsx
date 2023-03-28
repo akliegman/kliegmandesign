@@ -6,6 +6,28 @@ import { Spinner } from "./components/reusables/Spinner";
 // import { Nav } from "./components/Nav/Nav";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "./App.less";
+import axios from "axios";
+
+function NotFound() {
+  return <h2>Not found</h2>;
+}
+
+const Static = ({ filename }) => {
+  const [file, setFile] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/public/seed/${filename}`)
+      .then((res) => {
+        setFile(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  return file;
+};
 
 export const App = () => {
   const location = useLocation();
@@ -32,6 +54,8 @@ export const App = () => {
                 <Routes location={location}>
                   <Route exact path="/" element={<HomeLayout />} />
                   <Route path="/resume" element={<ResumeLayout />} />
+                  <Route path="/server/:filename" element={<Static />} />
+                  <Route path="*" element={<NotFound />} />
                 </Routes>
               </CSSTransition>
             </TransitionGroup>
