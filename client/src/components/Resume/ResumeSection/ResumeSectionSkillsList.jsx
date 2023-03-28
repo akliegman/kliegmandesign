@@ -3,7 +3,6 @@ import { ResumeSectionStars } from "./ResumeSectionStars";
 import "./ResumeSectionSkillsList.less";
 
 export const ResumeSectionSkillsList = ({ data }) => {
-  console.log(data.shortlist);
   return (
     <>
       <div className="ResumeSectionSkillsList">
