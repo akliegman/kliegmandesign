@@ -1,4 +1,4 @@
-import { IconButton } from "../reusables/IconButton/IconButton";
+import { IconButton } from "../reusables";
 import { DownloadOutlined } from "@ant-design/icons";
 import "./ResumeDownloadButton.less";
 export const ResumeDownloadButton = () => {

@@ -1,26 +1,54 @@
 @import (reference) "./styles/variables";
 
 .App {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  min-height: 100vh;
-  background-color: @color-gray-100;
+  &__Content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background-color: @color-gray-100;
+  }
+}
+
+.AppPageFadeIn {
+  &-enter {
+    opacity: 0;
+    transform: translateY(-5rem);
+  }
+  &-enter.AppPageFadeIn-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 1s ease-in-out;
+  }
+  &-exit {
+    opacity: 1;
+  }
+  &-exit-active {
+    opacity: 0;
+    transition: all 1s ease-in-out;
+  }
 }
 
 .AppPageTransition {
   &-enter {
     opacity: 0;
-    z-index: 1;
+    transform: translateY(10rem);
   }
   &-enter.AppPageTransition-enter-active {
     opacity: 1;
-    transition: opacity 250ms ease-out;
+    transform: translateY(0);
+    transition: all 1s ease-in-out;
   }
   &-exit {
-    display: none;
+    transform: translateY(0);
+
+    opacity: 1;
   }
-  &-exit.AppPageTransition-exit-active {
-    display: none;
+  &-exit-active {
+    opacity: 0;
+    transition: all 1s ease-in-out;
+    transform: translateY(10rem);
   }
 }

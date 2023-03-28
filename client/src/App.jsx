@@ -1,10 +1,13 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { ResumeLayout } from "./layouts/ResumeLayout";
-import { HomeLayout } from "./layouts/HomeLayout";
+import { ResumePage } from "./pages/ResumePage";
+import { HomePage } from "./pages/HomePage";
+import { Error404Page } from "./pages/Error404Page";
 import { Spinner } from "./components/reusables/Spinner";
-// import { Nav } from "./components/Nav/Nav";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { Header } from "./components/Header/Header";
+import { Footer } from "./components/Footer/Footer";
+import { PageHelmet } from "./components/PageHelmet/PageHelmet";
 import "./App.less";
 
 export const App = () => {
@@ -15,29 +18,40 @@ export const App = () => {
     setLoading(false);
   }, []);
 
+  useEffect(() => {
+    location && window.scrollTo(0, 0);
+  }, [location]);
+
   return (
     <>
       <div className="App">
-        {loading ? (
-          <Spinner />
-        ) : (
-          <>
-            {/* <Nav location={location} /> */}
+        {loading && <Spinner />}
+
+        <CSSTransition
+          in={!loading}
+          classNames="AppPageFadeIn"
+          timeout={1200}
+          unmountOnExit
+        >
+          <div className="App__Content">
+            <PageHelmet />
+            <Header location={location} />
             <TransitionGroup component={null}>
               <CSSTransition
                 key={location.key}
                 classNames="AppPageTransition"
-                timeout={300}
+                timeout={1000}
               >
                 <Routes location={location}>
-                  <Route exact path="/" element={<HomeLayout />} />
-                  <Route path="/resume" element={<ResumeLayout />} />
-                  <Route path="*" element={<h1>404</h1>} />
+                  <Route exact path="/" element={<HomePage />} />
+                  <Route path="/resume" element={<ResumePage />} />
+                  <Route path="*" element={<Error404Page />} />
                 </Routes>
               </CSSTransition>
             </TransitionGroup>
-          </>
-        )}
+            <Footer />
+          </div>
+        </CSSTransition>
       </div>
     </>
   );

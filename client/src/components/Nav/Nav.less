@@ -2,54 +2,15 @@
 
 .Nav {
   display: flex;
-  flex-direction: column;
-  background-color: @color-white;
-  box-shadow: @box-shadow-default;
-  border-radius: 0 0 2rem 2rem;
-  padding: 1rem 0.5rem 0.5rem;
-  transition: @transition-all;
-  position: fixed;
-  right: 4rem;
-  top: 0;
-  transition: @transition-all-slow;
-  transform: translateY(-8rem);
+  align-items: center;
+  gap: 0.5rem;
 
-  &--MenuOpen {
-    transform: translateY(0);
-  }
-  &:hover {
-    box-shadow: @box-shadow-large;
-  }
-
-  &__List {
-    display: flex;
+  @media screen and (max-width: @breakpoint-mobile) {
     flex-direction: column;
-    gap: 0;
-    overflow: hidden;
-  }
-
-  &__Hr {
-    margin: 1rem 0;
-  }
-
-  @media screen and (max-width: @breakpoint-tablet) {
-    right: 2rem;
-  }
-}
-
-.NavMenuSlide {
-  &-enter {
-  }
-
-  &-enter.NavMenuSlide-enter-active {
-    transform: translateY(0);
-    transition: @transition-all-slow;
-  }
-  &-exit {
-    transform: translateY(0);
-  }
-
-  &-exit.NavMenuSlide-exit-active {
-    transform: translateY(-8rem);
+    width: 100%;
+    > .Button {
+      width: 100%;
+      justify-content: flex-start;
+    }
   }
 }

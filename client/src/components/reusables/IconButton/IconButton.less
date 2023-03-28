@@ -112,9 +112,21 @@
     }
   }
 
-  &--Nav {
-    border-radius: 0;
-    background-color: transparent;
+  &--Navlink {
+    background-color: transparent !important;
+    color: @color-red-600;
+    border-radius: @border-radius-default;
+    svg {
+      width: 1.5rem !important;
+      height: 1.5rem !important;
+      opacity: 1 !important;
+    }
+    &:hover {
+      color: @color-red-800;
+    }
+    &:focus {
+      color: @color-red-800;
+    }
   }
 
   &--Active {

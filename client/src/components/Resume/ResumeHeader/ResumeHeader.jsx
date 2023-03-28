@@ -1,4 +1,4 @@
-import { MidDot } from "../../reusables/MidDot";
+import { MidDot } from "../../reusables";
 import { Link } from "react-router-dom";
 import "./ResumeHeader.less";
 

@@ -1,8 +1,6 @@
 import "./Masthead.less";
-import { HorizontalRule } from "../reusables/HorizontalRule";
+import { HorizontalRule, IconButton, Button } from "../reusables";
 import { homeData } from "../../data/homeData";
-import { IconButton } from "../reusables/IconButton/IconButton";
-import { Button } from "../reusables/Button/Button";
 import {
   LinkedinFilled,
   GithubFilled,
@@ -33,6 +31,7 @@ export const Masthead = () => {
               to={button.link}
               icon={button.name === "resume" && <RightCircleFilled />}
               iconPosition="right"
+              withShadow
             >
               {button.label}
             </Button>

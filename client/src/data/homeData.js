@@ -1,8 +1,8 @@
 import Headshot from "../assets/images/headshot.jpg";
 export const homeData = {
   image: Headshot,
-  header: "Adam Kliegman",
-  subheader: "NYC-based user-centric product engineer",
+  header: "Hello, I'm Adam.",
+  subheader: "I'm an NYC-based user-centric product engineer",
   description: `I'm a frontend developer with over ten years of experience
     who combines engineering best practices, design, data, psychology, and
     practicality to deliver value in fast-paced environments. I'm

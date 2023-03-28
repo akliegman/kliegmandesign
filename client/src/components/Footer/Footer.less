@@ -3,10 +3,17 @@
 
 .Footer {
   display: flex;
-  height: 4rem;
+  height: 2rem;
   align-items: center;
   justify-content: center;
-  padding: 1rem 0 2rem;
+  padding: 0 1.5rem;
+  background-color: @color-gray-300;
+  width: 100%;
+
+  @media screen and (max-width: @breakpoint-mobile) {
+    justify-content: flex-start;
+  }
+
   &__Copyright {
     .paragraph-small();
     color: @color-gray-1000;
