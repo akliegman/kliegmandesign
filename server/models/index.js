@@ -4,14 +4,16 @@ const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,
-  dialectOptions: {
-    ssl: {
-      require: dbConfig.shouldUseSSL,
-      rejectUnauthorized: false,
+  ...(dbConfig.shouldUseSSL && {
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
     },
-  },
+    ssl: true,
+  }),
   operatorsAliases: false,
-  ssl: dbConfig.shouldUseSSL,
   pool: {
     max: dbConfig.pool.max,
     min: dbConfig.pool.min,

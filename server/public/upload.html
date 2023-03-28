@@ -12,14 +12,14 @@
     <script>
         var form = document.querySelector("form");
         form.addEventListener("submit", uploadFile);
-
+        
         function uploadFile(event) {
             event.preventDefault();
             var file = document.getElementById("fileToUpload");
             var formData = new FormData();
             formData.append("file", file.files[0]);
            
-            fetch("http://localhost:3001/api/photos/create", {
+            fetch("/api/photos/create", {
                 method: "POST",
                 body: formData,
             })
