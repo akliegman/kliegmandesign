@@ -10,8 +10,12 @@ export const Header = ({ location }) => {
   const [showHomeButton, setShowHomeButton] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
-  const handleMobileMenu = () => {
+  const toggleMobileMenu = () => {
     setShowMobileMenu(!showMobileMenu);
+  };
+
+  const closeMobileMenu = () => {
+    setShowMobileMenu(false);
   };
 
   useEffect(() => {
@@ -50,7 +54,7 @@ export const Header = ({ location }) => {
       <div
         className={clsx("Header__Nav", showMobileMenu && "Header__Nav--Show")}
       >
-        <Nav location={location} linkOnClick={handleMobileMenu} />
+        <Nav location={location} linkOnClick={closeMobileMenu} />
       </div>
       <IconButton
         className="Header__MenuButton"
@@ -58,7 +62,7 @@ export const Header = ({ location }) => {
         type="button"
         variant="navlink"
         focusable={false}
-        onClick={handleMobileMenu}
+        onClick={toggleMobileMenu}
       />
     </header>
   );
