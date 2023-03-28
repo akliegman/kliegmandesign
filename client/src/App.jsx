@@ -7,10 +7,6 @@ import { Spinner } from "./components/reusables/Spinner";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import "./App.less";
 
-function NotFound() {
-  return <h2>Not found</h2>;
-}
-
 export const App = () => {
   const location = useLocation();
   const [loading, setLoading] = useState(true);
@@ -36,7 +32,7 @@ export const App = () => {
                 <Routes location={location}>
                   <Route exact path="/" element={<HomeLayout />} />
                   <Route path="/resume" element={<ResumeLayout />} />
-                  <Route path="*" element={<NotFound />} />
+                  <Route path="*" element={<h1>404</h1>} />
                 </Routes>
               </CSSTransition>
             </TransitionGroup>
