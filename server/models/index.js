@@ -26,6 +26,7 @@ const db = {
   Sequelize,
   sequelize,
   photos: require("./photos.js")(sequelize, Sequelize),
+  sessions: require("./sessions.js")(sequelize, Sequelize),
 };
 
 module.exports = db;

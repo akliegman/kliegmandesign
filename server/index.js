@@ -2,16 +2,37 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 require("dotenv").config();
+const session = require("express-session");
+const authConfig = require("./config/auth");
 
 const app = express();
 const port = process.env.PORT || 3001;
 
 const db = require("./models");
-const corsOptions = { origin: process.env.CORS_ORIGIN };
+
+const whitelist = process.env.CORS_ORIGINS.split(",").map((item) =>
+  item.trim()
+);
+
+const corsOptions = {
+  origin: function (origin, cb) {
+    if (!origin) return cb(null, true);
+
+    if (whitelist.indexOf(origin) !== -1) {
+      cb(null, true);
+    } else {
+      cb(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+};
 
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+console.log(authConfig.session);
+app.use(session(authConfig.session));
 
 db.sequelize
   .sync()
@@ -26,6 +47,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get("/upload", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "upload.html"));
 });
+
+require("./routes/auth")(app);
 
 require("./routes/photos")(app);
 

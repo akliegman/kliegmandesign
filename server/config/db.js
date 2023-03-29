@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 module.exports = {
   HOST: process.env.POSTGRES_HOST,
   USER: process.env.POSTGRES_USER,
