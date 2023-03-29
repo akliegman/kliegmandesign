@@ -1,5 +1,6 @@
 @import (reference) "../../styles/variables";
 @import (reference) "../../styles/typography";
+
 .CookiesMessage {
   position: fixed;
   bottom: 1.5rem;
@@ -17,5 +18,33 @@
 
   > p {
     .paragraph-small();
+  }
+}
+
+.CookiesMessageFadeIn {
+  &-enter,
+  &-appear {
+    opacity: 0;
+  }
+  &-enter.CookiesMessageFadeIn-enter-active,
+  &-appear.CookiesMessageFadeIn-appear-active,
+  &-appear-done,
+  &-enter-done {
+    opacity: 1;
+    transition: all 0.5s ease-in-out;
+    transition-delay: 1s;
+  }
+
+  &-exit {
+    opacity: 1;
+  }
+  &-exit-active {
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+  }
+
+  &-exit-done {
+    opacity: 0;
+    display: none;
   }
 }
