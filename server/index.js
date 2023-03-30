@@ -31,7 +31,6 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-console.log(authConfig.session);
 app.use(session(authConfig.session));
 
 db.sequelize
@@ -49,7 +48,6 @@ app.get("/upload", (req, res) => {
 });
 
 require("./routes/auth")(app);
-
 require("./routes/photos")(app);
 
 app.get("*", (req, res) => {

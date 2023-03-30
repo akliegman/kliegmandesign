@@ -1,16 +1,35 @@
 const basicAuth = require("basic-auth");
 const authConfig = require("../config/auth");
-const sessions = require("../controllers/sessions");
+const { WebClient } = require("@slack/web-api");
 
-exports.check = (req, res, next) => {
-  if (req.session?.user) {
-    return next();
+exports.slackLoggedIn = async (req, res, next) => {
+  const web = new WebClient(process.env.SLACK_BOT_TOKEN);
+  const email = req.session?.user?.email || "no email";
+  const date = new Date().toLocaleString();
+  const ip = req.ip;
+  const message = `New user logged in: ${email} on ${date} from IP Address: ${ip}.`;
+
+  try {
+    const result = await web.chat.postMessage({
+      channel: process.env.SLACK_CHANNEL_ID,
+      text: message,
+    });
+    console.log("Slack message sent: ", result.ts);
+  } catch (error) {
+    console.log(error);
   }
-  res.status(401).send({ message: "Unauthorized" });
+
+  next();
+};
+
+exports.check = (req, res) => {
+  if (req.session.user) {
+    return res.status(200).send(req.session);
+  }
+  return res.status(200).send({ message: "Unauthorized" });
 };
 
 exports.login = (req, res, next) => {
-  console.log(req.session);
   const user = basicAuth(req);
   let errors = [];
 
@@ -79,28 +98,43 @@ exports.login = (req, res, next) => {
     return res.status(400).send(`Bad Request: ${errors.join(", ")}`);
   }
 
-  req.session.role = user.name === authConfig.adminUser ? "admin" : "user";
-  req.session.email = req.query.email;
-  req.session.user = user.name;
+  req.session.user = {
+    user: user.name,
+    email: req.query.email || null,
+    role: user.name === authConfig.adminUser ? "admin" : "user",
+  };
+
   req.session.ipAddress = req.ip;
-  req.session.originalUrl = req.originalUrl;
+  req.session.sid = Date.now();
   req.session.userAgent = req.get("User-Agent");
   req.session.referer = req.get("Referer");
   req.session.expiresAt = Date.now() + authConfig.session.cookie.maxAge;
 
-  const sessionData = {
-    sid: "12345",
-    user: req.session.user,
-    originalUrl: req.session.originalUrl,
-    expiresAt: req.session.expiresAt,
-    ipAddress: req.session.ipAddress,
-    userAgent: req.session.userAgent,
-    referer: req.session.referer,
-    role: req.session.role,
-    email: req.session.email,
-  };
+  console.log(
+    `Login: ${
+      req.session.user.email || req.session.user.user
+    } at ${new Date().toLocaleString()}`
+  );
 
-  sessions.create(sessionData);
+  next();
+};
 
-  return next();
+exports.logout = async (req, res) => {
+  console.log(
+    `Logout: ${
+      req.session?.user?.email || req.session?.user?.user
+    } at ${new Date().toLocaleString()}`
+  );
+  try {
+    await req.session.destroy((err) => {
+      if (err) {
+        return res.status(400).send("Error: Could not log out");
+      }
+      res.setHeader("WWW-Authenticate", 'Basic realm="Authorization Required"');
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
+  return res.status(200).send("Logged out");
 };

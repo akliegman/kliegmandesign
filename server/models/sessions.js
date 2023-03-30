@@ -22,14 +22,6 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
     },
-    originalUrl: {
-      type: Sequelize.STRING,
-      allowNull: true,
-    },
-    expiresAt: {
-      type: Sequelize.DATE,
-      allowNull: true,
-    },
     ipAddress: {
       type: Sequelize.STRING,
       allowNull: true,
@@ -40,6 +32,10 @@ module.exports = (sequelize, Sequelize) => {
     },
     referer: {
       type: Sequelize.STRING,
+      allowNull: true,
+    },
+    expiresAt: {
+      type: Sequelize.DATE,
       allowNull: true,
     },
   });

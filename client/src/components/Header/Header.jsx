@@ -5,10 +5,12 @@ import { CaretLeftFilled, MenuOutlined } from "@ant-design/icons";
 import { useState, useEffect } from "react";
 import clsx from "clsx";
 import "./Header.less";
+import { useAuth } from "../../context/AuthContext";
 
 export const Header = ({ location }) => {
   const [showHomeButton, setShowHomeButton] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const { isLoggedIn } = useAuth();
 
   const toggleMobileMenu = () => {
     setShowMobileMenu(!showMobileMenu);
@@ -54,6 +56,7 @@ export const Header = ({ location }) => {
       <div
         className={clsx("Header__Nav", showMobileMenu && "Header__Nav--Show")}
       >
+        {isLoggedIn && "Logged In"}
         <Nav location={location} linkOnClick={closeMobileMenu} />
       </div>
       <IconButton

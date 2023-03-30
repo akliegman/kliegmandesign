@@ -1,22 +1,22 @@
 const db = require("../models");
 const Sessions = db.sessions;
 
-exports.create = async (sessionData) => {
+exports.create = async (req, res, next) => {
   try {
-    const session = await Sessions.create(sessionData);
-  } catch (error) {
-    console.log(error);
-  }
-};
+    const sessionData = {
+      sid: req.session.sid,
+      user: req.session.user.user,
+      email: req.session.user.email,
+      role: req.session.user.role,
+      ipAddress: req.session.ipAddress,
+      userAgent: req.session.userAgent,
+      referer: req.session.referer,
+      expiresAt: req.session.expiresAt,
+    };
 
-exports.get = async (req, res) => {
-  try {
-    const session = await Sessions.findOne({
-      where: {
-        sid: req.sessionID,
-      },
-    });
-    return session;
+    const session = await Sessions.create(sessionData);
+
+    next();
   } catch (error) {
     console.log(error);
   }

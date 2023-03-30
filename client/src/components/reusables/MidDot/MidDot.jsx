@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { toTitleCase } from "../../helpers/toTitleCase";
+import { toTitleCase } from "../../../helpers/toTitleCase";
 
 import "./MidDot.less";
 

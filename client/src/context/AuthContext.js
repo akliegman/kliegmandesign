@@ -1,4 +1,4 @@
-import { useState, useContext, createContext, useEffect } from "react";
+import { useState, useMemo, useContext, createContext } from "react";
 import { loginUser, authUser, logoutUser } from "../hooks/auth";
 
 export const AuthContext = createContext();
@@ -18,32 +18,42 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const logout = () => {
-    logoutUser();
+  const logout = async () => {
+    const response = await logoutUser();
+    if (response?.error) {
+      setError(response.error);
+    }
+
     setSession(null);
     setIsLoggedIn(false);
   };
 
-  useEffect(() => {
+  useMemo(() => {
     const checkLogin = async () => {
-      const response = await authUser();
-      if (response?.error) {
-        setError(response.error);
-      } else {
-        setSession(response);
-        setIsLoggedIn(true);
+      try {
+        const response = await authUser();
+        if (response?.error) {
+          setError(response.error);
+        } else {
+          if (response.user) {
+            setSession(response);
+            setIsLoggedIn(true);
+          } else {
+            setSession(null);
+            setIsLoggedIn(false);
+          }
+        }
+      } catch (error) {
+        console.log(error);
       }
     };
     checkLogin();
   }, []);
 
-  const authContextValue = {
-    isLoggedIn,
-    session,
-    login,
-    logout,
-    error,
-  };
+  const authContextValue = useMemo(
+    () => ({ isLoggedIn, session, login, logout, error }),
+    [isLoggedIn, login, logout, session, error]
+  );
 
   return (
     <AuthContext.Provider value={authContextValue}>
