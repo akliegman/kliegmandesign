@@ -1,10 +1,10 @@
 import "./HomeLayout.less";
 import { Masthead } from "../components/Masthead/Masthead";
 
-export const HomeLayout = () => {
+export const HomeLayout = ({ data }) => {
   return (
     <div className="HomeLayout">
-      <Masthead />
+      <Masthead data={data} />
     </div>
   );
 };

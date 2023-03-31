@@ -1,3 +1,13 @@
+import { PageHelmet } from "../components/PageHelmet/PageHelmet";
+import { StaticLayout } from "../layouts/StaticLayout";
+
 export const ProjectsPage = () => {
-  return <h1>Projects</h1>;
+  return (
+    <>
+      <PageHelmet title="Projects" />
+      <StaticLayout className="ProjectsPage">
+        <h1>Projects</h1>
+      </StaticLayout>
+    </>
+  );
 };

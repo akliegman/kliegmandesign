@@ -1,9 +1,9 @@
-import DemystLogo from "../assets/svg/DemystLogo.svg";
-import NoodleLogo from "../assets/svg/NoodleLogo.svg";
-import ShopletLogo from "../assets/svg/ShopletLogo.svg";
-import TigerspikeLogo from "../assets/svg/TigerspikeLogo.svg";
-import SvpgLogo from "../assets/svg/SvpgLogo.svg";
-import WiscLogo from "../assets/svg/WiscLogo.svg";
+import DemystLogo from "../../../assets/svg/DemystLogo.svg";
+import NoodleLogo from "../../../assets/svg/NoodleLogo.svg";
+import ShopletLogo from "../../../assets/svg/ShopletLogo.svg";
+import TigerspikeLogo from "../../../assets/svg/TigerspikeLogo.svg";
+import SvpgLogo from "../../../assets/svg/SvpgLogo.svg";
+import WiscLogo from "../../../assets/svg/WiscLogo.svg";
 
 export const resumeData = {
   header: {

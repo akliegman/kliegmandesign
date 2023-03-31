@@ -51,9 +51,6 @@ exports.login = (req, res, next) => {
   };
 
   const checkUserCredentials = (user) => {
-    if (user?.name === authConfig.adminUser) {
-      return false;
-    }
     if (
       user?.name &&
       user?.name !== authConfig.user &&
@@ -76,12 +73,8 @@ exports.login = (req, res, next) => {
   };
 
   const checkAdminCredentials = (user) => {
-    if (user?.name && user?.name !== authConfig.adminUser) {
-      errors.push("Admin user name is incorrect");
-      return false;
-    }
     if (user?.pass && user?.pass !== authConfig.adminPass) {
-      errors.push("Admin password is incorrect");
+      errors.push("Password is incorrect");
       return false;
     }
 
@@ -90,11 +83,19 @@ exports.login = (req, res, next) => {
 
   if (!checkUser(user)) {
     res.set("WWW-Authenticate", 'Basic realm="Authorization Required"');
+    console.log(`Bad Request: ${errors.join(", ")}`);
     return res.status(400).send(`Bad Request: ${errors.join(", ")}`);
   }
 
-  if (!checkUserCredentials(user) && !checkAdminCredentials(user)) {
+  if (user?.name === authConfig.adminUser && !checkAdminCredentials(user)) {
     res.set("WWW-Authenticate", 'Basic realm="Authorization Required"');
+    console.log(`Bad Request: ${errors.join(", ")}`);
+    return res.status(400).send(`Bad Request: ${errors.join(", ")}`);
+  }
+
+  if (user?.name !== authConfig.adminUser && !checkUserCredentials(user)) {
+    res.set("WWW-Authenticate", 'Basic realm="Authorization Required"');
+    console.log(`Bad Request: ${errors.join(", ")}`);
     return res.status(400).send(`Bad Request: ${errors.join(", ")}`);
   }
 
@@ -129,12 +130,11 @@ exports.logout = async (req, res) => {
     await req.session.destroy((err) => {
       if (err) {
         return res.status(400).send("Error: Could not log out");
+      } else {
+        return res.status(200).send("Logged out");
       }
-      res.setHeader("WWW-Authenticate", 'Basic realm="Authorization Required"');
     });
   } catch (error) {
     console.log(error);
   }
-
-  return res.status(200).send("Logged out");
 };

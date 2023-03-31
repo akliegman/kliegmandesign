@@ -1,6 +1,5 @@
 import "./Masthead.less";
 import { HorizontalRule, IconButton, Button } from "../reusables";
-import { homeData } from "../../data/homeData";
 import {
   LinkedinFilled,
   GithubFilled,
@@ -8,23 +7,23 @@ import {
   RightCircleFilled,
 } from "@ant-design/icons";
 
-export const Masthead = () => {
+export const Masthead = ({ data }) => {
   return (
     <div className="Masthead">
       <img
         className="Masthead__Image"
-        src={homeData.image}
+        src={data.image}
         alt="Adam Kliegman"
         height="80"
         width="80"
       />
       <div className="Masthead__Content">
-        <h1 className="Masthead__Header">{homeData.header}</h1>
-        <h2 className="Masthead__Subheader">{homeData.subheader}</h2>
+        <h1 className="Masthead__Header">{data.header}</h1>
+        <h2 className="Masthead__Subheader">{data.subheader}</h2>
         <HorizontalRule color="gray-500" className="Masthead__Hr" />
-        <p className="Masthead__Description">{homeData.description}</p>
+        <p className="Masthead__Description">{data.description}</p>
         <div className="Masthead__Buttons">
-          {homeData.ctas.map((button) => (
+          {data.ctas.map((button) => (
             <Button
               type="link"
               key={button.name}
@@ -38,7 +37,7 @@ export const Masthead = () => {
           ))}
         </div>
         <div className="Masthead__Social">
-          {homeData.social.map((social) => {
+          {data.social.map((social) => {
             let icon =
               social.name === "LinkedIn" ? (
                 <LinkedinFilled />

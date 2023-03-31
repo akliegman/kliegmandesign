@@ -16,9 +16,10 @@ const loginUser = async (user, password, email) => {
         email: email,
       },
     });
+
     return response.data;
   } catch (error) {
-    console.log(error);
+    return { error: error.response.data };
   }
 };
 
@@ -27,16 +28,25 @@ const authUser = async () => {
     const response = await api.get("/auth");
     return response.data;
   } catch (error) {
-    console.log(error);
+    return { error: error.response.data };
   }
 };
 
 const logoutUser = async () => {
   try {
-    const response = await api.get("/logout");
-    return response.data;
+    const logout = await api.get("/logout");
+
+    try {
+      if (logout.data.error) {
+        return logout.data;
+      }
+      const response = await api.get("/auth");
+      return response.data;
+    } catch (error) {
+      return { error: error.response.data };
+    }
   } catch (error) {
-    console.log(error);
+    return { error: error.response.data };
   }
 };
 

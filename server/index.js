@@ -34,7 +34,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(session(authConfig.session));
 
 db.sequelize
-  .sync()
+  .sync({ force: true })
   .then(() => console.log("Synced db."))
   .catch((err) => console.log("Failed to sync db: " + err.message));
 

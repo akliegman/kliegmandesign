@@ -1,5 +1,4 @@
 import "./StaticLayout.less";
-import { Footer } from "../components/Footer/Footer";
 import { toTitleCase } from "../helpers/toTitleCase";
 import clsx from "clsx";
 

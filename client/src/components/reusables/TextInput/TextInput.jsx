@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
 import clsx from "clsx";
 import "./TextInput.less";
 import { MailFilled, KeyOutlined } from "@ant-design/icons";
+import { useRef, useEffect } from "react";
 
 export const TextInput = ({
   label,
@@ -19,7 +19,6 @@ export const TextInput = ({
   onFocus,
   autoComplete,
   autoFocus,
-  inputRef,
   withIcon = false,
   ...rest
 }) => {
@@ -27,8 +26,16 @@ export const TextInput = ({
     "TextInput",
     `TextInput--${size}`,
     withIcon && "TextInput--WithIcon",
+    error && "TextInput--Error",
     className
   );
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (autoFocus) {
+      inputRef.current.focus();
+    }
+  }, [autoFocus]);
 
   return (
     <div className={classNames}>
@@ -64,7 +71,7 @@ export const TextInput = ({
         invalid={error ? "true" : "false"}
         {...rest}
       />
-      {error && <span className="TextInput__Error">{error}</span>}
+      {/* {error && <span className="TextInput__Error">{error}</span>} */}
     </div>
   );
 };

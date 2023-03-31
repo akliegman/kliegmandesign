@@ -1,3 +1,13 @@
+import { PageHelmet } from "../components/PageHelmet/PageHelmet";
+import { StaticLayout } from "../layouts/StaticLayout";
+
 export const SandboxPage = () => {
-  return <h1>Sandbox</h1>;
+  return (
+    <>
+      <PageHelmet title="Sandbox" />
+      <StaticLayout className="SandboxPage">
+        <h1>Sandbox</h1>
+      </StaticLayout>
+    </>
+  );
 };

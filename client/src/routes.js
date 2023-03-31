@@ -5,6 +5,8 @@ import { LoginPage } from "./pages/LoginPage";
 import { LogoutPage } from "./pages/LogoutPage";
 import { ProjectsPage } from "./pages/ProjectsPage";
 import { SandboxPage } from "./pages/SandboxPage";
+import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
+import { TermsOfUsePage } from "./pages/TermsOfUsePage";
 
 export const routes = {
   "/": {
@@ -48,7 +50,7 @@ export const routes = {
     protected: false,
     withHeader: false,
     withFooter: true,
-    inNav: true,
+    darkenedBackground: true,
     element: <LoginPage />,
   },
   "/logout": {
@@ -59,13 +61,28 @@ export const routes = {
     withFooter: true,
     element: <LogoutPage />,
   },
+  "/privacy-policy": {
+    name: "Privacy Policy",
+    exact: true,
+    protected: false,
+    withHeader: true,
+    withFooter: true,
+    element: <PrivacyPolicyPage />,
+  },
+  "/terms-of-use": {
+    name: "Terms of Use",
+    exact: true,
+    protected: false,
+    withHeader: true,
+    withFooter: true,
+    element: <TermsOfUsePage />,
+  },
   "*": {
     name: "404",
     exact: false,
     protected: false,
     withHeader: false,
     withFooter: true,
-    inNav: false,
     element: <Error404Page />,
   },
 };
