@@ -27,6 +27,7 @@ export const TextInput = ({
     `TextInput--${size}`,
     withIcon && "TextInput--WithIcon",
     error && "TextInput--Error",
+    disabled && "TextInput--Disabled",
     className
   );
   const inputRef = useRef(null);

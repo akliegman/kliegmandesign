@@ -12,6 +12,7 @@ export const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
+  const [requestInProgress, setRequestInProgress] = useState(false);
   const { from } = location.state || { from: { pathname: "/" } };
   const navigate = useNavigate();
 
@@ -28,14 +29,17 @@ export const LoginForm = () => {
     clearError("loginError");
     setPasswordError(null);
     setEmailError(null);
+    setRequestInProgress(true);
 
     if (!validatePassword(password)) {
       setPasswordError("Please enter a password");
+      setRequestInProgress(false);
       return;
     }
 
     if (email && !validateEmail(email)) {
       setEmailError("Please enter a valid email address");
+      setRequestInProgress(false);
       return;
     }
 
@@ -43,11 +47,14 @@ export const LoginForm = () => {
       const success = await login("user", password, email);
 
       if (success) {
+        setRequestInProgress(false);
         return navigate(from.pathname, { replace: true });
       } else {
+        setRequestInProgress(false);
         return false;
       }
     } catch (error) {
+      setRequestInProgress(false);
       console.error(error);
     }
   };
@@ -85,6 +92,7 @@ export const LoginForm = () => {
           required
           withIcon
           error={passwordError}
+          disabled={requestInProgress}
         />
 
         <TextInput
@@ -96,9 +104,14 @@ export const LoginForm = () => {
           withIcon
           error={emailError}
           autoFocus={emailError}
+          disabled={requestInProgress}
         />
 
-        <Button type="submit" onClick={(e) => handleSubmit(e)}>
+        <Button
+          type="submit"
+          disabled={requestInProgress}
+          onClick={(e) => handleSubmit(e)}
+        >
           Submit
         </Button>
       </Form>

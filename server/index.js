@@ -32,9 +32,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(session(authConfig.session));
+app.use((req, res, next) => {
+  if (typeof req.session.isNew === "undefined") {
+    req.session.isNew = true;
+    req.session.save(next);
+  } else if (req.session.isNew) {
+    req.session.isNew = false;
+    req.session.save(next);
+  } else {
+    next();
+  }
+});
 
 db.sequelize
-  .sync({ force: true })
+  .sync()
   .then(() => console.log("Synced db."))
   .catch((err) => console.log("Failed to sync db: " + err.message));
 

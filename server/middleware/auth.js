@@ -2,8 +2,9 @@ const basicAuth = require("basic-auth");
 const authConfig = require("../config/auth");
 const { WebClient } = require("@slack/web-api");
 
+const web = new WebClient(process.env.SLACK_BOT_TOKEN);
+
 exports.slackLoggedIn = async (req, res, next) => {
-  const web = new WebClient(process.env.SLACK_BOT_TOKEN);
   const email = req.session?.user?.email || "no email";
   const date = new Date().toLocaleString();
   const ip = req.ip;
@@ -20,6 +21,28 @@ exports.slackLoggedIn = async (req, res, next) => {
   }
 
   next();
+};
+
+exports.session = async (req, res) => {
+  const date = new Date().toLocaleString();
+  const ip = req.ip;
+
+  if (req.session.isNew) {
+    req.session.isNew = false;
+
+    try {
+      const result = await web.chat.postMessage({
+        channel: process.env.SLACK_CHANNEL_ID,
+        text: `New session started on ${date} from IP Address: ${ip}.`,
+      });
+      console.log("Slack message sent: ", result.ts);
+    } catch (error) {
+      console.log(error);
+    }
+
+    return res.status(200).send({ isNew: true });
+  }
+  return res.status(200).send({ isNew: false });
 };
 
 exports.check = (req, res) => {
@@ -51,11 +74,12 @@ exports.login = (req, res, next) => {
   };
 
   const checkUserCredentials = (user) => {
+    const allowedPasswords = authConfig.pass.split(",");
     if (
       user?.name &&
       user?.name !== authConfig.user &&
       user?.pass &&
-      user?.pass !== authConfig.pass
+      !allowedPasswords.includes(user?.pass)
     ) {
       errors.push("User name and password are incorrect");
       return false;
@@ -64,7 +88,7 @@ exports.login = (req, res, next) => {
       errors.push("User name is incorrect");
       return false;
     }
-    if (user?.pass && user?.pass !== authConfig.pass) {
+    if (user?.pass && !allowedPasswords.includes(user?.pass)) {
       errors.push("Password is incorrect");
       return false;
     }

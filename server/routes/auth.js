@@ -15,4 +15,6 @@ module.exports = (app) => {
   app.get("/api/auth", auth.check);
 
   app.get("/api/logout", auth.logout);
+
+  app.get("/api/session", auth.session);
 };

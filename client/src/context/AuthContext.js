@@ -6,17 +6,37 @@ import {
   useEffect,
   createContext,
 } from "react";
-import { loginUser, authUser, logoutUser } from "../hooks/auth";
+import {
+  loginUser,
+  authUser,
+  logoutUser,
+  checkNewSession,
+} from "../hooks/auth";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [session, setSession] = useState(null);
+  const [newSession, setNewSession] = useState(false);
   const [errors, setErrors] = useState([]);
 
   const clearError = useCallback((errorType) => {
     setErrors(errors.filter((error) => error[errorType] === undefined));
+  }, []);
+
+  const checkIfNewSession = useCallback(async () => {
+    try {
+      const response = await checkNewSession();
+      if (response?.error) {
+        setErrors([{ checkSessionError: response.error }, ...errors]);
+      } else {
+        setNewSession(response.isNew);
+        return response;
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   const login = useCallback(async (user, password, email) => {
@@ -71,9 +91,21 @@ export const AuthProvider = ({ children }) => {
     checkLogin();
   }, [checkLogin]);
 
+  useEffect(() => {
+    checkIfNewSession();
+  }, [checkIfNewSession]);
+
   const authContextValue = useMemo(
-    () => ({ isLoggedIn, session, login, logout, errors, clearError }),
-    [isLoggedIn, login, logout, session, errors, clearError]
+    () => ({
+      isLoggedIn,
+      session,
+      newSession,
+      login,
+      logout,
+      errors,
+      clearError,
+    }),
+    [isLoggedIn, login, logout, session, newSession, errors, clearError]
   );
 
   return (

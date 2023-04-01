@@ -50,4 +50,13 @@ const logoutUser = async () => {
   }
 };
 
-export { authUser, loginUser, logoutUser };
+const checkNewSession = async () => {
+  try {
+    const response = await api.get("/session");
+    return response.data;
+  } catch (error) {
+    return { error: error.response.data };
+  }
+};
+
+export { authUser, loginUser, logoutUser, checkNewSession };
