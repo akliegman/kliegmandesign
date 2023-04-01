@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet";
 
-export const PageHelmet = ({ title, description }) => {
+export const PageHelmet = ({ title, description, children }) => {
   const defaultTitle = "Adam Kliegman: NYC-based user-centric product engineer";
   const defaultDescription =
     "Adam Kliegman is an NYC-based user-centric product engineer. He is currently available for hire.";
@@ -12,6 +12,7 @@ export const PageHelmet = ({ title, description }) => {
     <Helmet>
       <title>{nestedTitle}</title>
       <meta name="description" content={nestedDescription} />
+      {children}
     </Helmet>
   );
 };
