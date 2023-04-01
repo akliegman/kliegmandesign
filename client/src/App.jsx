@@ -8,6 +8,7 @@ import { PageHelmet } from "./components/PageHelmet/PageHelmet";
 import { CookiesMessage } from "./components/CookiesMessage/CookiesMessage";
 import { GoogleAnalytics } from "./components/GoogleAnalytics/GoogleAnalytics";
 import { useAuth } from "./context/AuthContext";
+import { ScrolltopProvider } from "./context/ScrolltopContext";
 import { Spinner } from "./components/reusables";
 import { Helmet } from "react-helmet";
 import clsx from "clsx";
@@ -27,12 +28,8 @@ export const App = () => {
     setLoading(false);
   }, []);
 
-  useEffect(() => {
-    location && window.scrollTo(0, 0);
-  }, [location]);
-
   return (
-    <>
+    <ScrolltopProvider>
       <Helmet>
         {routes[location.pathname]?.darkenedBackground ? (
           <meta name="theme-color" content="#cccccc" />
@@ -89,6 +86,6 @@ export const App = () => {
           </div>
         </CSSTransition>
       </div>
-    </>
+    </ScrolltopProvider>
   );
 };

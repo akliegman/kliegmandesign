@@ -15,6 +15,10 @@
     .App__Content {
       transition: background-color 1s ease-in-out;
       background-color: @color-gray-400;
+
+      @media screen and (max-width: @breakpoint-mobile) {
+        transition: none;
+      }
     }
   }
 }
@@ -45,6 +49,25 @@
     opacity: 0;
     transition: all 1s ease-in-out;
   }
+
+  @media screen and (max-width: @breakpoint-mobile) {
+    &-enter {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    &-enter.AppPageFadeIn-enter-active {
+      opacity: 1;
+      transform: translateY(0);
+      transition: none;
+    }
+    &-exit {
+      opacity: 1;
+    }
+    &-exit-active {
+      opacity: 1;
+      transition: none;
+    }
+  }
 }
 
 .AppPageTransition {
@@ -66,5 +89,16 @@
     opacity: 0;
     transition: all 1s ease-in-out;
     transform: translateY(10rem);
+  }
+
+  @media screen and (max-width: @breakpoint-mobile) {
+    &-enter {
+      opacity: 0;
+      transform: translateY(5rem);
+    }
+    &-exit-active {
+      opacity: 1;
+      transform: translateY(5rem);
+    }
   }
 }
