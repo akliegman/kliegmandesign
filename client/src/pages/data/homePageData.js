@@ -1,5 +1,6 @@
-import Headshot from "../assets/images/headshot.jpg";
-export const homeData = {
+import Headshot from "../../assets/images/headshot.jpg";
+
+export const homePageData = {
   image: Headshot,
   header: "Hello, I'm Adam.",
   subheader: "I'm an NYC-based user-centric product engineer",

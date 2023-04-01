@@ -96,26 +96,3 @@
     transform: translateY(0);
   }
 }
-
-.HeaderTitleTransition {
-  &-enter {
-    opacity: 0;
-    position: absolute;
-    top: 0;
-  }
-  &-enter.HeaderTitleTransition-enter-active {
-    opacity: 1;
-    transition: all 0.5s ease-in-out;
-    position: relative;
-  }
-  &-exit {
-    opacity: 1;
-    position: relative;
-  }
-  &-exit-active {
-    opacity: 0;
-    transition: all 0.15s ease-in-out;
-    position: absolute;
-    top: 0;
-  }
-}

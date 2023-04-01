@@ -1,6 +1,5 @@
 import { Nav } from "../Nav/Nav";
 import { IconButton, Button } from "../reusables/";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { CaretLeftFilled, MenuOutlined } from "@ant-design/icons";
 import { useState, useEffect } from "react";
 import clsx from "clsx";
@@ -29,27 +28,19 @@ export const Header = ({ location }) => {
   return (
     <header className="Header">
       <div className="Header__Title">
-        <TransitionGroup component={null}>
-          <CSSTransition
-            key={location.key}
-            classNames="HeaderTitleTransition"
-            timeout={500}
+        {!showHomeButton ? (
+          <span className="Header__Logo">Adam Kliegman</span>
+        ) : (
+          <Button
+            to="/"
+            type="link"
+            variant="navlink"
+            icon={<CaretLeftFilled />}
+            focusable={false}
           >
-            {!showHomeButton ? (
-              <span className="Header__Logo">Adam Kliegman</span>
-            ) : (
-              <Button
-                to="/"
-                type="link"
-                variant="navlink"
-                icon={<CaretLeftFilled />}
-                focusable={false}
-              >
-                Home
-              </Button>
-            )}
-          </CSSTransition>
-        </TransitionGroup>
+            Home
+          </Button>
+        )}
       </div>
       <div
         className={clsx("Header__Nav", showMobileMenu && "Header__Nav--Show")}

@@ -11,6 +11,21 @@
     min-height: 100vh;
     background-color: @color-gray-100;
   }
+  &--DarkenedBackground {
+    .App__Content {
+      transition: background-color 1s ease-in-out;
+      background-color: @color-gray-400;
+    }
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .AppPageFadeIn {

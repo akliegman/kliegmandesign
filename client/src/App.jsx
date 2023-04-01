@@ -1,21 +1,26 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { ResumePage } from "./pages/ResumePage";
-import { HomePage } from "./pages/HomePage";
-import { Error404Page } from "./pages/Error404Page";
-import { Spinner } from "./components/reusables/Spinner";
+import { routes } from "./routes";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { Header } from "./components/Header/Header";
 import { Footer } from "./components/Footer/Footer";
 import { PageHelmet } from "./components/PageHelmet/PageHelmet";
 import { CookiesMessage } from "./components/CookiesMessage/CookiesMessage";
 import { GoogleAnalytics } from "./components/GoogleAnalytics/GoogleAnalytics";
-
+import { useAuth } from "./context/AuthContext";
+import { Spinner } from "./components/reusables";
+import clsx from "clsx";
 import "./App.less";
 
 export const App = () => {
   const location = useLocation();
   const [loading, setLoading] = useState(true);
+  const { isLoggedIn } = useAuth();
+  const appClassNames = clsx("App", {
+    "App--NoHeader": !routes[location.pathname]?.withHeader,
+    "App--NoFooter": !routes[location.pathname]?.withFooter,
+    "App--DarkenedBackground": routes[location.pathname]?.darkenedBackground,
+  });
 
   useEffect(() => {
     setLoading(false);
@@ -28,7 +33,7 @@ export const App = () => {
   return (
     <>
       <GoogleAnalytics />
-      <div className="App">
+      <div className={appClassNames}>
         {loading && <Spinner />}
         <CSSTransition
           in={!loading}
@@ -38,7 +43,10 @@ export const App = () => {
         >
           <div className="App__Content">
             <PageHelmet />
-            <Header location={location} />
+
+            {routes[location.pathname]?.withHeader && (
+              <Header location={location} />
+            )}
             <TransitionGroup component={null}>
               <CSSTransition
                 key={location.key}
@@ -46,13 +54,29 @@ export const App = () => {
                 timeout={1000}
               >
                 <Routes location={location}>
-                  <Route exact path="/" element={<HomePage />} />
-                  <Route path="/resume" element={<ResumePage />} />
-                  <Route path="*" element={<Error404Page />} />
+                  {Object.entries(routes).map(([path, route], index) => {
+                    let state = { from: { pathname: path } };
+                    let element = !route.protected ? (
+                      route.element
+                    ) : isLoggedIn ? (
+                      route.element
+                    ) : (
+                      <Navigate to={`/login`} state={state} />
+                    );
+
+                    return (
+                      <Route
+                        key={index}
+                        path={path}
+                        exact={route.exact}
+                        element={element}
+                      />
+                    );
+                  })}
                 </Routes>
               </CSSTransition>
             </TransitionGroup>
-            <Footer />
+            {routes[location.pathname]?.withFooter && <Footer />}
             <CookiesMessage />
           </div>
         </CSSTransition>

@@ -1,0 +1,124 @@
+@import (reference) "../../../styles/variables";
+
+::placeholder {
+  color: @color-gray-600;
+  opacity: 1;
+  transition: @transition-all;
+}
+
+.TextInput {
+  position: relative;
+  min-width: 16rem;
+  &__Input {
+    border: none;
+    border-radius: @border-radius-default;
+    font-family: @font-family-sans-serif;
+    padding: 0.5rem 0.875rem;
+    position: relative;
+    height: 3rem;
+    font-size: 1.0625rem;
+    line-height: 1.4375rem;
+    font-weight: 400;
+    width: 100%;
+    font-size: 1rem;
+    color: @color-black;
+    transition: @transition-all;
+    box-shadow: none;
+
+    &:hover {
+      box-shadow: 0 0 2px @color-gray-900;
+    }
+    &:focus {
+      box-shadow: @box-shadow-default;
+      outline-color: @color-red-800;
+      outline-offset: 2px;
+      outline-width: 2px;
+      outline-style: solid;
+    }
+  }
+
+  @icon-size: 1.25rem;
+  @icon-position: calc((3rem - @icon-size) / 2);
+
+  &__Icon {
+    position: absolute;
+    left: @icon-position;
+    top: @icon-position;
+    height: @icon-size;
+    width: @icon-size;
+    z-index: 1;
+    color: @color-gray-400;
+    transition: @transition-all;
+    .anticon-key {
+      transform: rotate(180deg);
+    }
+    svg {
+      height: @icon-size;
+      width: @icon-size;
+      transition: @transition-all;
+    }
+  }
+
+  &--WithIcon {
+    .TextInput__Input {
+      padding-left: calc(@icon-size + @icon-position + @icon-position);
+    }
+  }
+
+  &--Error {
+    animation: inputShake 0.8s linear 1;
+
+    .TextInput__Input {
+      box-shadow: 0 0 2px @color-red-400;
+    }
+    &.TextInput--WithIcon {
+      .TextInput__Icon {
+        color: @color-red-400;
+      }
+    }
+  }
+
+  &--Disabled {
+    .TextInput__Input {
+      background-color: @color-gray-300 !important;
+      color: @color-gray-700 !important;
+      cursor: not-allowed !important;
+      box-shadow: none !important;
+    }
+    &.TextInput--WithIcon {
+      .TextInput__Icon {
+        color: @color-gray-400 !important;
+      }
+    }
+  }
+}
+
+@keyframes inputShake {
+  0% {
+    transform: translateX(0);
+  }
+  12.5% {
+    transform: translateX(-0.75rem);
+  }
+  25% {
+    transform: translateX(0.75rem);
+  }
+  37.5% {
+    transform: translateX(-0.75rem);
+  }
+  50% {
+    transform: translateX(-0.75rem);
+  }
+  62.5% {
+    transform: translateX(0.75rem);
+  }
+  75% {
+    transform: translateX(-0.75rem);
+  }
+  87.5% {
+    transform: translateX(0.75rem);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

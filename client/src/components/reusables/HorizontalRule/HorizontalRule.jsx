@@ -1,6 +1,5 @@
 import clsx from "clsx";
-import { toTitleCase } from "../../helpers/toTitleCase";
-
+import { toTitleCase } from "../../../helpers/toTitleCase";
 import "./HorizontalRule.less";
 
 export const HorizontalRule = ({ color = "red", className }) => {
