@@ -20,9 +20,7 @@ export const LoginPage = () => {
 
   return (
     <>
-      <PageHelmet title="Log In">
-        <meta name="theme-color" content="#ccc" />
-      </PageHelmet>
+      <PageHelmet title="Log In" />
       <StaticLayout className="LoginPage" alignItems="center">
         <LockFilled />
         <LoginForm />

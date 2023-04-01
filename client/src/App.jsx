@@ -9,6 +9,7 @@ import { CookiesMessage } from "./components/CookiesMessage/CookiesMessage";
 import { GoogleAnalytics } from "./components/GoogleAnalytics/GoogleAnalytics";
 import { useAuth } from "./context/AuthContext";
 import { Spinner } from "./components/reusables";
+import { Helmet } from "react-helmet";
 import clsx from "clsx";
 import "./App.less";
 
@@ -32,6 +33,13 @@ export const App = () => {
 
   return (
     <>
+      <Helmet>
+        {routes[location.pathname]?.darkenedBackground ? (
+          <meta name="theme-color" content="#cccccc" />
+        ) : (
+          <meta name="theme-color" content="#f7f7f7" />
+        )}
+      </Helmet>
       <GoogleAnalytics />
       <div className={appClassNames}>
         {loading && <Spinner />}
