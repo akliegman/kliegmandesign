@@ -4,6 +4,7 @@ import { LoginForm } from "../components/LoginForm/LoginForm";
 import { useAuth } from "../context/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { PageHelmet } from "../components/PageHelmet/PageHelmet";
 
 export const LoginPage = () => {
   const { isLoggedIn } = useAuth();
@@ -18,9 +19,12 @@ export const LoginPage = () => {
   }, [isLoggedIn, navigate, from.pathname]);
 
   return (
-    <StaticLayout className="LoginPage" alignItems="center">
-      <LockFilled />
-      <LoginForm />
-    </StaticLayout>
+    <>
+      <PageHelmet title="Log In" />
+      <StaticLayout className="LoginPage" alignItems="center">
+        <LockFilled />
+        <LoginForm />
+      </StaticLayout>
+    </>
   );
 };

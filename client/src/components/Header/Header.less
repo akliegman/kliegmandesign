@@ -18,6 +18,10 @@
   @media screen and (max-width: @breakpoint-mobile) {
     padding: 0.5rem;
   }
+  .App--DarkenedBackground & {
+    transition: background-color 1s ease-in-out;
+    background-color: @color-gray-400;
+  }
   &__Logo {
     .header-1();
     color: @color-red-600;

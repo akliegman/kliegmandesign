@@ -79,8 +79,6 @@ export const LoginForm = () => {
 
   return (
     <div className="LoginForm">
-      <h1>Log In</h1>
-
       <Form className="LoginForm__Form" onSubmit={(e) => handleSubmit(e)}>
         <TextInput
           type="password"

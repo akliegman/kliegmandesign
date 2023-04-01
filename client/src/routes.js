@@ -48,7 +48,7 @@ export const routes = {
     name: "Log In",
     exact: true,
     protected: false,
-    withHeader: false,
+    withHeader: true,
     withFooter: true,
     darkenedBackground: true,
     element: <LoginPage />,
