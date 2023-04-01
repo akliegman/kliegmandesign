@@ -10,8 +10,8 @@ export const LoginForm = () => {
   const { login, errors, clearError } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState(null);
-  const [passwordError, setPasswordError] = useState(null);
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [requestInProgress, setRequestInProgress] = useState(false);
   const { from } = location.state || { from: { pathname: "/" } };
   const navigate = useNavigate();
@@ -25,23 +25,24 @@ export const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     clearError("loginError");
-    setPasswordError(null);
-    setEmailError(null);
+    setPasswordError("");
+    setEmailError("");
     setRequestInProgress(true);
 
-    if (!validatePassword(password)) {
-      setPasswordError("Please enter a password");
-      setRequestInProgress(false);
-      return;
-    }
+    setTimeout(() => {
+      if (!validatePassword(password)) {
+        setPasswordError("Please enter a password");
+        setRequestInProgress(false);
+        return;
+      }
 
-    if (email && !validateEmail(email)) {
-      setEmailError("Please enter a valid email address");
-      setRequestInProgress(false);
-      return;
-    }
+      if (email && !validateEmail(email)) {
+        setEmailError("Please enter a valid email address");
+        setRequestInProgress(false);
+        return;
+      }
+    }, 50);
 
     try {
       const success = await login("user", password, email);
