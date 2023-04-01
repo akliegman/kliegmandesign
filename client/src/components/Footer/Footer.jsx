@@ -7,7 +7,6 @@ import "./Footer.less";
 export const Footer = ({ className }) => {
   const { session } = useAuth();
 
-  console.log(session);
   return (
     <footer className={clsx("Footer", className)}>
       <p className="Footer__Copyright">

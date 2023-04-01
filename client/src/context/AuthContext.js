@@ -21,9 +21,12 @@ export const AuthProvider = ({ children }) => {
   const [newSession, setNewSession] = useState(false);
   const [errors, setErrors] = useState([]);
 
-  const clearError = useCallback((errorType) => {
-    setErrors(errors.filter((error) => error[errorType] === undefined));
-  }, []);
+  const clearError = useCallback(
+    (errorType) => {
+      setErrors(errors.filter((error) => error[errorType] === undefined));
+    },
+    [errors]
+  );
 
   const checkIfNewSession = useCallback(async () => {
     try {
@@ -37,22 +40,25 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [errors]);
 
-  const login = useCallback(async (user, password, email) => {
-    try {
-      const response = await loginUser(user, password, email);
-      if (response?.error) {
-        setErrors([{ loginError: response.error }, ...errors]);
-      } else {
-        setSession(response);
-        setIsLoggedIn(true);
-        return response;
+  const login = useCallback(
+    async (user, password, email) => {
+      try {
+        const response = await loginUser(user, password, email);
+        if (response?.error) {
+          setErrors([{ loginError: response.error }, ...errors]);
+        } else {
+          setSession(response);
+          setIsLoggedIn(true);
+          return response;
+        }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+    },
+    [errors]
+  );
 
   const logout = useCallback(async () => {
     try {
@@ -66,13 +72,13 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [errors]);
 
   const checkLogin = useCallback(async () => {
     try {
       const response = await authUser();
       if (response?.error) {
-        setErrors(response.error);
+        setErrors([{ checkLoginError: response.error }, ...errors]);
       } else {
         if (response.user) {
           setSession(response);
@@ -85,7 +91,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [errors]);
 
   useEffect(() => {
     checkLogin();

@@ -15,7 +15,7 @@ export const LoginPage = () => {
     if (isLoggedIn) {
       navigate(from.pathname, { replace: true });
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, navigate, from.pathname]);
 
   return (
     <StaticLayout className="LoginPage" alignItems="center">
