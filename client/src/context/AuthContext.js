@@ -98,8 +98,9 @@ export const AuthProvider = ({ children }) => {
   }, [checkLogin]);
 
   useEffect(() => {
+    /* eslint-disable react-hooks/exhaustive-deps */
     checkIfNewSession();
-  }, [checkIfNewSession]);
+  }, []);
 
   const authContextValue = useMemo(
     () => ({
