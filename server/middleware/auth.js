@@ -170,3 +170,10 @@ exports.logout = async (req, res) => {
     console.log(error);
   }
 };
+
+exports.requireAuth = (req, res, next) => {
+  if (req.session.user) {
+    return next();
+  }
+  return res.status(400).send({ message: "Unauthorized" });
+};

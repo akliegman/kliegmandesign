@@ -21,3 +21,14 @@ exports.create = async (req, res, next) => {
     console.log(error);
   }
 };
+
+exports.findAll = async (req, res) => {
+  try {
+    const sessions = await Sessions.findAll();
+    return res.send(sessions);
+  } catch (error) {
+    return res.status(500).send({
+      message: `Error occurred while retrieving sessions: ${error.message}`,
+    });
+  }
+};
