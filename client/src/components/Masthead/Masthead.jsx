@@ -11,18 +11,18 @@ export const Masthead = ({ data }) => {
   return (
     <div className="Masthead">
       <img
-        className="Masthead__Image"
+        className="Masthead__image"
         src={data.image}
         alt="Adam Kliegman"
         height="80"
         width="80"
       />
-      <div className="Masthead__Content">
-        <h1 className="Masthead__Header">{data.header}</h1>
-        <h2 className="Masthead__Subheader">{data.subheader}</h2>
-        <HorizontalRule color="gray-500" className="Masthead__Hr" />
-        <p className="Masthead__Description">{data.description}</p>
-        <div className="Masthead__Buttons">
+      <div className="Masthead__content">
+        <h1 className="Masthead__header">{data.header}</h1>
+        <h2 className="Masthead__subheader">{data.subheader}</h2>
+        <HorizontalRule color="gray-500" className="Masthead__hr" />
+        <p className="Masthead__description">{data.description}</p>
+        <div className="Masthead__buttons">
           {data.ctas.map((button) => (
             <Button
               type="link"
@@ -36,7 +36,7 @@ export const Masthead = ({ data }) => {
             </Button>
           ))}
         </div>
-        <div className="Masthead__Social">
+        <div className="Masthead__social">
           {data.social.map((social) => {
             let icon =
               social.name === "LinkedIn" ? (

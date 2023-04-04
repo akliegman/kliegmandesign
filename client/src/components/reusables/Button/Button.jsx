@@ -2,7 +2,6 @@ import { Link, NavLink } from "react-router-dom";
 import "./Button.less";
 import PropTypes from "prop-types";
 import clsx from "clsx";
-import { toTitleCase } from "../../../helpers/toTitleCase";
 
 export const Button = ({
   children,
@@ -21,13 +20,13 @@ export const Button = ({
 }) => {
   const classNames = clsx(
     "Button",
-    `Button--${toTitleCase(size)}`,
-    `Button--${toTitleCase(variant)}`,
-    icon && iconPosition === "left" && "Button--WithIcon--Left",
-    icon && iconPosition === "right" && "Button--WithIcon--Right",
-    focusable === false && "Button--NotFocusable",
-    withShadow && "IconButton--WithShadow",
-    disabled === true && "Button--Disabled",
+    `Button--${size.toLowerCase()}`,
+    `Button--${variant.toLowerCase()}`,
+    icon && iconPosition === "left" && "Button--withIcon-left",
+    icon && iconPosition === "right" && "Button--withIcon-right",
+    focusable === false && "Button--notFocusable",
+    withShadow && "IconButton--withShadow",
+    disabled === true && "Button--disabled",
     className
   );
 

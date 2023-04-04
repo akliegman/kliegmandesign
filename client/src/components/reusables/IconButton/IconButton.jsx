@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import "./IconButton.less";
 import PropTypes from "prop-types";
 import clsx from "clsx";
-import { toTitleCase } from "../../../helpers/toTitleCase";
 
 export const IconButton = ({
   icon,
@@ -19,11 +18,11 @@ export const IconButton = ({
 }) => {
   const classNames = clsx(
     "IconButton",
-    `IconButton--${toTitleCase(size)}`,
-    `IconButton--${toTitleCase(variant)}`,
-    active && "IconButton--Active",
-    focusable === false && "IconButton--NotFocusable",
-    withShadow && "IconButton--WithShadow",
+    `IconButton--${size.toLowerCase()}`,
+    `IconButton--${variant.toLowerCase()}`,
+    active && "IconButton--active",
+    focusable === false && "IconButton--notFocusable",
+    withShadow && "IconButton--withShadow",
     className
   );
 

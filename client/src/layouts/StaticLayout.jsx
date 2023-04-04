@@ -8,11 +8,11 @@ export const StaticLayout = ({ alignItems = "left", className, children }) => {
       <div
         className={clsx(
           "StaticLayout",
-          `StaticLayout--AlignItems${toTitleCase(alignItems)}`,
+          `StaticLayout--alignItems${toTitleCase(alignItems)}`,
           className
         )}
       >
-        <div className="StaticLayout__Content">{children}</div>
+        <div className="StaticLayout__content">{children}</div>
       </div>
     </>
   );

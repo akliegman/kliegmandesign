@@ -1,7 +1,7 @@
 export const Project = ({ data }) => {
   return (
     <div className="Project">
-      <div className="Project__Description">
+      <div className="Project__description">
         <h1 className="Project__title">{data.name}</h1>
         <div className="Project__description">
           <p>{data.description}</p>

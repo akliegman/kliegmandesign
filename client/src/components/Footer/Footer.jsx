@@ -9,10 +9,10 @@ export const Footer = ({ className }) => {
 
   return (
     <footer className={clsx("Footer", className)}>
-      <p className="Footer__Copyright">
+      <p className="Footer__copyright">
         © 2023 The Kliegman Design Company. All rights reserved.
       </p>
-      <div className="Footer__Legal">
+      <div className="Footer__legal">
         {session && (
           <>
             <p>

@@ -4,11 +4,11 @@ import "./ResumeSectionItem.less";
 export const ResumeSectionItem = ({ type, data }) => {
   return (
     <div className="ResumeSectionItem">
-      <div className="ResumeSectionItem__Header">
+      <div className="ResumeSectionItem__header">
         {(type === "experience" || type === "education") && (
           <>
-            <div className="ResumeSectionItem__Header__Column">
-              <h3 className="ResumeSectionItem__Title">
+            <div className="ResumeSectionItem__header__column">
+              <h3 className="ResumeSectionItem__title">
                 <a href={data?.website} target="_blank" rel="noreferrer">
                   {data?.name}
                 </a>
@@ -16,7 +16,7 @@ export const ResumeSectionItem = ({ type, data }) => {
               {type === "experience" && (
                 <>
                   <MidDot color="red-400" />
-                  <p className="ResumeSectionItem__Subtitle">
+                  <p className="ResumeSectionItem__subtitle">
                     <span>{data?.type}</span>
                     {data?.transaction_type && (
                       <>
@@ -28,7 +28,7 @@ export const ResumeSectionItem = ({ type, data }) => {
                 </>
               )}
             </div>
-            <div className="ResumeSectionItem__Header__Column">
+            <div className="ResumeSectionItem__header__column">
               <HorizontalRule />
 
               <img src={data?.logo} alt={data?.name} height="34" width="34" />
@@ -36,19 +36,19 @@ export const ResumeSectionItem = ({ type, data }) => {
           </>
         )}
       </div>
-      <div className="ResumeSectionItem__Content">
+      <div className="ResumeSectionItem__content">
         {data?.items?.map((item, index) => (
-          <div className="ResumeSectionItem__Content__Item" key={index}>
-            <div className="ResumeSectionItem__Content__Item__Header">
-              <h4 className="ResumeSectionItem__Content__Item__Title">
+          <div className="ResumeSectionItem__content__item" key={index}>
+            <div className="ResumeSectionItem__content__item__header">
+              <h4 className="ResumeSectionItem__content__item__title">
                 {item?.title}
               </h4>
-              <h5 className="ResumeSectionItem__Content__Item__Subtitle">
+              <h5 className="ResumeSectionItem__content__item__subtitle">
                 {item?.start_date} - {item?.end_date}
               </h5>
             </div>
-            <div className="ResumeSectionItem__Content__Item__Body">
-              <p className="ResumeSectionItem__Content__Item__Paragraph">
+            <div className="ResumeSectionItem__content__item__body">
+              <p className="ResumeSectionItem__content__item__paragraph">
                 {item?.description.map((text, index) => (
                   <span key={index}>
                     {text.type === "text" && text.value}
@@ -58,7 +58,7 @@ export const ResumeSectionItem = ({ type, data }) => {
                 ))}
               </p>
               {item?.tech_stack && item?.tech_stack.length > 0 && (
-                <p className="ResumeSectionItem__Content__Item__Stack">
+                <p className="ResumeSectionItem__content__item__stack">
                   {item?.tech_stack.join(", ")}
                 </p>
               )}

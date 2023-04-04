@@ -9,7 +9,7 @@
 .TextInput {
   position: relative;
   min-width: 16rem;
-  &__Input {
+  &__input {
     border: none;
     border-radius: 0;
     font-family: @font-family-sans-serif;
@@ -40,7 +40,7 @@
   @icon-size: 1.25rem;
   @icon-position: calc((3rem - @icon-size) / 2);
 
-  &__Icon {
+  &__icon {
     position: absolute;
     left: @icon-position;
     top: @icon-position;
@@ -59,34 +59,34 @@
     }
   }
 
-  &--WithIcon {
-    .TextInput__Input {
+  &--withIcon {
+    .TextInput__input {
       padding-left: calc(@icon-size + @icon-position + @icon-position);
     }
   }
 
-  &--Error {
+  &--error {
     animation: inputShake 0.8s linear 1;
 
-    .TextInput__Input {
+    .TextInput__input {
       box-shadow: 0 0 2px @color-red-400;
     }
-    &.TextInput--WithIcon {
-      .TextInput__Icon {
+    &.TextInput--withIcon {
+      .TextInput__icon {
         color: @color-red-400;
       }
     }
   }
 
-  &--Disabled {
-    .TextInput__Input {
+  &--disabled {
+    .TextInput__input {
       background-color: @color-gray-300 !important;
       color: @color-gray-700 !important;
       cursor: not-allowed !important;
       box-shadow: none !important;
     }
-    &.TextInput--WithIcon {
-      .TextInput__Icon {
+    &.TextInput--withIcon {
+      .TextInput__icon {
         color: @color-gray-400 !important;
       }
     }

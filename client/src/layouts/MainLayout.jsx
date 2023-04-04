@@ -8,11 +8,11 @@ export const MainLayout = ({ alignItems = "left", className, children }) => {
       <div
         className={clsx(
           "MainLayout",
-          `MainLayout--AlignItems${toTitleCase(alignItems)}`,
+          `MainLayout--alignItems${toTitleCase(alignItems)}`,
           className
         )}
       >
-        <div className="MainLayout__Content">{children}</div>
+        <div className="MainLayout__content">{children}</div>
       </div>
     </>
   );

@@ -25,9 +25,9 @@ export const TextInput = ({
   const classNames = clsx(
     "TextInput",
     `TextInput--${size}`,
-    withIcon && "TextInput--WithIcon",
-    error && "TextInput--Error",
-    disabled && "TextInput--Disabled",
+    withIcon && "TextInput--withIcon",
+    error && "TextInput--error",
+    disabled && "TextInput--disabled",
     className
   );
   const inputRef = useRef(null);
@@ -41,19 +41,19 @@ export const TextInput = ({
   return (
     <div className={classNames}>
       {label && (
-        <label className="TextInput__Label" htmlFor={name}>
+        <label className="TextInput__label" htmlFor={name}>
           {label}
         </label>
       )}
       {withIcon && (
-        <div className="TextInput__Icon">
+        <div className="TextInput__icon">
           {type === "email" && <MailFilled />}
           {type === "password" && <KeyOutlined />}
         </div>
       )}
       <input
-        className={clsx("TextInput__Input", {
-          "TextInput__Input--Error": error,
+        className={clsx("TextInput__input", {
+          "TextInput__input--error": error,
         })}
         type={type}
         name={name}
@@ -72,7 +72,7 @@ export const TextInput = ({
         invalid={error ? "true" : "false"}
         {...rest}
       />
-      {/* {error && <span className="TextInput__Error">{error}</span>} */}
+      {/* {error && <span className="TextInput__error">{error}</span>} */}
     </div>
   );
 };

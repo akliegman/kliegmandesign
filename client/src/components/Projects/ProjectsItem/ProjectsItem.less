@@ -14,7 +14,7 @@
   &:hover {
     box-shadow: @box-shadow-large;
 
-    .ProjectsItem__Content {
+    .ProjectsItem__content {
       h2 {
         color: @color-red-600;
       }
@@ -23,16 +23,16 @@
   }
 
   &:active {
-    .ProjectsItem__Content {
+    .ProjectsItem__content {
       background-color: @color-gray-200;
     }
   }
 
-  &--Protected {
+  &--protected {
     box-shadow: none !important;
 
     &:hover {
-      .ProjectsItem__Content {
+      .ProjectsItem__content {
         background-color: @color-white !important;
 
         h2 {
@@ -42,7 +42,7 @@
     }
   }
 
-  &__ComingSoon {
+  &__comingSoon {
     position: absolute;
     top: 0;
     left: 0;
@@ -62,7 +62,7 @@
     }
   }
 
-  &__Thumbnail {
+  &__thumbnail {
     width: 100%;
     max-width: unset;
     max-height: 14rem;
@@ -72,7 +72,7 @@
     border-radius: @border-radius-large @border-radius-large 0 0;
   }
 
-  &__Content {
+  &__content {
     width: 100%;
     padding: 1.5rem;
     display: flex;
@@ -92,7 +92,7 @@
     }
   }
 
-  &__Stack {
+  &__stack {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;

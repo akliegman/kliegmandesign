@@ -28,9 +28,9 @@ export const Header = ({ location }) => {
 
   return (
     <header className="Header">
-      <div className="Header__Title">
+      <div className="Header__title">
         {!showHomeButton ? (
-          <span className="Header__Logo">Adam Kliegman</span>
+          <span className="Header__logo">Adam Kliegman</span>
         ) : (
           <Button
             to="/"
@@ -44,12 +44,12 @@ export const Header = ({ location }) => {
         )}
       </div>
       <div
-        className={clsx("Header__Nav", showMobileMenu && "Header__Nav--Show")}
+        className={clsx("Header__nav", showMobileMenu && "Header__nav--show")}
       >
         <Nav location={location} linkOnClick={(e) => closeMobileMenu(e)} />
       </div>
       <IconButton
-        className="Header__MenuButton"
+        className="Header__menuButton"
         icon={<MenuOutlined />}
         type="button"
         variant="navlink"

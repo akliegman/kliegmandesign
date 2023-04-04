@@ -25,9 +25,9 @@ export const App = () => {
   const { isLoggedIn } = useAuth();
 
   const appClassNames = clsx("App", {
-    "App--NoHeader": !routes[location.pathname]?.withHeader,
-    "App--NoFooter": !routes[location.pathname]?.withFooter,
-    "App--DarkenedBackground": routes[location.pathname]?.darkenedBackground,
+    "App--noHeader": !routes[location.pathname]?.withHeader,
+    "App--noFooter": !routes[location.pathname]?.withFooter,
+    "App--darkenedBackground": routes[location.pathname]?.darkenedBackground,
   });
 
   const [projectRoute, projectObject] = Object.entries(routes).filter(
@@ -63,7 +63,7 @@ export const App = () => {
           timeout={1200}
           unmountOnExit
         >
-          <div className="App__Content">
+          <div className="App__content">
             <PageHelmet />
 
             {isWithHeader && <Header location={location} />}

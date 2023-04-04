@@ -15,7 +15,7 @@ export const Error404Page = () => {
       <Button
         type="link"
         to="/"
-        className="Error404Page__Back"
+        className="Error404Page__back"
         icon={<LeftCircleFilled />}
       >
         Return Home

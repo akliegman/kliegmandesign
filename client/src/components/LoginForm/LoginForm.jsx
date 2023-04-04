@@ -80,7 +80,7 @@ export const LoginForm = ({ user }) => {
 
   return (
     <div className="LoginForm">
-      <Form className="LoginForm__Form" onSubmit={(e) => handleSubmit(e)}>
+      <Form className="LoginForm__form" onSubmit={(e) => handleSubmit(e)}>
         <TextInput
           type="password"
           name="password"

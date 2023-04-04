@@ -13,7 +13,7 @@ export const ResumeSection = ({ type, data }) => {
     <div
       className={clsx(
         "ResumeSection",
-        (type === "objective" || type === "skills") && "ResumeSection--OneRow"
+        (type === "objective" || type === "skills") && "ResumeSection--oneRow"
       )}
     >
       <ResumeSectionHeader>{toTitleCase(type)}</ResumeSectionHeader>
