@@ -18,9 +18,11 @@ export const LoginPage = ({ user = "user" }) => {
     }
   }, [isLoggedIn, navigate, from.pathname]);
 
+  const title = user === "admin" ? "Admin Login" : "Log In";
+
   return (
     <>
-      <PageHelmet title="Log In" />
+      <PageHelmet title={title} />
       <MainLayout className="LoginPage" alignItems="center">
         <LockFilled />
         {user === "admin" && <h2>Admin</h2>}

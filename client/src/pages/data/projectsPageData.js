@@ -3,7 +3,7 @@ import {
   DemystPlatformImage,
 } from "../../assets/images/projects";
 
-export const projectsData = [
+export const projectsPageData = [
   {
     name: "demyst-platform",
     protected: false,
@@ -12,6 +12,32 @@ export const projectsData = [
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
     thumbnail: DemystPlatformImage,
     stack: ["React", "Redux", "LESS", "Cypress", "Storybook", "Ruby on Rails"],
+    slides: [
+      {
+        title: "Demyst Data Platform",
+        description:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+        image: DemystPlatformImage,
+      },
+      {
+        title: "Demyst Data Platform",
+        description:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+        image: DemystPlatformImage,
+      },
+      {
+        title: "Demyst Data Platform",
+        description:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+        image: DemystPlatformImage,
+      },
+      {
+        title: "Demyst Data Platform",
+        description:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+        image: DemystPlatformImage,
+      },
+    ],
   },
   {
     name: "demyst-marketing-site",
