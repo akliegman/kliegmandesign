@@ -5,7 +5,7 @@ import { useAuth } from "../../context/AuthContext";
 import { validateEmail } from "../../helpers/validateEmail";
 import "./LoginForm.less";
 
-export const LoginForm = () => {
+export const LoginForm = ({ user }) => {
   const location = useLocation();
   const { login, errors, clearError } = useAuth();
   const [email, setEmail] = useState("");
@@ -45,7 +45,7 @@ export const LoginForm = () => {
     }, 50);
 
     try {
-      const success = await login("user", password, email);
+      const success = await login(user, password, email);
 
       if (success) {
         setRequestInProgress(false);
@@ -93,18 +93,19 @@ export const LoginForm = () => {
           error={passwordError}
           disabled={requestInProgress}
         />
-
-        <TextInput
-          type="email"
-          name="email"
-          placeholder="Enter email (optional)"
-          value={email}
-          onChange={(e) => handleEmailChange(e)}
-          withIcon
-          error={emailError}
-          autoFocus={emailError}
-          disabled={requestInProgress}
-        />
+        {user === "user" && (
+          <TextInput
+            type="email"
+            name="email"
+            placeholder="Enter email (optional)"
+            value={email}
+            onChange={(e) => handleEmailChange(e)}
+            withIcon
+            error={emailError}
+            autoFocus={emailError}
+            disabled={requestInProgress}
+          />
+        )}
 
         <Button
           type="submit"

@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { PageHelmet } from "../components/PageHelmet/PageHelmet";
 
-export const LoginPage = () => {
+export const LoginPage = ({ user = "user" }) => {
   const { isLoggedIn } = useAuth();
   const location = useLocation();
   const { from } = location.state || { from: { pathname: "/" } };
@@ -23,7 +23,8 @@ export const LoginPage = () => {
       <PageHelmet title="Log In" />
       <MainLayout className="LoginPage" alignItems="center">
         <LockFilled />
-        <LoginForm />
+        {user === "admin" && <h2>Admin</h2>}
+        <LoginForm user={user} />
       </MainLayout>
     </>
   );

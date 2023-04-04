@@ -61,6 +61,15 @@ export const routes = {
     withFooter: true,
     element: <Page.LogoutPage />,
   },
+  "/admin-login": {
+    name: "Admin Log In",
+    exact: true,
+    protected: false,
+    withHeader: true,
+    withFooter: true,
+    darkenedBackground: true,
+    element: <Page.LoginPage user={"admin"} />,
+  },
   "/privacy-policy": {
     name: "Privacy Policy",
     exact: true,
