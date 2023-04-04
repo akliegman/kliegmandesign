@@ -1,0 +1,109 @@
+@import (reference) "../../../styles/variables";
+@import (reference) "../../../styles/typography";
+
+.ProjectsItem {
+  border-radius: @border-radius-large;
+  background: @color-white;
+  box-shadow: @box-shadow-default;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  transition: @transition-all;
+  position: relative;
+
+  &:hover {
+    box-shadow: @box-shadow-large;
+
+    .ProjectsItem__Content {
+      h2 {
+        color: @color-red-600;
+      }
+      background-color: @color-gray-100;
+    }
+  }
+
+  &:active {
+    .ProjectsItem__Content {
+      background-color: @color-gray-200;
+    }
+  }
+
+  &--Protected {
+    box-shadow: none !important;
+
+    &:hover {
+      .ProjectsItem__Content {
+        background-color: @color-white !important;
+
+        h2 {
+          color: @color-red-400!important;
+        }
+      }
+    }
+  }
+
+  &__ComingSoon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(@color-white, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: @border-radius-large;
+    > span {
+      .header-1();
+      text-transform: uppercase;
+      letter-spacing: 0.125rem;
+      color: @color-gray-1000;
+      transform: rotate(-45deg);
+    }
+  }
+
+  &__Thumbnail {
+    width: 100%;
+    max-width: unset;
+    max-height: 14rem;
+    object-fit: cover;
+    object-position: center top;
+    border-bottom: 1px solid @color-gray-200;
+    border-radius: @border-radius-large @border-radius-large 0 0;
+  }
+
+  &__Content {
+    width: 100%;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: @transition-all;
+    border-radius: 0 0 @border-radius-large @border-radius-large;
+
+    h2 {
+      .header-2();
+      color: @color-red-400;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      .paragraph();
+    }
+  }
+
+  &__Stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    border-top: 1px solid @color-gray-200;
+    padding-top: 1rem;
+    justify-content: space-between;
+
+    > li {
+      .paragraph-small();
+      color: @color-gray-700;
+    }
+  }
+}

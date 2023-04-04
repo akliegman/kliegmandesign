@@ -1,5 +1,10 @@
-import { Routes, Route, useLocation, Navigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import {
+  Routes,
+  Route,
+  useLocation,
+  Navigate,
+  matchPath,
+} from "react-router-dom";
 import { routes } from "./routes";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { Header } from "./components/Header/Header";
@@ -9,29 +14,42 @@ import { CookiesMessage } from "./components/CookiesMessage/CookiesMessage";
 import { GoogleAnalytics } from "./components/GoogleAnalytics/GoogleAnalytics";
 import { useAuth } from "./context/AuthContext";
 import { ScrolltopProvider } from "./context/ScrolltopContext";
-import { Spinner } from "./components/reusables";
 import { Helmet } from "react-helmet";
+import { useLoading } from "./context/LoadingContext";
 import clsx from "clsx";
 import "./App.less";
 
 export const App = () => {
   const location = useLocation();
-  const [loading, setLoading] = useState(true);
+  const { isLoading } = useLoading();
   const { isLoggedIn } = useAuth();
+
   const appClassNames = clsx("App", {
     "App--NoHeader": !routes[location.pathname]?.withHeader,
     "App--NoFooter": !routes[location.pathname]?.withFooter,
     "App--DarkenedBackground": routes[location.pathname]?.darkenedBackground,
   });
 
-  useEffect(() => {
-    setLoading(false);
-  }, []);
+  const [projectRoute, projectObject] = Object.entries(routes).filter(
+    ([key, value]) => value.name === "Project"
+  )[0];
+
+  const matchProjectPath = matchPath({ path: projectRoute }, location.pathname);
+
+  const isWithHeader =
+    routes[location.pathname]?.withHeader ||
+    (projectObject?.withHeader && matchProjectPath);
+  const isWithFooter =
+    routes[location.pathname]?.withFooter ||
+    (projectObject?.withFooter && matchProjectPath);
+  const isDarkenedBackground =
+    routes[location.pathname]?.darkenedBackground ||
+    (projectObject?.darkenedBackground && matchProjectPath);
 
   return (
     <ScrolltopProvider>
       <Helmet>
-        {routes[location.pathname]?.darkenedBackground ? (
+        {isDarkenedBackground ? (
           <meta name="theme-color" content="#cccccc" />
         ) : (
           <meta name="theme-color" content="#f7f7f7" />
@@ -39,9 +57,8 @@ export const App = () => {
       </Helmet>
       <GoogleAnalytics />
       <div className={appClassNames}>
-        {loading && <Spinner />}
         <CSSTransition
-          in={!loading}
+          in={!isLoading}
           classNames="AppPageFadeIn"
           timeout={1200}
           unmountOnExit
@@ -49,9 +66,7 @@ export const App = () => {
           <div className="App__Content">
             <PageHelmet />
 
-            {routes[location.pathname]?.withHeader && (
-              <Header location={location} />
-            )}
+            {isWithHeader && <Header location={location} />}
             <TransitionGroup component={null}>
               <CSSTransition
                 key={location.key}
@@ -60,7 +75,7 @@ export const App = () => {
               >
                 <Routes location={location}>
                   {Object.entries(routes).map(([path, route], index) => {
-                    let state = { from: { pathname: path } };
+                    let state = { from: { pathname: location.pathname } };
                     let element = !route.protected ? (
                       route.element
                     ) : isLoggedIn ? (
@@ -81,7 +96,7 @@ export const App = () => {
                 </Routes>
               </CSSTransition>
             </TransitionGroup>
-            {routes[location.pathname]?.withFooter && <Footer />}
+            {isWithFooter && <Footer />}
             <CookiesMessage />
           </div>
         </CSSTransition>

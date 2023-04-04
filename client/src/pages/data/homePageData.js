@@ -3,16 +3,14 @@ import Headshot from "../../assets/images/headshot.jpg";
 export const homePageData = {
   image: Headshot,
   header: "Hello, I'm Adam.",
-  subheader: "I'm an NYC-based user-centric product engineer",
-  description: `I'm a frontend developer with over ten years of experience
-    who combines engineering best practices, design, data, psychology, and
-    practicality to deliver value in fast-paced environments. I'm
-    dependable, passionate, and ambitious, and am deeply committed to
-    building great web applications from zero to one. With a background as
-    a designer, product manager, and business analyst, I can not only
-    demonstrate a breadth of functional skills, but also can interface
-    fluently across teams to ensure sound communication channels,
-    well-delineated specifications, and viable design and data systems.`,
+  subheader: "I'm an NYC-based frontend developer and UX evangelist",
+  description: `As a frontend developer with over ten years of experience, my focus is on combining 
+  engineering best practices, design, data, psychology, and practicality to deliver value in 
+  fast-paced environments. I am passionate, dependable, and ambitious, and deeply committed to 
+  building great web applications from zero to one. With my background in design, product management, 
+  and business analysis, I not only have a breadth of functional skills, but I can also fluently 
+  interface across teams to ensure sound communication channels, well-delineated specifications, 
+  and viable design and data systems.`,
   ctas: [
     {
       name: "resume",

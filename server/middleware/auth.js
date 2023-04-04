@@ -11,11 +11,15 @@ exports.slackLoggedIn = async (req, res, next) => {
   const message = `New user logged in: ${email} on ${date} from IP Address: ${ip}.`;
 
   try {
-    const result = await web.chat.postMessage({
-      channel: process.env.SLACK_CHANNEL_ID,
-      text: message,
-    });
-    console.log("Slack message sent: ", result.ts);
+    if (process.env.ENV !== "local") {
+      const result = await web.chat.postMessage({
+        channel: process.env.SLACK_CHANNEL_ID,
+        text: message,
+      });
+      console.log("Slack message sent: ", result.ts);
+    } else {
+      console.log("Slack message sent for session");
+    }
   } catch (error) {
     console.log(error);
   }
@@ -31,11 +35,15 @@ exports.session = async (req, res) => {
     req.session.isNew = false;
 
     try {
-      const result = await web.chat.postMessage({
-        channel: process.env.SLACK_CHANNEL_ID,
-        text: `New session started on ${date} from IP Address: ${ip}.`,
-      });
-      console.log("Slack message sent: ", result.ts);
+      if (process.env.ENV !== "local") {
+        const result = await web.chat.postMessage({
+          channel: process.env.SLACK_CHANNEL_ID,
+          text: `New session started on ${date} from IP Address: ${ip}.`,
+        });
+        console.log("Slack message sent: ", result.ts);
+      } else {
+        console.log("Slack message sent for login");
+      }
     } catch (error) {
       console.log(error);
     }

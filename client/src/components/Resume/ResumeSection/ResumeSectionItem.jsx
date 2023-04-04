@@ -41,15 +41,15 @@ export const ResumeSectionItem = ({ type, data }) => {
           <div className="ResumeSectionItem__Content__Item" key={index}>
             <div className="ResumeSectionItem__Content__Item__Header">
               <h4 className="ResumeSectionItem__Content__Item__Title">
-                {item.title}
+                {item?.title}
               </h4>
               <h5 className="ResumeSectionItem__Content__Item__Subtitle">
-                {item.start_date} - {item.end_date}
+                {item?.start_date} - {item?.end_date}
               </h5>
             </div>
             <div className="ResumeSectionItem__Content__Item__Body">
               <p className="ResumeSectionItem__Content__Item__Paragraph">
-                {item.description.map((text, index) => (
+                {item?.description.map((text, index) => (
                   <span key={index}>
                     {text.type === "text" && text.value}
                     {text.type === "highlight" && <strong>{text.value}</strong>}
@@ -57,6 +57,11 @@ export const ResumeSectionItem = ({ type, data }) => {
                   </span>
                 ))}
               </p>
+              {item?.tech_stack && item?.tech_stack.length > 0 && (
+                <p className="ResumeSectionItem__Content__Item__Stack">
+                  {item?.tech_stack.join(", ")}
+                </p>
+              )}
             </div>
           </div>
         ))}

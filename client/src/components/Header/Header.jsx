@@ -13,7 +13,8 @@ export const Header = ({ location }) => {
     setShowMobileMenu(!showMobileMenu);
   };
 
-  const closeMobileMenu = () => {
+  const closeMobileMenu = (e) => {
+    e.target.blur();
     setShowMobileMenu(false);
   };
 
@@ -45,7 +46,7 @@ export const Header = ({ location }) => {
       <div
         className={clsx("Header__Nav", showMobileMenu && "Header__Nav--Show")}
       >
-        <Nav location={location} linkOnClick={closeMobileMenu} />
+        <Nav location={location} linkOnClick={(e) => closeMobileMenu(e)} />
       </div>
       <IconButton
         className="Header__MenuButton"

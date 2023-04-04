@@ -1,32 +1,13 @@
 @import (reference) "../styles/variables";
 @import (reference) "../styles/typography";
+@import (reference) "../styles/layout";
 
 .StaticLayout {
-  min-height: calc(100vh + 6rem);
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: calc(@header-height + 4rem) 1rem 8rem;
-
-  .App--NoHeader & {
-    padding-top: 4rem;
-  }
+  .layout-default();
 
   &__Content {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    width: 100%;
-    max-width: @breakpoint-mobile;
+    .layout-content();
 
-    > .anticon > svg {
-      width: 3rem;
-      height: 3rem;
-      color: @color-gray-600;
-      margin-bottom: 1rem;
-    }
     h1 {
       .header-1();
     }
@@ -51,6 +32,20 @@
     .StaticLayout {
       &__Content {
         align-items: center;
+      }
+    }
+  }
+
+  &.Error404Page {
+    .StaticLayout__Content {
+      > .anticon > svg {
+        width: 3rem;
+        height: 3rem;
+        color: @color-gray-600;
+        margin-bottom: 1rem;
+      }
+      .Button {
+        margin-top: 1rem;
       }
     }
   }

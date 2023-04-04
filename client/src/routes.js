@@ -1,12 +1,4 @@
-import { ResumePage } from "./pages/ResumePage";
-import { HomePage } from "./pages/HomePage";
-import { Error404Page } from "./pages/Error404Page";
-import { LoginPage } from "./pages/LoginPage";
-import { LogoutPage } from "./pages/LogoutPage";
-import { ProjectsPage } from "./pages/ProjectsPage";
-import { SandboxPage } from "./pages/SandboxPage";
-import { PrivacyPolicyPage } from "./pages/PrivacyPolicyPage";
-import { TermsOfUsePage } from "./pages/TermsOfUsePage";
+import * as Page from "./pages";
 
 export const routes = {
   "/": {
@@ -15,7 +7,7 @@ export const routes = {
     protected: false,
     withHeader: true,
     withFooter: true,
-    element: <HomePage />,
+    element: <Page.HomePage />,
   },
   "/resume": {
     name: "Résumé",
@@ -24,7 +16,7 @@ export const routes = {
     withHeader: true,
     withFooter: true,
     navOrder: 1,
-    element: <ResumePage />,
+    element: <Page.ResumePage />,
   },
   "/projects": {
     name: "Projects",
@@ -33,17 +25,25 @@ export const routes = {
     withHeader: true,
     withFooter: true,
     navOrder: 2,
-    element: <ProjectsPage />,
+    element: <Page.ProjectsPage />,
   },
-  "/sandbox": {
-    name: "Sandbox",
-    exact: true,
+  "/project/:projectName": {
+    name: "Project",
+    exact: false,
     protected: true,
     withHeader: true,
     withFooter: true,
-    navOrder: 3,
-    element: <SandboxPage />,
+    element: <Page.ProjectPage />,
   },
+  // "/sandbox": {
+  //   name: "Sandbox",
+  //   exact: true,
+  //   protected: true,
+  //   withHeader: true,
+  //   withFooter: true,
+  //   navOrder: 3,
+  //   element: <Page.SandboxPage />,
+  // },
   "/login": {
     name: "Log In",
     exact: true,
@@ -51,7 +51,7 @@ export const routes = {
     withHeader: true,
     withFooter: true,
     darkenedBackground: true,
-    element: <LoginPage />,
+    element: <Page.LoginPage />,
   },
   "/logout": {
     name: "Log Out",
@@ -59,7 +59,7 @@ export const routes = {
     protected: false,
     withHeader: false,
     withFooter: true,
-    element: <LogoutPage />,
+    element: <Page.LogoutPage />,
   },
   "/privacy-policy": {
     name: "Privacy Policy",
@@ -67,7 +67,7 @@ export const routes = {
     protected: false,
     withHeader: true,
     withFooter: true,
-    element: <PrivacyPolicyPage />,
+    element: <Page.PrivacyPolicyPage />,
   },
   "/terms-of-use": {
     name: "Terms of Use",
@@ -75,14 +75,22 @@ export const routes = {
     protected: false,
     withHeader: true,
     withFooter: true,
-    element: <TermsOfUsePage />,
+    element: <Page.TermsOfUsePage />,
+  },
+  "/404": {
+    name: "Error 404",
+    exact: true,
+    protected: false,
+    withHeader: false,
+    withFooter: true,
+    element: <Page.Error404Page />,
   },
   "*": {
-    name: "404",
+    name: "Catch All",
     exact: false,
     protected: false,
     withHeader: false,
     withFooter: true,
-    element: <Error404Page />,
+    element: <Page.Error404Page />,
   },
 };

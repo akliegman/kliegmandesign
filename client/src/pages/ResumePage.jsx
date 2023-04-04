@@ -1,4 +1,4 @@
-import { ResumeLayout } from "../layouts/ResumeLayout";
+import { MainLayout } from "../layouts/MainLayout";
 import { PageHelmet } from "../components/PageHelmet/PageHelmet";
 import { Resume } from "../components/Resume/Resume";
 import { ResumeDownloadButton } from "../components/Resume/ResumeDownloadButton";
@@ -11,10 +11,10 @@ export const ResumePage = () => {
         product development & frontend engineering to create user-friendly \
         web apps on a cutting-edge technology stack.`}
       />
-      <ResumeLayout>
+      <MainLayout className="ResumePage">
         <Resume />
         <ResumeDownloadButton />
-      </ResumeLayout>
+      </MainLayout>
     </>
   );
 };

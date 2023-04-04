@@ -1,4 +1,4 @@
-import { StaticLayout } from "../layouts/StaticLayout";
+import { MainLayout } from "../layouts/MainLayout";
 import { LockFilled } from "@ant-design/icons";
 import { LoginForm } from "../components/LoginForm/LoginForm";
 import { useAuth } from "../context/AuthContext";
@@ -21,10 +21,10 @@ export const LoginPage = () => {
   return (
     <>
       <PageHelmet title="Log In" />
-      <StaticLayout className="LoginPage" alignItems="center">
+      <MainLayout className="LoginPage" alignItems="center">
         <LockFilled />
         <LoginForm />
-      </StaticLayout>
+      </MainLayout>
     </>
   );
 };
