@@ -59,6 +59,7 @@ app.get("/upload", (req, res) => {
 });
 
 require("./routes/auth")(app);
+require("./routes/sessions")(app);
 require("./routes/photos")(app);
 
 app.get("*", (req, res) => {
