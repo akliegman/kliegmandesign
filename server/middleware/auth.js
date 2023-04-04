@@ -177,3 +177,10 @@ exports.requireAuth = (req, res, next) => {
   }
   return res.status(400).send({ message: "Unauthorized" });
 };
+
+exports.requireAdminAuth = (req, res, next) => {
+  if (req.session.user && req.session.user.role === "admin") {
+    return next();
+  }
+  return res.status(400).send({ message: "Unauthorized" });
+};

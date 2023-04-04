@@ -8,7 +8,7 @@ module.exports = {
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: process.env.ENV === "prod" ? true : false,
+      secure: false,
       maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
     },
   },
