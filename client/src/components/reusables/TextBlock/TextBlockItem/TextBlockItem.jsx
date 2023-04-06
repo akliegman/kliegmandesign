@@ -1,10 +1,4 @@
-import "./LegalContent.less";
-
-export const LegalContent = ({ children }) => {
-  return <div className="LegalContent">{children}</div>;
-};
-
-export const LegalContentItem = ({ item }) => {
+export const TextBlockItem = ({ item }) => {
   if (!item) return null;
   return (
     <>
@@ -14,15 +8,15 @@ export const LegalContentItem = ({ item }) => {
       {item?.type === "heading-4" && <h4>{item?.content}</h4>}
       {item?.type === "paragraph" && (
         <p>
-          <LegalContentItemText content={item?.content} />
+          <TextBlockInnerText data={item?.content} />
         </p>
       )}
       {item?.type === "unordered-list" && (
         <ul>
-          {item?.content?.map((listItem, i) => (
-            <li key={i}>
+          {item?.content?.map((listItem, index) => (
+            <li key={index}>
               <p>
-                <LegalContentItemText content={listItem?.content} />
+                <TextBlockInnerText data={listItem?.content} />
               </p>
             </li>
           ))}
@@ -32,14 +26,14 @@ export const LegalContentItem = ({ item }) => {
   );
 };
 
-export const LegalContentItemText = ({ content }) => {
+const TextBlockInnerText = ({ data }) => {
   return (
     <>
-      {typeof content === "string" && <span>{content}</span>}
-      {typeof content === "object" &&
-        Array.isArray(content) &&
-        content?.map((item, i) => (
-          <span key={i}>
+      {typeof data === "string" && <span>{data}</span>}
+      {typeof data === "object" &&
+        Array.isArray(data) &&
+        data?.map((item, index) => (
+          <span key={index}>
             {item.type === "text-strong" && <strong>{item?.content}</strong>}
             {item.type === "text-emphasis" && <em>{item?.content}</em>}
             {item.type === "text" && item?.content}

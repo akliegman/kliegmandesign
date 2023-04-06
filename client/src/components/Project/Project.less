@@ -1,0 +1,14 @@
+@import (reference) "../../styles/variables";
+@import (reference) "../../styles/grid";
+
+.Project {
+  .columns-3();
+
+  > *:last-child {
+    grid-column: span 4;
+  }
+
+  > *:first-child {
+    padding: 2.5rem 0.5rem 0;
+  }
+}

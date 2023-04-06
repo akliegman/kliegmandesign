@@ -5,8 +5,10 @@ import { useAuth } from "../context/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { PageHelmet } from "../components/PageHelmet/PageHelmet";
+import { useMountPage } from "../context/LoadingContext";
 
 export const LoginPage = ({ user = "user" }) => {
+  useMountPage();
   const { isLoggedIn } = useAuth();
   const location = useLocation();
   const { from } = location.state || { from: { pathname: "/" } };

@@ -14,6 +14,7 @@ export const IconButton = ({
   focusable = true,
   withShadow = false,
   onClick,
+  disabled = false,
   className,
 }) => {
   const classNames = clsx(
@@ -23,6 +24,7 @@ export const IconButton = ({
     active && "IconButton--active",
     focusable === false && "IconButton--notFocusable",
     withShadow && "IconButton--withShadow",
+    disabled === true && "IconButton--disabled",
     className
   );
 
@@ -40,6 +42,7 @@ export const IconButton = ({
           name={name}
           className={classNames}
           onClick={(e) => handleOnClick(e)}
+          disabled={disabled}
         >
           {icon}
         </Link>
@@ -52,6 +55,7 @@ export const IconButton = ({
           onClick={(e) => handleOnClick(e)}
           target="_blank"
           rel="noreferrer"
+          disabled={disabled}
         >
           {icon}
         </a>
@@ -63,6 +67,7 @@ export const IconButton = ({
           className={classNames}
           onClick={(e) => handleOnClick(e)}
           download
+          disabled={disabled}
         >
           {icon}
         </a>
@@ -72,6 +77,7 @@ export const IconButton = ({
           name={name}
           className={classNames}
           onClick={(e) => handleOnClick(e)}
+          disabled={disabled}
         >
           {icon}
         </button>
@@ -82,6 +88,7 @@ export const IconButton = ({
           name={name}
           className={classNames}
           onClick={(e) => handleOnClick(e)}
+          disabled={disabled}
         >
           {icon}
         </button>

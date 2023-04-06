@@ -15,6 +15,7 @@ export const Button = ({
   focusable = true,
   withShadow = false,
   onClick,
+  activeClass,
   disabled = false,
   className,
 }) => {
@@ -27,6 +28,7 @@ export const Button = ({
     focusable === false && "Button--notFocusable",
     withShadow && "IconButton--withShadow",
     disabled === true && "Button--disabled",
+    activeClass === true && "Button--active",
     className
   );
 
@@ -64,7 +66,9 @@ export const Button = ({
         <NavLink
           to={to}
           name={name}
-          className={classNames}
+          className={({ isActive, isPending }) =>
+            clsx(classNames, (isActive || isPending) && "Button--active")
+          }
           onClick={(e) => handleOnClick(e)}
           disabled={disabled}
         >

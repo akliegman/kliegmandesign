@@ -116,9 +116,8 @@ export const resumeData = {
             },
             {
               type: "text",
-              value: `, catalyzing 
-              Series-C funding; Brought new API-creation technology to 
-              market that allows users to configure their own pipelines 
+              value: `, catalyzing  Series-C funding; Brought new API-creation 
+              technology to market that allows users to configure their own pipelines 
               using a custom JSON syntax, supporting 125% ARR growth YoY; 
               Engineered the frontend for marketing website
               & customer-facing platform; Developed team-wide roadmaps

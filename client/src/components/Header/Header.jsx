@@ -1,11 +1,11 @@
 import { Nav } from "../Nav/Nav";
 import { IconButton, Button } from "../reusables/";
 import { CaretLeftFilled, MenuOutlined } from "@ant-design/icons";
-import { useState, useEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 import clsx from "clsx";
 import "./Header.less";
 
-export const Header = ({ location }) => {
+export const Header = ({ location, matchProjectPath }) => {
   const [showHomeButton, setShowHomeButton] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
@@ -18,7 +18,7 @@ export const Header = ({ location }) => {
     setShowMobileMenu(false);
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (location.pathname !== "/") {
       setShowHomeButton(true);
     } else {
@@ -46,7 +46,11 @@ export const Header = ({ location }) => {
       <div
         className={clsx("Header__nav", showMobileMenu && "Header__nav--show")}
       >
-        <Nav location={location} linkOnClick={(e) => closeMobileMenu(e)} />
+        <Nav
+          location={location}
+          matchProjectPath={matchProjectPath}
+          linkOnClick={(e) => closeMobileMenu(e)}
+        />
       </div>
       <IconButton
         className="Header__menuButton"

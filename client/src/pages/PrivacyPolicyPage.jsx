@@ -1,21 +1,20 @@
 import { PageHelmet } from "../components/PageHelmet/PageHelmet";
 import { StaticLayout } from "../layouts/StaticLayout";
-import {
-  LegalContent,
-  LegalContentItem,
-} from "../components/LegalContent/LegalContent";
+import { TextBlock, TextBlockItem } from "../components/reusables";
 import { privacyPageData } from "./data/privacyPageData";
+import { useMountPage } from "../context/LoadingContext";
 
 export const PrivacyPolicyPage = () => {
+  useMountPage();
   return (
     <>
       <PageHelmet title="Privacy Policy" />
       <StaticLayout className="PrivacyPolicyPage">
-        <LegalContent>
+        <TextBlock>
           {privacyPageData?.map((item, index) => (
-            <LegalContentItem item={item} key={index} />
+            <TextBlockItem item={item} key={index} />
           ))}
-        </LegalContent>
+        </TextBlock>
       </StaticLayout>
     </>
   );

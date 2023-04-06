@@ -1,21 +1,20 @@
 import { PageHelmet } from "../components/PageHelmet/PageHelmet";
 import { StaticLayout } from "../layouts/StaticLayout";
-import {
-  LegalContent,
-  LegalContentItem,
-} from "../components/LegalContent/LegalContent";
+import { TextBlock, TextBlockItem } from "../components/reusables";
 import { termsOfUsePageData } from "./data/termsOfUsePageData";
+import { useMountPage } from "../context/LoadingContext";
 
 export const TermsOfUsePage = () => {
+  useMountPage();
   return (
     <>
       <PageHelmet title="Terms Of Use" />
       <StaticLayout className="TermsOfUsePage">
-        <LegalContent>
+        <TextBlock>
           {termsOfUsePageData?.map((item, index) => (
-            <LegalContentItem item={item} key={index} />
+            <TextBlockItem item={item} key={index} />
           ))}
-        </LegalContent>
+        </TextBlock>
       </StaticLayout>
     </>
   );

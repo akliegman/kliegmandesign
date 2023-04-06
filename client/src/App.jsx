@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { routes } from "./routes";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { useEffect, useState, useLayoutEffect } from "react";
 import { Header } from "./components/Header/Header";
 import { Footer } from "./components/Footer/Footer";
 import { PageHelmet } from "./components/PageHelmet/PageHelmet";
@@ -21,30 +22,37 @@ import "./App.less";
 
 export const App = () => {
   const location = useLocation();
-  const { isLoading } = useLoading();
   const { isLoggedIn } = useAuth();
-
-  const appClassNames = clsx("App", {
-    "App--noHeader": !routes[location.pathname]?.withHeader,
-    "App--noFooter": !routes[location.pathname]?.withFooter,
-    "App--darkenedBackground": routes[location.pathname]?.darkenedBackground,
-  });
+  const { appLoading, setPageLoading } = useLoading();
+  const [matchProjectPath, setMatchProjectPath] = useState(null);
 
   const [projectRoute, projectObject] = Object.entries(routes).filter(
     ([key, value]) => value.name === "Project"
   )[0];
 
-  const matchProjectPath = matchPath({ path: projectRoute }, location.pathname);
+  useEffect(() => {
+    setMatchProjectPath(matchPath({ path: projectRoute }, location.pathname));
+  }, [location.pathname, projectRoute, setMatchProjectPath]);
+
+  useLayoutEffect(() => {
+    setPageLoading(true);
+  }, [location.pathname, setPageLoading]);
 
   const isWithHeader =
     routes[location.pathname]?.withHeader ||
-    (projectObject?.withHeader && matchProjectPath);
+    (projectObject?.withHeader && matchProjectPath?.pathname);
   const isWithFooter =
     routes[location.pathname]?.withFooter ||
-    (projectObject?.withFooter && matchProjectPath);
+    (projectObject?.withFooter && matchProjectPath?.pathname);
   const isDarkenedBackground =
     routes[location.pathname]?.darkenedBackground ||
-    (projectObject?.darkenedBackground && matchProjectPath);
+    (projectObject?.darkenedBackground && matchProjectPath?.pathname);
+
+  const appClassNames = clsx("App", {
+    "App--noHeader": !isWithHeader,
+    "App--noFooter": !isWithFooter,
+    "App--darkenedBackground": isDarkenedBackground,
+  });
 
   return (
     <ScrolltopProvider>
@@ -58,20 +66,22 @@ export const App = () => {
       <GoogleAnalytics />
       <div className={appClassNames}>
         <CSSTransition
-          in={!isLoading}
+          in={!appLoading}
           classNames="AppPageFadeIn"
-          timeout={1200}
+          timeout={800}
           unmountOnExit
         >
           <div className="App__content">
             <PageHelmet />
 
-            {isWithHeader && <Header location={location} />}
+            {isWithHeader && (
+              <Header location={location} matchProjectPath={matchProjectPath} />
+            )}
             <TransitionGroup component={null}>
               <CSSTransition
                 key={location.key}
                 classNames="AppPageTransition"
-                timeout={1000}
+                timeout={800}
               >
                 <Routes location={location}>
                   {Object.entries(routes).map(([path, route], index) => {

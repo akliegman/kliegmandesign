@@ -1,4 +1,4 @@
-import { useEffect, createContext, useContext } from "react";
+import { useMemo, createContext, useContext } from "react";
 import { useLocation } from "react-router-dom";
 
 export const ScrolltopContext = createContext();
@@ -6,7 +6,7 @@ export const ScrolltopContext = createContext();
 export const ScrolltopProvider = ({ children }) => {
   const location = useLocation();
 
-  useEffect(() => {
+  useMemo(() => {
     location && window.scrollTo(0, 0);
   }, [location]);
 
