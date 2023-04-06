@@ -5,7 +5,7 @@ import { useAuth } from "../../context/AuthContext";
 import { validateEmail } from "../../helpers/validateEmail";
 import "./LoginForm.less";
 
-export const LoginForm = ({ user }) => {
+export const LoginForm = ({ user = "user" }) => {
   const location = useLocation();
   const { login, errors, clearError } = useAuth();
   const [email, setEmail] = useState("");
