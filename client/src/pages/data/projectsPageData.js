@@ -6,7 +6,7 @@ import {
 export const projectsPageData = [
   {
     name: "demyst-platform",
-    protected: true,
+    protected: false,
     title: "Demyst Data Platform",
     summary: `SaaS platform used to discover, onboard, ingest, and monitor external data.`,
     description: [

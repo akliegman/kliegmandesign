@@ -1,5 +1,5 @@
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { useState, cloneElement, useEffect, useRef } from "react";
+import { useState, cloneElement, useEffect, useRef, useCallback } from "react";
 import { IconButton } from "../../reusables";
 import { CaretLeftFilled, CaretRightFilled } from "@ant-design/icons";
 
@@ -8,19 +8,15 @@ import "./ProjectSlider.less";
 export const ProjectSlider = ({ data }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [slideDirection, setSlideDirection] = useState("next");
-  const [buttonsDisabled, setButtonsDisabled] = useState(false);
   const slideRef = useRef(null);
 
   const scrollTopSlide = () => {
-    setButtonsDisabled(true);
-
     setTimeout(() => {
       slideRef?.current?.scrollTo({ top: 0, behavior: "smooth" });
-      setButtonsDisabled(false);
     }, 500);
   };
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setSlideDirection("next");
     scrollTopSlide();
 
@@ -29,9 +25,9 @@ export const ProjectSlider = ({ data }) => {
     } else {
       setActiveIndex(activeIndex + 1);
     }
-  };
+  }, [activeIndex, data.length]);
 
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     setSlideDirection("prev");
     scrollTopSlide();
     if (activeIndex === 0) {
@@ -39,7 +35,7 @@ export const ProjectSlider = ({ data }) => {
     } else {
       setActiveIndex(activeIndex - 1);
     }
-  };
+  }, [activeIndex, data.length]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -103,7 +99,6 @@ export const ProjectSlider = ({ data }) => {
           withShadow
           variant="primary"
           type="button"
-          disabled={buttonsDisabled}
         >
           Prev
         </IconButton>
@@ -114,7 +109,6 @@ export const ProjectSlider = ({ data }) => {
           withShadow
           variant="primary"
           type="button"
-          disabled={buttonsDisabled}
         >
           Next
         </IconButton>
