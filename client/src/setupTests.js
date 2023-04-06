@@ -4,6 +4,7 @@ import { setupServer } from "msw/node";
 import { render } from "@testing-library/react";
 import { AuthContext } from "./context/AuthContext";
 import { MemoryRouter } from "react-router-dom";
+import axios from "axios";
 
 jest.mock("axios", () => ({
   create: jest.fn(() => ({
