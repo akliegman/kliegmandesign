@@ -12,7 +12,7 @@ jest.mock("../../context/AuthContext", () => ({
 
 describe("LoginForm", () => {
   it("should render the form fields and submit button", () => {
-    render(<LoginForm />);
+    render(<LoginForm user="user" />);
     expect(screen.getByPlaceholderText("Enter password")).toBeInTheDocument();
     expect(
       screen.getByPlaceholderText("Enter email (optional)")
@@ -21,17 +21,17 @@ describe("LoginForm", () => {
   });
 
   it("password input should show error if password is missing", async () => {
-    render(<LoginForm />);
+    render(<LoginForm user="user" />);
     fireEvent.click(screen.getByRole("button"));
     await waitFor(() => {
       const thisInput = screen.getByPlaceholderText("Enter password");
-      expect(thisInput).toHaveClass("TextInput__Input--Error");
+      expect(thisInput).toHaveClass("TextInput__input--error");
       expect(thisInput).toHaveFocus();
     });
   });
 
   it("email input should show error if email is invalid", async () => {
-    render(<LoginForm />);
+    render(<LoginForm user="user" />);
 
     const thisInput = screen.getByPlaceholderText("Enter email (optional)");
 
@@ -47,14 +47,14 @@ describe("LoginForm", () => {
 
     fireEvent.click(screen.getByRole("button"));
     await waitFor(() => {
-      expect(thisInput).toHaveClass("TextInput__Input--Error");
+      expect(thisInput).toHaveClass("TextInput__input--error");
       expect(thisInput).toHaveFocus();
     });
   });
 
   //   it("should call the login function with the correct arguments", async () => {
   //     const { login } = require("../../context/AuthContext");
-  //     render(<LoginForm />);
+  //     render(<LoginForm user="user" />);
   //     fireEvent.change(screen.getByPlaceholderText("Enter password"), {
   //       target: { value: "password123" },
   //     });
@@ -76,7 +76,7 @@ describe("LoginForm", () => {
   //     const { useNavigate } = require("react-router-dom");
   //     const navigateMock = jest.fn();
   //     useNavigate.mockReturnValue(navigateMock);
-  //     render(<LoginForm />);
+  //     render(<LoginForm user="user" />);
   //     fireEvent.click(screen.getByRole("button"));
   //     await waitFor(() =>
   //       expect(navigateMock).toHaveBeenCalledWith("/", { replace: true })
@@ -89,7 +89,7 @@ describe("LoginForm", () => {
   //     const navigateMock = jest.fn();
   //     useNavigate.mockReturnValue(navigateMock);
   //     login.mockImplementation(() => Promise.resolve(false));
-  //     render(<LoginForm />);
+  //     render(<LoginForm user="user" />);
   //     fireEvent.click(screen.getByRole("button"));
   //     await waitFor(() => expect(navigateMock).not.toHaveBeenCalled());
   //   });

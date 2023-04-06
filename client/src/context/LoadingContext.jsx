@@ -24,15 +24,14 @@ export const LoadingProvider = ({ children }) => {
 
   return (
     <LoadingContext.Provider value={value}>
-      {appLoading && <Spinner type="app" />}
+      {appLoading && <Spinner type="app" data-testid="app-spinner" />}
       <CSSTransition
         in={pageLoading}
-        out={!pageLoading}
         unmountOnExit
         classNames="PageFadeIn"
         timeout={150}
       >
-        <Spinner type="page" />
+        <Spinner type="page" data-testid="page-spinner" />
       </CSSTransition>
       {children}
     </LoadingContext.Provider>

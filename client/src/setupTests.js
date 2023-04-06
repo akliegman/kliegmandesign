@@ -2,8 +2,8 @@ import "@testing-library/jest-dom";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 import { render } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
+import { MemoryRouter } from "react-router-dom";
 
 jest.mock("axios", () => ({
   create: jest.fn(() => ({
@@ -14,33 +14,33 @@ jest.mock("axios", () => ({
   })),
 }));
 
-// const dummySession = {
-//   user: {
-//     email: "test@example.com",
-//     firstName: "John",
-//     lastName: "Doe",
-//   },
-//   token: "123abc",
-//   isNew: false,
-// };
+const dummySession = {
+  user: {
+    email: "test@example.com",
+    firstName: "John",
+    lastName: "Doe",
+  },
+  token: "123abc",
+  isNew: false,
+};
 
-// const server = setupServer(
-//   rest.post("/api/login", (req, res, ctx) => {
-//     return res(ctx.json(dummySession));
-//   }),
-//   rest.post("/api/logout", (req, res, ctx) => {
-//     return res(ctx.status(200));
-//   })
-// );
+const server = setupServer(
+  rest.post("/api/login", (req, res, ctx) => {
+    return res(ctx.json(dummySession));
+  }),
+  rest.post("/api/logout", (req, res, ctx) => {
+    return res(ctx.status(200));
+  })
+);
 
-// beforeAll(() => server.listen());
-// afterEach(() => server.resetHandlers());
-// afterAll(() => server.close());
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 
 const AllTheProviders = ({ children }) => {
   return (
     <AuthContext.Provider value={{}}>
-      <BrowserRouter>{children}</BrowserRouter>
+      <MemoryRouter>{children}</MemoryRouter>
     </AuthContext.Provider>
   );
 };
