@@ -40,14 +40,14 @@
   &-enter.AppPageFadeIn-enter-active {
     opacity: 1;
     transform: translateY(0);
-    transition: all 1s ease-in-out;
+    transition: all 0.8s ease-in-out;
   }
   &-exit {
     opacity: 1;
   }
   &-exit-active {
     opacity: 0;
-    transition: all 1s ease-in-out;
+    transition: all 0.8s ease-in-out;
   }
 
   @media screen and (max-width: @breakpoint-mobile) {
@@ -73,12 +73,12 @@
 .AppPageTransition {
   &-enter {
     opacity: 0;
-    transform: translateY(10rem);
+    transform: translateY(7rem);
   }
   &-enter.AppPageTransition-enter-active {
     opacity: 1;
     transform: translateY(0);
-    transition: all 1s ease-in-out;
+    transition: all 0.8s ease-in-out;
   }
   &-exit {
     transform: translateY(0);
@@ -87,8 +87,8 @@
   }
   &-exit-active {
     opacity: 0;
-    transition: all 1s ease-in-out;
-    transform: translateY(10rem);
+    transition: all 0.8s ease-in-out;
+    transform: translateY(7rem);
   }
 
   @media screen and (max-width: @breakpoint-mobile) {
@@ -100,5 +100,22 @@
       opacity: 1;
       transform: translateY(5rem);
     }
+  }
+}
+
+.PageFadeIn {
+  &-enter {
+    opacity: 0;
+  }
+  &-enter.AppPageFadeIn-enter-active {
+    opacity: 1;
+    transition: all 0.15s ease-in-out;
+  }
+  &-exit {
+    opacity: 1;
+  }
+  &-exit-active {
+    opacity: 0;
+    transition: all 0.15s ease-in-out;
   }
 }

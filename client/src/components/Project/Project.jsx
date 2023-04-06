@@ -1,15 +1,18 @@
+import { ProjectSlider } from "./ProjectSlider/ProjectSlider";
+import { TextBlock, TextBlockItem } from "../reusables";
+import "./Project.less";
+
 export const Project = ({ data }) => {
   return (
     <div className="Project">
-      <div className="Project__description">
-        <h1 className="Project__title">{data.name}</h1>
-        <div className="Project__description">
-          <p>{data.description}</p>
-        </div>
-        <div className="Project__image">
-          <img src={data.image} alt={data.name} />
-        </div>
-      </div>
+      <TextBlock>
+        <h1 className="Project__title">{data?.title}</h1>
+        {data?.description?.map((item, index) => (
+          <TextBlockItem item={item} key={index} />
+        ))}
+      </TextBlock>
+
+      {data?.slides && <ProjectSlider data={data.slides} />}
     </div>
   );
 };

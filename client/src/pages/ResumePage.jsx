@@ -2,7 +2,10 @@ import { MainLayout } from "../layouts/MainLayout";
 import { PageHelmet } from "../components/PageHelmet/PageHelmet";
 import { Resume } from "../components/Resume/Resume";
 import { ResumeDownloadButton } from "../components/Resume/ResumeDownloadButton";
+import { useMountPage } from "../context/LoadingContext";
+
 export const ResumePage = () => {
+  useMountPage();
   return (
     <>
       <PageHelmet

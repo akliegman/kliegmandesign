@@ -3,8 +3,11 @@ import { MainLayout } from "../layouts/MainLayout";
 import { projectsPageData } from "./data/projectsPageData";
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { Project } from "../components/Project/Project";
+import { useMountPage } from "../context/LoadingContext";
 
 export const ProjectPage = () => {
+  useMountPage();
   const { projectName } = useParams();
   const navigate = useNavigate();
 
@@ -20,8 +23,10 @@ export const ProjectPage = () => {
 
   return (
     <>
-      <PageHelmet title="Projects" />
-      <MainLayout className="ProjectPage">{projectName}</MainLayout>
+      <PageHelmet title={`${project?.title} Project`} />
+      <MainLayout className="ProjectPage">
+        <Project data={project} />
+      </MainLayout>
     </>
   );
 };

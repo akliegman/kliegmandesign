@@ -11,7 +11,7 @@ import { replaceSpecialCharacters } from "../../helpers/replaceSpecialCharacters
 import { useAuth } from "../../context/AuthContext";
 import "./Nav.less";
 
-export const Nav = ({ location, linkOnClick, className }) => {
+export const Nav = ({ location, matchProjectPath, linkOnClick, className }) => {
   const { isLoggedIn } = useAuth();
 
   const iconMap = {
@@ -33,22 +33,24 @@ export const Nav = ({ location, linkOnClick, className }) => {
 
   return (
     <nav className={clsx("Nav", className)}>
-      {navData.map((item) => {
-        return (
-          <Button
-            key={item.label}
-            icon={item.protected && !isLoggedIn ? <LockFilled /> : item.icon}
-            to={item.link}
-            active={location.pathname === item.link}
-            type="navlink"
-            variant="navlink"
-            focusable={false}
-            onClick={linkOnClick}
-          >
-            {item.label}
-          </Button>
-        );
-      })}
+      {navData.map((item) => (
+        <Button
+          key={item.label}
+          icon={item.protected && !isLoggedIn ? <LockFilled /> : item.icon}
+          to={item.link}
+          type="navlink"
+          variant="navlink"
+          focusable={false}
+          onClick={linkOnClick}
+          activeClass={
+            (item.label === "Projects" &&
+              matchProjectPath?.pathname?.length > 0) ||
+            location.pathname === item.link
+          }
+        >
+          {item.label}
+        </Button>
+      ))}
     </nav>
   );
 };

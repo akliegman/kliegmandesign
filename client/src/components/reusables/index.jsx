@@ -5,3 +5,5 @@ export { MidDot } from "./MidDot/MidDot";
 export { Spinner } from "./Spinner/Spinner";
 export { TextInput } from "./TextInput/TextInput";
 export { Form } from "./Form/Form";
+export { TextBlock } from "./TextBlock/TextBlock";
+export { TextBlockItem } from "./TextBlock/TextBlockItem/TextBlockItem";

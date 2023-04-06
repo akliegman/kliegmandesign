@@ -9,15 +9,15 @@ export const Footer = ({ className }) => {
 
   return (
     <footer className={clsx("Footer", className)}>
-      <p className="Footer__copyright">
+      <span className="Footer__copyright">
         © 2023 The Kliegman Design Company. All rights reserved.
-      </p>
+      </span>
       <div className="Footer__legal">
         {session && (
           <>
-            <p>
+            <span>
               Logged in {session?.user?.email && `as ${session?.user?.email}`}
-            </p>
+            </span>
             <MidDot color="gray-500" />
           </>
         )}
