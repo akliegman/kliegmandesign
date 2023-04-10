@@ -2,6 +2,7 @@ import * as Page from "./pages";
 
 export const routes = {
   "/": {
+    id: "HOME",
     name: "Home",
     exact: true,
     protected: false,
@@ -10,6 +11,7 @@ export const routes = {
     element: <Page.HomePage />,
   },
   "/resume": {
+    id: "RESUME",
     name: "Résumé",
     exact: true,
     protected: false,
@@ -19,6 +21,7 @@ export const routes = {
     element: <Page.ResumePage />,
   },
   "/projects": {
+    id: "PROJECTS",
     name: "Projects",
     exact: true,
     protected: true,
@@ -28,6 +31,7 @@ export const routes = {
     element: <Page.ProjectsPage />,
   },
   "/project/:projectName": {
+    id: "PROJECT",
     name: "Project",
     exact: false,
     protected: true,
@@ -45,6 +49,7 @@ export const routes = {
   //   element: <Page.SandboxPage />,
   // },
   "/login": {
+    id: "LOGIN",
     name: "Log In",
     exact: true,
     protected: false,
@@ -54,6 +59,7 @@ export const routes = {
     element: <Page.LoginPage />,
   },
   "/logout": {
+    id: "LOGOUT",
     name: "Log Out",
     exact: true,
     protected: false,
@@ -62,6 +68,7 @@ export const routes = {
     element: <Page.LogoutPage />,
   },
   "/admin-login": {
+    id: "ADMIN_LOGIN",
     name: "Admin Log In",
     exact: true,
     protected: false,
@@ -71,6 +78,7 @@ export const routes = {
     element: <Page.LoginPage user={"admin"} />,
   },
   "/privacy-policy": {
+    id: "PRIVACY_POLICY",
     name: "Privacy Policy",
     exact: true,
     protected: false,
@@ -79,6 +87,7 @@ export const routes = {
     element: <Page.PrivacyPolicyPage />,
   },
   "/terms-of-use": {
+    id: "TERMS_OF_USE",
     name: "Terms of Use",
     exact: true,
     protected: false,
@@ -87,6 +96,7 @@ export const routes = {
     element: <Page.TermsOfUsePage />,
   },
   "/404": {
+    id: "404",
     name: "Error 404",
     exact: true,
     protected: false,
@@ -95,6 +105,7 @@ export const routes = {
     element: <Page.Error404Page />,
   },
   "*": {
+    id: "ALL",
     name: "Catch All",
     exact: false,
     protected: false,
@@ -103,3 +114,11 @@ export const routes = {
     element: <Page.Error404Page />,
   },
 };
+
+export const routeNames = Object.entries(routes).reduce(
+  (acc, [path, route]) => ({
+    ...acc,
+    [route.id]: path,
+  }),
+  {}
+);

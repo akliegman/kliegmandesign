@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { routes } from "./routes";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { useEffect, useState, useLayoutEffect } from "react";
+import { useMemo, useState, useLayoutEffect } from "react";
 import { Header } from "./components/Header/Header";
 import { Footer } from "./components/Footer/Footer";
 import { PageHelmet } from "./components/PageHelmet/PageHelmet";
@@ -30,7 +30,7 @@ export const App = () => {
     ([key, value]) => value.name === "Project"
   )[0];
 
-  useEffect(() => {
+  useMemo(() => {
     setMatchProjectPath(matchPath({ path: projectRoute }, location.pathname));
   }, [location.pathname, projectRoute, setMatchProjectPath]);
 
@@ -77,6 +77,7 @@ export const App = () => {
             {isWithHeader && (
               <Header location={location} matchProjectPath={matchProjectPath} />
             )}
+
             <TransitionGroup component={null}>
               <CSSTransition
                 key={location.key}
@@ -106,7 +107,9 @@ export const App = () => {
                 </Routes>
               </CSSTransition>
             </TransitionGroup>
+
             {isWithFooter && <Footer />}
+
             <CookiesMessage />
           </div>
         </CSSTransition>

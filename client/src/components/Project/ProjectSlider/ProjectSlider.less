@@ -68,6 +68,7 @@
     > span {
       height: 1rem;
       width: 1rem;
+      min-width: 1rem;
       border-radius: 0.5rem;
       background-color: @color-gray-200;
 
@@ -96,18 +97,22 @@
     width: 100%;
     overflow: hidden;
     position: relative;
-    height: 2rem;
-    margin: -2rem 0 0;
-    backdrop-filter: blur(1rem);
+    height: 2.25rem;
+    margin: -2.25rem 0 0;
+
+    backdrop-filter: blur(0.25rem);
     border-radius: 0 0 @border-radius-large @border-radius-large;
-    background-color: rgba(@color-white, 0.5);
+    background-color: rgba(@color-white, 0.6);
   }
 
   &__caption {
     width: 100%;
-    padding: 0.5rem 1rem;
+    padding: 0.625rem 1rem;
     display: flex;
     align-items: flex-end;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 
     > p {
       .paragraph-small();
