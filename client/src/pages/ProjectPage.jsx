@@ -4,7 +4,7 @@ import { projectsPageData } from "./data/projectsPageData";
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Project } from "../components/Project/Project";
-import { useMountPage } from "../context/LoadingContext";
+import { useMountPage } from "../hooks/useMountPage";
 
 export const ProjectPage = () => {
   useMountPage();

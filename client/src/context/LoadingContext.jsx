@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useMemo, useEffect } from "react";
 import { Spinner } from "../components/reusables";
 import { CSSTransition } from "react-transition-group";
+
 export const LoadingContext = createContext();
 
 export const LoadingProvider = ({ children }) => {
@@ -39,14 +40,3 @@ export const LoadingProvider = ({ children }) => {
 };
 
 export const useLoading = () => useContext(LoadingContext);
-
-export const useMountPage = () => {
-  const { setPageLoading } = useLoading();
-
-  useEffect(() => {
-    /* eslint-disable react-hooks/exhaustive-deps */
-    setPageLoading(false);
-  }, []);
-
-  return;
-};

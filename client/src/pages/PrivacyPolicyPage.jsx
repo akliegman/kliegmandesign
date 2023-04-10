@@ -2,7 +2,7 @@ import { PageHelmet } from "../components/PageHelmet/PageHelmet";
 import { StaticLayout } from "../layouts/StaticLayout";
 import { TextBlock, TextBlockItem } from "../components/reusables";
 import { privacyPageData } from "./data/privacyPageData";
-import { useMountPage } from "../context/LoadingContext";
+import { useMountPage } from "../hooks/useMountPage";
 
 export const PrivacyPolicyPage = () => {
   useMountPage();

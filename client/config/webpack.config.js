@@ -191,6 +191,9 @@ module.exports = function (webpackEnv) {
   };
 
   return {
+    node: {
+      fs: "empty",
+    },
     target: ["browserslist"],
     // Webpack noise constrained to errors and warnings
     stats: "errors-warnings",

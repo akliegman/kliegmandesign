@@ -1,6 +1,6 @@
 import { render, act, waitFor } from "../setupTests";
-import { useLocation } from "react-router-dom";
 import { ScrolltopProvider, useScrolltop } from "./ScrolltopContext";
+import { useLocation } from "react-router-dom";
 
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),

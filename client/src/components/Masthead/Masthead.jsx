@@ -20,7 +20,11 @@ export const Masthead = ({ data }) => {
       <div className="Masthead__content">
         <h1 className="Masthead__header">{data.header}</h1>
         <h2 className="Masthead__subheader">{data.subheader}</h2>
-        <HorizontalRule color="gray-500" className="Masthead__hr" />
+        <HorizontalRule
+          color="gray-500"
+          type="small"
+          className="Masthead__hr"
+        />
         <p className="Masthead__description">{data.description}</p>
         <div className="Masthead__buttons">
           {data.ctas.map((button) => (

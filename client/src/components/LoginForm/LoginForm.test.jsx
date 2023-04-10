@@ -1,6 +1,5 @@
 import { render, fireEvent, screen, waitFor } from "../../setupTests";
 import { LoginForm } from "./LoginForm";
-
 // mock the useAuth hook
 jest.mock("../../context/AuthContext", () => ({
   useAuth: () => ({
@@ -35,12 +34,10 @@ describe("LoginForm", () => {
 
     const thisInput = screen.getByPlaceholderText("Enter email (optional)");
 
-    // first enter a password
     fireEvent.change(screen.getByPlaceholderText("Enter password"), {
       target: { value: "password123" },
     });
 
-    // then enter an invalid email
     fireEvent.change(thisInput, {
       target: { value: "invalidemail" },
     });

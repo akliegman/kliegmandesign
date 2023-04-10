@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { PageHelmet } from "../components/PageHelmet/PageHelmet";
-import { useMountPage } from "../context/LoadingContext";
+import { useMountPage } from "../hooks/useMountPage";
 
 export const LoginPage = ({ user = "user" }) => {
   useMountPage();
