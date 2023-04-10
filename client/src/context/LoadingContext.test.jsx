@@ -1,5 +1,6 @@
 import { render, screen, waitFor } from "../setupTests";
-import { LoadingProvider, useLoading, useMountPage } from "./LoadingContext";
+import { LoadingProvider, useLoading } from "./LoadingContext";
+import { useMountPage } from "../hooks/useMountPage";
 
 describe("LoadingProvider", () => {
   it("renders a spinner while page is loading", () => {

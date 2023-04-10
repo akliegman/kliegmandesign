@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { Navigate } from "react-router-dom";
-import { useMountPage } from "../context/LoadingContext";
+import { useMountPage } from "../hooks/useMountPage";
 
 export const LogoutPage = () => {
   useMountPage();

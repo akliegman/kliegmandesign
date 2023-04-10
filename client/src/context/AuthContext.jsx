@@ -11,7 +11,7 @@ import {
   authUser,
   logoutUser,
   checkNewSession,
-} from "../hooks/auth";
+} from "../hooks/useAuthApi";
 
 export const AuthContext = createContext();
 

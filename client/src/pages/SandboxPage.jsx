@@ -1,6 +1,6 @@
 import { PageHelmet } from "../components/PageHelmet/PageHelmet";
 import { StaticLayout } from "../layouts/StaticLayout";
-import { useMountPage } from "../context/LoadingContext";
+import { useMountPage } from "../hooks/useMountPage";
 
 export const SandboxPage = () => {
   useMountPage();

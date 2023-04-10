@@ -2,7 +2,7 @@ import { PageHelmet } from "../components/PageHelmet/PageHelmet";
 import { StaticLayout } from "../layouts/StaticLayout";
 import { TextBlock, TextBlockItem } from "../components/reusables";
 import { termsOfUsePageData } from "./data/termsOfUsePageData";
-import { useMountPage } from "../context/LoadingContext";
+import { useMountPage } from "../hooks/useMountPage";
 
 export const TermsOfUsePage = () => {
   useMountPage();

@@ -2,7 +2,12 @@ import "@testing-library/jest-dom";
 import { render } from "@testing-library/react";
 import { AuthContext } from "./context/AuthContext";
 import { MemoryRouter } from "react-router-dom";
-import axios from "axios";
+import SourceMapSupport from "source-map-support";
+
+SourceMapSupport.install({
+  environment: "node",
+  handleUncaughtExceptions: false,
+});
 
 jest.mock("axios", () => ({
   create: jest.fn(() => ({

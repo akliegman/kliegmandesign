@@ -2,7 +2,7 @@ import { StaticLayout } from "../layouts/StaticLayout";
 import { Button } from "../components/reusables/";
 import { LeftCircleFilled } from "@ant-design/icons";
 import { QuestionCircleFilled } from "@ant-design/icons";
-import { useMountPage } from "../context/LoadingContext";
+import { useMountPage } from "../hooks/useMountPage";
 
 export const Error404Page = () => {
   useMountPage();

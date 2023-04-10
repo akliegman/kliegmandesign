@@ -1,6 +1,6 @@
 import { HomeLayout } from "../layouts/HomeLayout";
 import { homePageData } from "./data/homePageData";
-import { useMountPage } from "../context/LoadingContext";
+import { useMountPage } from "../hooks/useMountPage";
 
 export const HomePage = () => {
   useMountPage();

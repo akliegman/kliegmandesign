@@ -1,9 +1,10 @@
 import { Helmet } from "react-helmet";
 
 export const PageHelmet = ({ title, description, children }) => {
-  const defaultTitle = "Adam Kliegman: NYC-based user-centric product engineer";
+  const defaultTitle =
+    "Adam Kliegman: NYC-based frontend developer and UX evangelist";
   const defaultDescription =
-    "Adam Kliegman is an NYC-based user-centric product engineer. He is currently available for hire.";
+    "Adam Kliegman is an NYC-based frontend developer and UX evangelist. He is currently available for hire.";
   const nestedDefaultTitle = "Adam Kliegman";
   const nestedTitle = title ? `${title} | ${nestedDefaultTitle}` : defaultTitle;
   const nestedDescription = description ? description : defaultDescription;
