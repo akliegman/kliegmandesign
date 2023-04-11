@@ -7,7 +7,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   animation-name: slideDown;
   animation-duration: 1.5s;
   animation-timing-function: ease-in-out;
@@ -17,6 +17,14 @@
   height: @header-height;
   @media screen and (max-width: @breakpoint-mobile) {
     padding: 0.5rem;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: @breakpoint-desktop;
   }
   .App--darkenedBackground & {
     transition: background-color 1s ease-in-out;
