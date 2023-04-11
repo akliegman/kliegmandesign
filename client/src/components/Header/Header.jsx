@@ -3,11 +3,12 @@ import { IconButton, Button } from "../reusables/";
 import { CaretLeftFilled, MenuOutlined } from "@ant-design/icons";
 import { useState, useLayoutEffect } from "react";
 import clsx from "clsx";
+import { routeNames } from "../../routes";
 import "./Header.less";
 
 export const Header = ({ location, matchProjectPath }) => {
-  const [showHomeButton, setShowHomeButton] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [backButton, setBackButton] = useState({});
 
   const toggleMobileMenu = () => {
     setShowMobileMenu(!showMobileMenu);
@@ -19,31 +20,44 @@ export const Header = ({ location, matchProjectPath }) => {
   };
 
   useLayoutEffect(() => {
-    if (location.pathname !== "/") {
-      setShowHomeButton(true);
+    if (location.pathname === routeNames?.HOME) {
+      setBackButton({});
+    } else if (matchProjectPath?.pathname) {
+      setBackButton({
+        to: routeNames?.PROJECTS,
+        label: "Projects",
+      });
     } else {
-      setShowHomeButton(false);
+      setBackButton({
+        to: routeNames?.HOME,
+        label: "Home",
+      });
     }
-  }, [location]);
+  }, [location, matchProjectPath, setBackButton]);
 
   return (
     <header className="Header">
       <div className="Header__title">
-        {!showHomeButton ? (
-          <span className="Header__logo">Adam Kliegman</span>
+        {!Object.entries(backButton)?.length ? (
+          <span data-testid="logo" className="Header__logo">
+            Adam Kliegman
+          </span>
         ) : (
           <Button
-            to="/"
+            to={backButton?.to}
+            data-testid="back-button"
             type="link"
             variant="navlink"
             icon={<CaretLeftFilled />}
             focusable={false}
+            aria-label={`Back to ${backButton?.label}`}
           >
-            Home
+            {backButton?.label}
           </Button>
         )}
       </div>
       <div
+        data-testid="nav"
         className={clsx("Header__nav", showMobileMenu && "Header__nav--show")}
       >
         <Nav
@@ -57,6 +71,7 @@ export const Header = ({ location, matchProjectPath }) => {
         icon={<MenuOutlined />}
         type="button"
         variant="navlink"
+        data-testid="menu-button"
         focusable={false}
         onClick={toggleMobileMenu}
       />

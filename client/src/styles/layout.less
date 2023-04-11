@@ -1,5 +1,5 @@
-@import "./variables";
-@import "./typography";
+@import (reference) "./variables";
+@import (reference) "./typography";
 
 .layout-default {
   min-height: calc(100vh + 6rem);
@@ -12,6 +12,10 @@
 
   .App--noHeader & {
     padding-top: 4rem;
+  }
+
+  @media screen and (max-width: @breakpoint-mobile) {
+    padding: calc(@header-height + 2rem) 1.5rem 6rem;
   }
 }
 

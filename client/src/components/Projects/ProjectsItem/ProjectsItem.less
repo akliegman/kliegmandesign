@@ -11,6 +11,16 @@
   transition: @transition-all;
   position: relative;
 
+  &:first-child {
+    grid-column: 2 / span 2;
+  }
+
+  @media screen and (max-width: @breakpoint-resume-width-small) {
+    &:first-child {
+      grid-column: 1 / span 2;
+    }
+  }
+
   &:hover {
     box-shadow: @box-shadow-large;
 
@@ -65,7 +75,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(@color-white, 0.35);
+    background-color: rgba(@color-gray-400, 0.35);
     backdrop-filter: blur(0.25rem);
     display: flex;
     align-items: center;
@@ -75,7 +85,7 @@
       .header-1();
       text-transform: uppercase;
       letter-spacing: 0.125rem;
-      color: @color-gray-1000;
+      color: @color-red-800;
       transform: rotate(-45deg);
     }
   }

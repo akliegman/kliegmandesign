@@ -1,11 +1,11 @@
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { useState, cloneElement, useEffect, useRef, useCallback } from "react";
+import { useState, cloneElement, useRef, useCallback } from "react";
 import { IconButton } from "../../reusables";
 import { CaretLeftFilled, CaretRightFilled } from "@ant-design/icons";
 
 import "./ProjectSlider.less";
 
-export const ProjectSlider = ({ data }) => {
+export const ProjectSlider = ({ data, className }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [slideDirection, setSlideDirection] = useState("next");
   const slideRef = useRef(null);
@@ -37,12 +37,12 @@ export const ProjectSlider = ({ data }) => {
     }
   }, [activeIndex, data.length]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      handleNext();
-    }, 20000);
-    return () => clearInterval(interval);
-  }, [activeIndex, handleNext]);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     handleNext();
+  //   }, 20000);
+  //   return () => clearInterval(interval);
+  // }, [activeIndex, handleNext]);
 
   const groupChildFactory = (child) => {
     return cloneElement(child, {
@@ -57,7 +57,7 @@ export const ProjectSlider = ({ data }) => {
   };
 
   return (
-    <div>
+    <div className={className}>
       <div className="ProjectSlider">
         <div className="ProjectSlider__topBar">
           <span />

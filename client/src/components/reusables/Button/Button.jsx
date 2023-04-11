@@ -18,6 +18,7 @@ export const Button = ({
   activeClass,
   disabled = false,
   className,
+  ...rest
 }) => {
   const classNames = clsx(
     "Button",
@@ -58,6 +59,7 @@ export const Button = ({
           className={classNames}
           onClick={(e) => handleOnClick(e)}
           disabled={disabled}
+          {...rest}
         >
           {buttonContent}
         </Link>
@@ -71,6 +73,7 @@ export const Button = ({
           }
           onClick={(e) => handleOnClick(e)}
           disabled={disabled}
+          {...rest}
         >
           {buttonContent}
         </NavLink>
@@ -84,6 +87,7 @@ export const Button = ({
           disabled={disabled}
           target="_blank"
           rel="noreferrer"
+          {...rest}
         >
           {buttonContent}
         </a>
@@ -95,6 +99,7 @@ export const Button = ({
           className={classNames}
           onClick={(e) => handleOnClick(e)}
           disabled={disabled}
+          {...rest}
           download
         >
           {buttonContent}
@@ -106,6 +111,7 @@ export const Button = ({
           className={classNames}
           onClick={(e) => handleOnClick(e)}
           disabled={disabled}
+          {...rest}
         >
           {buttonContent}
         </button>
@@ -117,6 +123,7 @@ export const Button = ({
           className={classNames}
           onClick={(e) => handleOnClick(e)}
           disabled={disabled}
+          {...rest}
         >
           {buttonContent}
         </button>

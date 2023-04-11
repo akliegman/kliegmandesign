@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, waitFor } from "../../setupTests";
-import { act } from "react-dom/test-utils";
 import { CookiesMessage } from "./CookiesMessage";
 import { useCookies } from "react-cookie";
+
 jest.mock("react-cookie", () => ({
   useCookies: jest.fn(),
 }));
@@ -34,17 +34,18 @@ describe("CookiesMessage", () => {
   it("hides the message if cookies have been accepted", async () => {
     useCookies.mockReturnValue([cookiesMock, setCookieMock, setCookiesMock]);
 
-    await act(async () => {
-      render(<CookiesMessage />);
-    });
+    render(<CookiesMessage />);
 
     const message = screen.queryByText(
       /We may use cookies to provide you with a better experience/i
     );
 
-    waitFor(() => {
-      expect(message).not.toBeInTheDocument();
-    });
+    await waitFor(
+      () => {
+        expect(message).not.toBeInTheDocument();
+      },
+      { timeout: 2000 }
+    );
   });
 
   it("sets the cookies when accept button is clicked", async () => {
@@ -56,9 +57,7 @@ describe("CookiesMessage", () => {
 
     useCookies.mockReturnValue([{}, setCookieMock, setCookiesMock]);
 
-    await act(async () => {
-      render(<CookiesMessage />);
-    });
+    render(<CookiesMessage />);
 
     const acceptButton = screen.getByRole("button", { name: "Accept" });
     fireEvent.click(acceptButton);
