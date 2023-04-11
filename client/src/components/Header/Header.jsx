@@ -20,7 +20,7 @@ export const Header = ({ location, matchProjectPath }) => {
   };
 
   useLayoutEffect(() => {
-    if (location.pathname === "/") {
+    if (location.pathname === routeNames?.HOME) {
       setBackButton({});
     } else if (matchProjectPath?.pathname) {
       setBackButton({
@@ -39,20 +39,25 @@ export const Header = ({ location, matchProjectPath }) => {
     <header className="Header">
       <div className="Header__title">
         {!Object.entries(backButton)?.length ? (
-          <span className="Header__logo">Adam Kliegman</span>
+          <span data-testid="logo" className="Header__logo">
+            Adam Kliegman
+          </span>
         ) : (
           <Button
             to={backButton?.to}
+            data-testid="back-button"
             type="link"
             variant="navlink"
             icon={<CaretLeftFilled />}
             focusable={false}
+            aria-label={`Back to ${backButton?.label}`}
           >
             {backButton?.label}
           </Button>
         )}
       </div>
       <div
+        data-testid="nav"
         className={clsx("Header__nav", showMobileMenu && "Header__nav--show")}
       >
         <Nav
@@ -66,6 +71,7 @@ export const Header = ({ location, matchProjectPath }) => {
         icon={<MenuOutlined />}
         type="button"
         variant="navlink"
+        data-testid="menu-button"
         focusable={false}
         onClick={toggleMobileMenu}
       />

@@ -1,5 +1,5 @@
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { useState, cloneElement, useEffect, useRef, useCallback } from "react";
+import { useState, cloneElement, useRef, useCallback } from "react";
 import { IconButton } from "../../reusables";
 import { CaretLeftFilled, CaretRightFilled } from "@ant-design/icons";
 

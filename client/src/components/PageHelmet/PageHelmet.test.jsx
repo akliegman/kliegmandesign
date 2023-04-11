@@ -2,47 +2,37 @@ import { render, waitFor } from "../../setupTests";
 import { PageHelmet } from "./PageHelmet";
 
 describe("PageHelmet", () => {
-  it("renders with default props", () => {
-    const { getByTitle, getByText } = render(<PageHelmet />);
+  it("renders with default props", async () => {
+    render(<PageHelmet />);
 
-    waitFor(() => {
-      expect(getByTitle("Adam Kliegman")).toBeInTheDocument();
-      expect(getByText("Adam Kliegman")).toBeInTheDocument();
-      expect(
-        getByText(
-          "Adam Kliegman: NYC-based frontend developer and UX evangelist"
-        )
-      ).toBeInTheDocument();
-      expect(
-        getByText(
-          "Adam Kliegman is an NYC-based frontend developer and UX evangelist. He is currently available for hire."
-        )
-      ).toBeInTheDocument();
+    await waitFor(() => {
+      const title = document.title;
+      expect(title).toBe(
+        "Adam Kliegman: NYC-based frontend developer and UX evangelist"
+      );
     });
   });
 
-  it("renders with provided title and description", () => {
-    const title = "Test Title";
-    const description = "Test Description";
-    const { getByTitle, getByText } = render(
-      <PageHelmet title={title} description={description} />
-    );
-    waitFor(() => {
-      expect(getByTitle(`${title} | Adam Kliegman`)).toBeInTheDocument();
-      expect(getByText(title)).toBeInTheDocument();
-      expect(getByText(description)).toBeInTheDocument();
+  it("renders with provided title", async () => {
+    const testData = "Test Title";
+    render(<PageHelmet title={testData} />);
+
+    await waitFor(() => {
+      const title = document.title;
+      expect(title).toBe(`${testData} | Adam Kliegman`);
     });
   });
 
-  it("renders with child elements", () => {
+  it("renders with child elements", async () => {
     const childText = "Child Element";
-    const { getByText } = render(
+    render(
       <PageHelmet>
         <title>{childText}</title>
       </PageHelmet>
     );
-    waitFor(() => {
-      expect(getByText(childText)).toBeInTheDocument();
+    await waitFor(() => {
+      const title = document.title;
+      expect(title).toBe(childText);
     });
   });
 });

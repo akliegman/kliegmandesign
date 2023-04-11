@@ -1,6 +1,6 @@
 import { render, fireEvent, screen, waitFor } from "../../setupTests";
 import { LoginForm } from "./LoginForm";
-// mock the useAuth hook
+
 jest.mock("../../context/AuthContext", () => ({
   useAuth: () => ({
     login: jest.fn(() => Promise.resolve(true)),
@@ -22,9 +22,14 @@ describe("LoginForm", () => {
   it("password input should show error if password is missing", async () => {
     render(<LoginForm user="user" />);
     fireEvent.click(screen.getByRole("button"));
+
+    const thisInput = screen.getByPlaceholderText("Enter password");
+
     await waitFor(() => {
-      const thisInput = screen.getByPlaceholderText("Enter password");
       expect(thisInput).toHaveClass("TextInput__input--error");
+    });
+
+    await waitFor(() => {
       expect(thisInput).toHaveFocus();
     });
   });
@@ -43,8 +48,12 @@ describe("LoginForm", () => {
     });
 
     fireEvent.click(screen.getByRole("button"));
+
     await waitFor(() => {
       expect(thisInput).toHaveClass("TextInput__input--error");
+    });
+
+    await waitFor(() => {
       expect(thisInput).toHaveFocus();
     });
   });
