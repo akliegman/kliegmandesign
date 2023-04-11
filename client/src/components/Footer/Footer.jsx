@@ -9,21 +9,23 @@ export const Footer = ({ className }) => {
 
   return (
     <footer className={clsx("Footer", className)}>
-      <span className="Footer__copyright">
-        © 2023 The Kliegman Design Company. All rights reserved.
-      </span>
-      <div className="Footer__legal">
-        {session && (
-          <>
-            <span>
-              Logged in {session?.user?.email && `as ${session?.user?.email}`}
-            </span>
-            <MidDot color="gray-500" />
-          </>
-        )}
-        <Link to="/terms-of-use">Terms of Use</Link>
-        <MidDot color="gray-500" />
-        <Link to="/privacy-policy">Privacy Policy</Link>
+      <div className="Footer__content">
+        <span className="Footer__copyright">
+          © 2023 The Kliegman Design Company. All rights reserved.
+        </span>
+        <div className="Footer__legal">
+          {session && (
+            <>
+              <span>
+                Logged in {session?.user?.email && `as ${session?.user?.email}`}
+              </span>
+              <MidDot color="gray-500" />
+            </>
+          )}
+          <Link to="/terms-of-use">Terms of Use</Link>
+          <MidDot color="gray-500" />
+          <Link to="/privacy-policy">Privacy Policy</Link>
+        </div>
       </div>
     </footer>
   );

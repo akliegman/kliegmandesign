@@ -5,7 +5,7 @@
   .layout-default();
 
   &__content {
-    .layout-content(@maxWidth: 100%; @alignItems: center);
+    .layout-content(@maxWidth: calc(@breakpoint-desktop - 1.5rem); @alignItems: center);
   }
 
   &.ResumePage {
