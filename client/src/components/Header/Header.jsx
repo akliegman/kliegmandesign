@@ -58,7 +58,7 @@ export const Header = ({ location, matchProjectPath }) => {
           )}
         </div>
         <div
-          data-testid="nav"
+          data-testid="nav-wrapper"
           className={clsx("Header__nav", showMobileMenu && "Header__nav--show")}
         >
           <Nav

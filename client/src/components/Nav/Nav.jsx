@@ -32,7 +32,7 @@ export const Nav = ({ location, matchProjectPath, linkOnClick, className }) => {
     .sort((a, b) => a.order - b.order);
 
   return (
-    <nav className={clsx("Nav", className)} role="navigation">
+    <nav className={clsx("Nav", className)} role="navigation" data-testid="nav">
       {navData.map((item) => (
         <Button
           key={item.label}
@@ -42,6 +42,7 @@ export const Nav = ({ location, matchProjectPath, linkOnClick, className }) => {
           variant="navlink"
           focusable={false}
           onClick={linkOnClick}
+          data-testid="navlink"
           activeClass={
             (item.label === "Projects" &&
               matchProjectPath?.pathname?.length > 0) ||
