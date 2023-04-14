@@ -32,7 +32,7 @@ export const Masthead = ({ data }) => {
               type="link"
               key={button.name}
               to={button.link}
-              icon={button.name === "resume" && <RightCircleFilled />}
+              icon={button.name === "resume" ? <RightCircleFilled /> : null}
               iconPosition="right"
               withShadow
             >
@@ -56,6 +56,7 @@ export const Masthead = ({ data }) => {
                 to={social.link}
                 type="external"
                 icon={icon}
+                testId={`${social.name.toLowerCase()}-icon`}
               />
             );
           })}

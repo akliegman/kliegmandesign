@@ -111,6 +111,7 @@ export const LoginForm = ({ user = "user" }) => {
           type="submit"
           disabled={requestInProgress}
           onClick={(e) => handleSubmit(e)}
+          data-testid="login-button"
         >
           Submit
         </Button>

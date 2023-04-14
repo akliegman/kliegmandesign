@@ -15,9 +15,9 @@ export const Nav = ({ location, matchProjectPath, linkOnClick, className }) => {
   const { isLoggedIn } = useAuth();
 
   const iconMap = {
-    resume: <FileTextFilled />,
-    projects: <CodeFilled />,
-    sandbox: <ExperimentFilled />,
+    resume: <FileTextFilled data-testid="resume-icon" />,
+    projects: <CodeFilled data-testid="projects-icon" />,
+    sandbox: <ExperimentFilled data-testid="sandbox-icon" />,
   };
 
   const navData = Object.entries(routes)
@@ -36,13 +36,19 @@ export const Nav = ({ location, matchProjectPath, linkOnClick, className }) => {
       {navData.map((item) => (
         <Button
           key={item.label}
-          icon={item.protected && !isLoggedIn ? <LockFilled /> : item.icon}
+          icon={
+            item.protected && !isLoggedIn ? (
+              <LockFilled data-testid="locked-icon" />
+            ) : (
+              item.icon
+            )
+          }
           to={item.link}
           type="navlink"
           variant="navlink"
           focusable={false}
           onClick={linkOnClick}
-          data-testid="navlink"
+          testId="navlink"
           activeClass={
             (item.label === "Projects" &&
               matchProjectPath?.pathname?.length > 0) ||

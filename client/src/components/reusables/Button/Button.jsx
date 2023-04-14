@@ -1,6 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
 import "./Button.less";
-import PropTypes from "prop-types";
 import clsx from "clsx";
 
 export const Button = ({
@@ -18,6 +17,7 @@ export const Button = ({
   activeClass,
   disabled = false,
   className,
+  testId = "button",
   ...rest
 }) => {
   const classNames = clsx(
@@ -27,7 +27,7 @@ export const Button = ({
     icon && iconPosition === "left" && "Button--withIcon-left",
     icon && iconPosition === "right" && "Button--withIcon-right",
     focusable === false && "Button--notFocusable",
-    withShadow && "IconButton--withShadow",
+    withShadow && "Button--withShadow",
     disabled === true && "Button--disabled",
     activeClass === true && "Button--active",
     className
@@ -59,6 +59,7 @@ export const Button = ({
           className={classNames}
           onClick={(e) => handleOnClick(e)}
           disabled={disabled}
+          data-testid={testId}
           {...rest}
         >
           {buttonContent}
@@ -73,6 +74,7 @@ export const Button = ({
           }
           onClick={(e) => handleOnClick(e)}
           disabled={disabled}
+          data-testid={testId}
           {...rest}
         >
           {buttonContent}
@@ -87,6 +89,7 @@ export const Button = ({
           disabled={disabled}
           target="_blank"
           rel="noreferrer"
+          data-testid={testId}
           {...rest}
         >
           {buttonContent}
@@ -100,6 +103,7 @@ export const Button = ({
           onClick={(e) => handleOnClick(e)}
           disabled={disabled}
           {...rest}
+          data-testid={testId}
           download
         >
           {buttonContent}
@@ -108,9 +112,11 @@ export const Button = ({
       {type === "button" && (
         <button
           name={name}
+          type="button"
           className={classNames}
           onClick={(e) => handleOnClick(e)}
           disabled={disabled}
+          data-testid={testId}
           {...rest}
         >
           {buttonContent}
@@ -123,6 +129,7 @@ export const Button = ({
           className={classNames}
           onClick={(e) => handleOnClick(e)}
           disabled={disabled}
+          data-testid={testId}
           {...rest}
         >
           {buttonContent}
@@ -130,16 +137,4 @@ export const Button = ({
       )}
     </>
   );
-};
-
-Button.propTypes = {
-  children: PropTypes.node.isRequired,
-  icon: PropTypes.element,
-  type: PropTypes.string,
-  to: PropTypes.string,
-  name: PropTypes.string,
-  shape: PropTypes.string,
-  size: PropTypes.string,
-  variant: PropTypes.string,
-  onClick: PropTypes.func,
 };

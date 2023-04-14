@@ -2,17 +2,25 @@ export const TextBlockItem = ({ item }) => {
   if (!item) return null;
   return (
     <>
-      {item?.type === "heading-1" && <h1>{item?.content}</h1>}
-      {item?.type === "heading-2" && <h2>{item?.content}</h2>}
-      {item?.type === "heading-3" && <h3>{item?.content}</h3>}
-      {item?.type === "heading-4" && <h4>{item?.content}</h4>}
+      {item?.type === "heading-1" && (
+        <h1 data-testid="text-block-item">{item?.content}</h1>
+      )}
+      {item?.type === "heading-2" && (
+        <h2 data-testid="text-block-item">{item?.content}</h2>
+      )}
+      {item?.type === "heading-3" && (
+        <h3 data-testid="text-block-item">{item?.content}</h3>
+      )}
+      {item?.type === "heading-4" && (
+        <h4 data-testid="text-block-item">{item?.content}</h4>
+      )}
       {item?.type === "paragraph" && (
-        <p>
+        <p data-testid="text-block-item">
           <TextBlockInnerText data={item?.content} />
         </p>
       )}
       {item?.type === "unordered-list" && (
-        <ul>
+        <ul data-testid="text-block-item">
           {item?.content?.map((listItem, index) => (
             <li key={index}>
               <p>
