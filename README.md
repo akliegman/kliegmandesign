@@ -1,7 +1,5 @@
 <p align="right">
-    <a href="https://img.shields.io/npm/l/express" alt="License">
-        <img src="https://img.shields.io/npm/l/express" />
-    </a>
+    <img src="https://img.shields.io/npm/l/express" />
 </p>
 
 # adamkliegman.com
