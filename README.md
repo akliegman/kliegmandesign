@@ -1,3 +1,7 @@
+<p align="right">
+    <img src="https://img.shields.io/npm/l/express" />
+</p>
+
 # adamkliegman.com
 
 This is repository that contains both the backend and frontend for adamkliegman.com.
