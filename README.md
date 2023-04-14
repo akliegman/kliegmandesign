@@ -52,7 +52,6 @@ Create a `.env` or `.env.local` file in the root directory, with the following c
 PORT=3001
 ENV=local
 CORS_ORIGINS=http://localhost:3000,http://localhost:3001
-
 ```
 
 The rest of the envars required to run the app should be provided by @akliegman.
@@ -61,7 +60,7 @@ The rest of the envars required to run the app should be provided by @akliegman.
 
 1. Start the server.
 
-In terminal;
+In terminal:
 
 ```
 # from root directory
