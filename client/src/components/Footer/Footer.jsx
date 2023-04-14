@@ -8,7 +8,7 @@ export const Footer = ({ className }) => {
   const { session } = useAuth();
 
   return (
-    <footer className={clsx("Footer", className)}>
+    <footer className={clsx("Footer", className)} data-testid="footer">
       <div className="Footer__content">
         <span className="Footer__copyright">
           © 2023 The Kliegman Design Company. All rights reserved.

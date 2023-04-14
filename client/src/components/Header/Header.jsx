@@ -36,7 +36,7 @@ export const Header = ({ location, matchProjectPath }) => {
   }, [location, matchProjectPath, setBackButton]);
 
   return (
-    <header className="Header">
+    <header className="Header" data-testid="header">
       <div className="Header__content">
         <div className="Header__title">
           {!Object.entries(backButton)?.length ? (
@@ -72,7 +72,7 @@ export const Header = ({ location, matchProjectPath }) => {
           icon={<MenuOutlined />}
           type="button"
           variant="navlink"
-          data-testid="menu-button"
+          testId="menu-button"
           focusable={false}
           onClick={toggleMobileMenu}
         />

@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import "./IconButton.less";
-import PropTypes from "prop-types";
 import clsx from "clsx";
 
 export const IconButton = ({
@@ -8,7 +7,7 @@ export const IconButton = ({
   type = "link",
   name,
   to,
-  active = false,
+  activeClass = false,
   size = "md",
   variant = "",
   focusable = true,
@@ -16,13 +15,14 @@ export const IconButton = ({
   onClick,
   disabled = false,
   className,
+  testId = "icon-button",
   ...rest
 }) => {
   const classNames = clsx(
     "IconButton",
     `IconButton--${size.toLowerCase()}`,
     `IconButton--${variant.toLowerCase()}`,
-    active && "IconButton--active",
+    activeClass && "IconButton--active",
     focusable === false && "IconButton--notFocusable",
     withShadow && "IconButton--withShadow",
     disabled === true && "IconButton--disabled",
@@ -44,6 +44,7 @@ export const IconButton = ({
           className={classNames}
           onClick={(e) => handleOnClick(e)}
           disabled={disabled}
+          data-testid={testId}
           {...rest}
         >
           {icon}
@@ -58,6 +59,7 @@ export const IconButton = ({
           target="_blank"
           rel="noreferrer"
           disabled={disabled}
+          data-testid={testId}
           {...rest}
         >
           {icon}
@@ -71,6 +73,7 @@ export const IconButton = ({
           onClick={(e) => handleOnClick(e)}
           download
           disabled={disabled}
+          data-testid={testId}
           {...rest}
         >
           {icon}
@@ -79,9 +82,11 @@ export const IconButton = ({
       {type === "button" && (
         <button
           name={name}
+          type="button"
           className={classNames}
           onClick={(e) => handleOnClick(e)}
           disabled={disabled}
+          data-testid={testId}
           {...rest}
         >
           {icon}
@@ -94,6 +99,7 @@ export const IconButton = ({
           className={classNames}
           onClick={(e) => handleOnClick(e)}
           disabled={disabled}
+          data-testid={testId}
           {...rest}
         >
           {icon}
@@ -101,15 +107,4 @@ export const IconButton = ({
       )}
     </>
   );
-};
-
-IconButton.propTypes = {
-  icon: PropTypes.element.isRequired,
-  type: PropTypes.string,
-  to: PropTypes.string,
-  name: PropTypes.string,
-  shape: PropTypes.string,
-  size: PropTypes.string,
-  variant: PropTypes.string,
-  onClick: PropTypes.func,
 };

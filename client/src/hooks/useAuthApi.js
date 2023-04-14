@@ -1,5 +1,14 @@
 import { api } from "../api/api";
 
+const authUser = async () => {
+  try {
+    const response = await api.get("/auth");
+    return response.data;
+  } catch (error) {
+    return { error: error?.response?.data };
+  }
+};
+
 const loginUser = async (user, password, email) => {
   try {
     const response = await api.get("/login", {
@@ -14,16 +23,7 @@ const loginUser = async (user, password, email) => {
 
     return response.data;
   } catch (error) {
-    return { error: error.response.data };
-  }
-};
-
-const authUser = async () => {
-  try {
-    const response = await api.get("/auth");
-    return response.data;
-  } catch (error) {
-    return { error: error.response.data };
+    return { error: error?.response?.data };
   }
 };
 
@@ -38,10 +38,10 @@ const logoutUser = async () => {
       const response = await api.get("/auth");
       return response.data;
     } catch (error) {
-      return { error: error.response.data };
+      return { error: error?.response?.data };
     }
   } catch (error) {
-    return { error: error.response.data };
+    return { error: error?.response?.data };
   }
 };
 
@@ -50,7 +50,7 @@ const checkNewSession = async () => {
     const response = await api.get("/session");
     return response.data;
   } catch (error) {
-    return { error: error.response.data };
+    return { error: error?.response?.data };
   }
 };
 

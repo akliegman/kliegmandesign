@@ -8,6 +8,7 @@ export const HorizontalRule = ({
 }) => {
   return (
     <div
+      data-testid="horizontal-rule"
       className={clsx(
         "HorizontalRule",
         `HorizontalRule--${type}`,

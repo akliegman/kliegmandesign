@@ -1,7 +1,7 @@
 {
   "name": "kliegmandesign",
   "version": "1.0.0",
-  "description": "",
+  "description": "Server-side for adamkliiegman.com",
   "main": "server/index.js",
   "scripts": {
     "client": "cd client && npm start",
@@ -11,8 +11,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Adam Kliegman",
+  "license": "MIT",
   "dependencies": {
     "@slack/web-api": "^6.8.1",
     "aws-sdk": "^2.1344.0",
@@ -32,7 +32,6 @@
   },
   "engines": {
     "node": "19.x",
-    "yarn": "1.22.x",
     "npm": "9.5.x"
   }
 }

@@ -20,6 +20,7 @@ export const TextInput = ({
   autoComplete,
   autoFocus,
   withIcon = false,
+  testId = "text-input",
   ...rest
 }) => {
   const classNames = clsx(
@@ -70,6 +71,7 @@ export const TextInput = ({
         aria-invalid={error ? "true" : "false"}
         aria-describedby={error ? `${name}-error` : undefined}
         invalid={error ? "true" : "false"}
+        data-testid={testId}
         {...rest}
       />
       {/* {error && <span className="TextInput__error">{error}</span>} */}
