@@ -16,12 +16,12 @@ const s3 = new aws.S3();
 const photosDir = process.env.ENV === "local" ? "photos-local" : "photos";
 
 const storage = multerS3({
-  s3: s3,
+  s3,
   bucket: process.env.AWS_BUCKET_NAME,
-  key: function (req, file, cb) {
+  key (req, file, cb) {
     cb(null, `${photosDir}/${Date.now()}-${file.originalname}`);
   },
-  name: function (req, file, cb) {
+  name (req, file, cb) {
     cb(null, file.originalname);
   },
 });
@@ -38,9 +38,9 @@ exports.findAll = async (req, res) => {
 };
 
 exports.upload = multer({
-  storage: storage,
+  storage,
   limits: { fileSize: 20 * 1024 * 1024 }, // 20 MB
-  fileFilter: function (req, file, cb) {
+  fileFilter (req, file, cb) {
     const filetypes = /jpeg|jpg|png|gif/;
     const extname = filetypes.test(
       path.extname(file.originalname).toLowerCase()
@@ -84,7 +84,7 @@ exports.delete = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const num = await Photos.destroy({ where: { id: id } });
+    const num = await Photos.destroy({ where: { id } });
     if (num == 1) {
       return res.send({ message: "Photo was deleted successfully!" });
     }
@@ -137,7 +137,7 @@ exports.update = async (req, res) => {
     const id = req.params.id;
 
     const [num, updatedPhoto] = await Photos.update(req.body, {
-      where: { id: id },
+      where: { id },
       returning: true,
     });
 

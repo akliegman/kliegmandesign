@@ -62,7 +62,7 @@ exports.check = (req, res) => {
 
 exports.login = (req, res, next) => {
   const user = basicAuth(req);
-  let errors = [];
+  const errors = [];
 
   const checkUser = (user) => {
     if (!user) {

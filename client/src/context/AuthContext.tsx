@@ -13,11 +13,67 @@ import {
   checkNewSession,
 } from "../hooks/useAuthApi";
 
-import * as AuthTypes from "../types/authTypes";
+export interface Session {
+  cookie: string;
+  expiresAt: string;
+  ipAddress: string;
+  sid: number;
+  userAgent: string;
+  isNew: boolean;
+  user: User;
+}
 
-export const AuthContext = createContext<AuthTypes.AuthContextValue | null>(null);
+export interface User {
+  user: string;
+  role: string;
+  email: string;
+}
 
-export const AuthProvider = ({ children }: AuthTypes.AuthProviderProps) => {
+interface AuthContextValue {
+  session: Session;
+  errors: Errors;
+  newSession: boolean;
+  isLoggedIn: boolean;
+  login: Login;
+  logout: Logout;
+  clearErrors: (errorType: ErrorType) => void;
+}
+
+type ErrorType =
+  | "loginError"
+  | "logoutError"
+  | "checkLoginError"
+  | "checkSessionError";
+
+type ErrorString = string;
+
+type ErrorObject = {
+  [key in ErrorType]: string;
+};
+
+type Errors = ErrorObject[];
+
+type AuthProviderProps = {
+  children: React.ReactNode;
+};
+
+type Logout = () => Promise<void | Error>;
+
+type Login = (LoginProps: LoginProps) => Promise<Session | Error | false>;
+
+type LoginProps = {
+  user: string;
+  password: string;
+  email: string;
+};
+
+interface Error {
+  error: ErrorString;
+}
+
+export const AuthContext = createContext<AuthContextValue | null>(null);
+
+export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [session, setSession] = useState<any>(null);
   const [newSession, setNewSession] = useState(false);
@@ -30,7 +86,7 @@ export const AuthProvider = ({ children }: AuthTypes.AuthProviderProps) => {
     [errors]
   );
 
-  const checkIfNewSession = useCallback(async (): Promise<any> => {
+  const checkIfNewSession = useCallback(async (): Promise<boolean | Error> => {
     try {
       const response = await checkNewSession();
       if (response?.error) {
@@ -42,22 +98,29 @@ export const AuthProvider = ({ children }: AuthTypes.AuthProviderProps) => {
     } catch (error) {
       console.log(error);
     }
+
+    return false;
   }, [errors]);
 
   const login = useCallback(
-    async (AuthTypes.LoginProps): Promise<AuthTypes.AuthContext> => {
+    async (
+      LoginProps: LoginProps
+    ): Promise<Session | Error | ErrorString | false> => {
       try {
-        const response = await loginUser(user, password, email);
-        if (response?.error) {
-          setErrors([{ loginError: response.error }, ...errors]);
+        const response = await loginUser(LoginProps);
+        if (response?.error !== undefined) {
+          setErrors([{ loginError: response?.error }, ...errors]);
         } else {
           setSession(response);
           setIsLoggedIn(true);
+
           return response;
         }
       } catch (error) {
         console.log(error);
+        setErrors([{ loginError: error }, ...errors]);
       }
+      return false;
     },
     [errors]
   );
