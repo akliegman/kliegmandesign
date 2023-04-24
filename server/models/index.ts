@@ -1,9 +1,17 @@
-const dbConfig = require("../config/db.js");
-const Sequelize = require("sequelize");
+import { Sequelize } from "sequelize";
+import { dbConfig } from "../config/db";
+import { SessionsModel, Session } from "./sessions";
+import { PhotosModel, Photo } from "./photos";
+
+export interface DbInterface {
+  sequelize: Sequelize;
+  photos: typeof Photo;
+  sessions: typeof Session;
+}
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
-  dialect: dbConfig.dialect,
+  dialect: "postgres",
   ...(dbConfig.shouldUseSSL && {
     dialectOptions: {
       ssl: {
@@ -13,7 +21,6 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     },
     ssl: true,
   }),
-  operatorsAliases: false,
   pool: {
     max: dbConfig.pool.max,
     min: dbConfig.pool.min,
@@ -22,11 +29,8 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   },
 });
 
-const db = {
-  Sequelize,
+export const db: DbInterface = {
   sequelize,
-  photos: require("./photos.js")(sequelize, Sequelize),
-  sessions: require("./sessions.js")(sequelize, Sequelize),
+  photos: PhotosModel(sequelize),
+  sessions: SessionsModel(sequelize),
 };
-
-module.exports = db;

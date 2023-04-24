@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es6",
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "baseUrl": ".",
+    "outDir": "server/build",
+    "forceConsistentCasingInFileNames": true,  
+    "paths": {
+      "*": ["node_modules/*"]
+    },
+    "types": ["node"]
+  },
+  "include": ["server/**/*"]
+}
