@@ -1,8 +1,6 @@
-import { Model, DataTypes, Optional } from "sequelize";
-import { Session as SessionInterface } from "../types/sessions";
-
-export interface SessionCreationAttributes
-  extends Optional<SessionInterface, "id"> {}
+import { Model, DataTypes } from "sequelize";
+import { SessionCreationAttributes } from "../types/sessions";
+import { logger } from "../utils/logger";
 
 export class Session
   extends Model<SessionCreationAttributes>
@@ -21,6 +19,8 @@ export class Session
 }
 
 export function SessionsModel(sequelize: any): typeof Session {
+  logger.info("Creating Sessions model...");
+
   Session.init(
     {
       id: {
@@ -71,6 +71,6 @@ export function SessionsModel(sequelize: any): typeof Session {
       tableName: "sessions",
     }
   );
-
+  logger.info("Sessions model created.");
   return Session;
 }

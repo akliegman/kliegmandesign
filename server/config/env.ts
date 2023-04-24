@@ -1,12 +1,7 @@
 import * as dotenv from "dotenv";
+import { EnvConfig } from "../types/config";
 
 dotenv.config();
-
-interface EnvConfig {
-  env: string;
-  port: number;
-  whitelist: string[];
-}
 
 export const envConfig: EnvConfig = {
   env: process.env.ENV! || process.env.NODE_ENV!,

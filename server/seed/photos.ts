@@ -1,5 +1,5 @@
-import { DbInterface } from "../models";
-import { PhotoCreationAttributes } from "../models/photos";
+import { DbInterface } from "../types/db";
+import { PhotoCreationAttributes } from "../types/photos";
 import { logger } from "../utils/logger";
 
 export const photosSeed = (db: DbInterface) => {
@@ -9,6 +9,7 @@ export const photosSeed = (db: DbInterface) => {
     logger.error("No db connection.");
     return;
   }
+
   logger.info("db connected.");
   const photosSeedData: PhotoCreationAttributes[] = [
     {
@@ -37,7 +38,7 @@ export const photosSeed = (db: DbInterface) => {
         .then(() => {
           logger.info("Seeded photos table.");
         })
-        .catch((err) => {
+        .catch((err: any) => {
           logger.error("Failed to seed photos table: " + err.message);
         });
     } else {

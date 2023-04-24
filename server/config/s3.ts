@@ -1,17 +1,7 @@
 import * as dotenv from "dotenv";
+import { S3Config } from "../types/config";
 
 dotenv.config();
-
-interface S3Config {
-  region: string;
-  credentials: {
-    accessKeyId: string;
-    secretAccessKey: string;
-  };
-  sslEnabled?: boolean;
-  signatureVersion?: string;
-  s3forcePathStyle?: boolean;
-}
 
 export const s3Config: S3Config = {
   region: process.env.AWS_REGION!,

@@ -1,5 +1,6 @@
 import { Request } from "express";
 import session from "express-session";
+import { Optional } from "sequelize";
 
 declare module "express-session" {
   export interface Session {
@@ -38,3 +39,5 @@ export interface Session {
   expiresAt: Date;
   isNew: boolean;
 }
+
+export interface SessionCreationAttributes extends Optional<Session, "id"> {}

@@ -1,22 +1,7 @@
 import * as dotenv from "dotenv";
+import { AuthConfig } from "../types/config";
 
 dotenv.config();
-
-interface AuthConfig {
-  user: string;
-  pass: string;
-  adminUser: string;
-  adminPass: string;
-  session: {
-    secret: string;
-    resave: boolean;
-    saveUninitialized: boolean;
-    cookie: {
-      secure: boolean;
-      maxAge: number;
-    };
-  };
-}
 
 export const authConfig: AuthConfig = {
   user: process.env.AUTH_USERNAME!,

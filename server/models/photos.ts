@@ -1,18 +1,7 @@
-import { Model, DataTypes, Optional } from "sequelize";
+import { Model, DataTypes } from "sequelize";
 import { Sequelize } from "sequelize";
-
-export interface PhotoAttributes {
-  id: number;
-  name: string;
-  albumId: number;
-  imageUrl: string;
-  awsUrl: string | null;
-  mimetype: string;
-  published: boolean;
-}
-
-export interface PhotoCreationAttributes
-  extends Optional<PhotoAttributes, "id"> {}
+import { PhotoCreationAttributes } from "../types/photos";
+import { logger } from "../utils/logger";
 
 export class Photo
   extends Model<PhotoCreationAttributes>
@@ -28,6 +17,8 @@ export class Photo
 }
 
 export function PhotosModel(sequelize: Sequelize): typeof Photo {
+  logger.info("Creating Photos model...");
+
   Photo.init(
     {
       id: {
@@ -66,5 +57,6 @@ export function PhotosModel(sequelize: Sequelize): typeof Photo {
     }
   );
 
+  logger.info("Photos model created.");
   return Photo;
 }

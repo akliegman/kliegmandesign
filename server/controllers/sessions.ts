@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { db } from "../models";
-import { SessionCreationAttributes } from "../models/sessions";
+import { SessionCreationAttributes } from "../types/sessions";
 import { logger } from "../utils/logger";
 
 const Sessions = db.sessions;

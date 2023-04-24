@@ -14,7 +14,7 @@ import { logger } from "./utils/logger";
 const app: Application = express();
 
 logger.info("-------------------------------------------------------");
-logger.info("WELCOME TO THE KLIEGMAN DESIGN APP!");
+logger.info("WELCOME TO THE KLIEGMAN DESIGN APP");
 logger.info("-------------------------------------------------------");
 
 const port: number = envConfig.port! || 3001;

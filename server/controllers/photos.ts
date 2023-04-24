@@ -136,6 +136,10 @@ export const findAllPhotosByAlbumId = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
+  logger.info("-------------------------------------------------------");
+  logger.info("FINDING PHOTOS IN DB BY ALBUM ID");
+  logger.info("-------------------------------------------------------");
+
   const id = req.params.id;
 
   try {
@@ -143,12 +147,20 @@ export const findAllPhotosByAlbumId = async (
       where: { albumId: id },
     });
 
+    if (data.length === 0) {
+      const notFoundMessage = `No photos found with albumId=${id}`;
+      logger.error(notFoundMessage);
+      return res.status(404).send({
+        message: notFoundMessage,
+      });
+    }
+
+    logger.info(`${data.length} photos found with albumId=${id}`);
     return res.send(data);
   } catch (error: any) {
-    logger.error(error);
-    return res.status(500).send({
-      message: "Error retrieving photos with albumId=" + id,
-    });
+    const errorMessage = `Error retrieving photos with albumId=${id}: ${error.message}`;
+    logger.error(errorMessage);
+    return res.status(500).send(errorMessage);
   }
 };
 
@@ -156,6 +168,10 @@ export const updatePhoto = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
+  logger.info("-------------------------------------------------------");
+  logger.info("UPDATING PHOTO IN DB");
+  logger.info("-------------------------------------------------------");
+
   const id = req.params.id;
 
   try {
@@ -165,20 +181,21 @@ export const updatePhoto = async (
     });
 
     if (num === 1) {
+      const successMessage = `Photo with id=${id} was updated successfully.`;
+      logger.info(successMessage);
       return res.send({
-        message: "Photo was updated successfully.",
+        message: successMessage,
         photo: updatedPhoto[0],
       });
     } else {
-      return res.send({
-        message: `Cannot update photo with id=${id}. Maybe photo was not found or req.body is empty!`,
-      });
+      const message = `Cannot update photo with id=${id}.`;
+      logger.error(message);
+      return res.send(message);
     }
   } catch (error: any) {
-    return res.status(500).send({
-      message: "Error updating photo with id=" + id,
-      error,
-    });
+    const errorMessage = `Error updating photo with id=${id}: ${error.message}`;
+    logger.error(errorMessage);
+    return res.status(500).send(errorMessage);
   }
 };
 
@@ -186,7 +203,12 @@ export const getPhoto = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
+  logger.info("-------------------------------------------------------");
+  logger.info("GETTING PHOTO FROM S3");
+  logger.info("-------------------------------------------------------");
+
   if (!req.params.imageId) {
+    logger.error("No image id in request");
     return res.status(400).send("No image id in request");
   }
 
@@ -213,11 +235,14 @@ export const getPhoto = async (
     const data = await s3Client.send(command);
     const key = `${photosConfig.directory}/${req.params.imageId}`;
 
+    logger.info(`Image found: ${key}`);
     res.writeHead(200, { "Content-Type": getImageType(key) });
     res.write(data.Body as any, "binary");
   } catch (error: any) {
-    logger.error(error);
+    const errorMessage = `Error getting image: ${error.message}`;
     return res.status(404).send("File not found.");
   }
+
+  logger.info("Image sent successfully");
   return res.end(null, "binary");
 };

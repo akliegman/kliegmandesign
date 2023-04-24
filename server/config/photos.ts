@@ -1,11 +1,8 @@
 import * as dotenv from "dotenv";
+import { PhotosConfig } from "../types/config";
 
 dotenv.config();
 
-interface PhotosConfig {
-  directory: string;
-}
-
-export const photosConfig = {
+export const photosConfig: PhotosConfig = {
   directory: process.env.ENV === "local" ? "photos-local" : "photos",
 };

@@ -1,13 +1,8 @@
 import { Sequelize } from "sequelize";
 import { dbConfig } from "../config/db";
-import { SessionsModel, Session } from "./sessions";
-import { PhotosModel, Photo } from "./photos";
-
-export interface DbInterface {
-  sequelize: Sequelize;
-  photos: typeof Photo;
-  sessions: typeof Session;
-}
+import { SessionsModel } from "./sessions";
+import { PhotosModel } from "./photos";
+import { DbInterface } from "../types/db";
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
