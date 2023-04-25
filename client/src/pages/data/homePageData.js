@@ -8,7 +8,7 @@ export const homePageData = {
   engineering best practices, design, data, psychology, and practicality to deliver value in 
   fast-paced environments. I am passionate, dependable, and ambitious, and deeply committed to 
   building great web applications from zero to one. With experience across the entire product development
-  lifeecycle, I not only have a breadth of functional skills, but also can fluently 
+  lifecycle, I not only have a breadth of functional skills, but also can fluently 
   interface across teams to ensure sound communication channels, well-delineated specifications, 
   and viable design and data systems.`,
   ctas: [
