@@ -109,13 +109,13 @@ export const authLogin = (req: Request, res: Response, next: NextFunction) => {
     return res.status(400).send(`Bad Request: ${credentialsDontExistErrors}`);
   }
 
-  if (user?.name === authConfig.adminUser && userCredentialsErrors) {
+  if (user?.name !== authConfig.adminUser && userCredentialsErrors) {
     res.set("WWW-Authenticate", 'Basic realm="Authorization Required"');
     logger.error(`Bad Request: ${userCredentialsErrors}`);
     return res.status(400).send(`Bad Request: ${userCredentialsErrors}`);
   }
 
-  if (user?.name !== authConfig.adminUser && adminCredentialsErrors) {
+  if (user?.name === authConfig.adminUser && adminCredentialsErrors) {
     res.set("WWW-Authenticate", 'Basic realm="Authorization Required"');
     logger.error(`Bad Request: ${adminCredentialsErrors}`);
     return res.status(400).send(`Bad Request: ${adminCredentialsErrors}`);
