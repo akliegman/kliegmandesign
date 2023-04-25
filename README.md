@@ -1,5 +1,5 @@
 <p align="right">
-    <img src="https://img.shields.io/npm/l/express" />
+  <img src="https://img.shields.io/npm/l/express" />
 </p>
 
 # adamkliegman.com
@@ -146,6 +146,7 @@ git push heroku main
 
 - [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
 - [Express](https://expressjs.com/) - A fast, unopinionated, minimalist web framework for Node.js.
+- [TypeScript](https://www.typescriptlang.org/) - A typed superset of JavaScript that compiles to plain JavaScript.
 - [Node.js](https://nodejs.org/) - A JavaScript runtime built on Chrome's V8 JavaScript engine.
 - [PostgreSQL](https://www.postgresql.org/) - A powerful, open source object-relational database system.
 - [LESS](http://lesscss.org/) - A dynamic stylesheet language that can be compiled into CSS.
