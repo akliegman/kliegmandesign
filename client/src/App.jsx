@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import { routes } from "./routes";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { useMemo, useState, useLayoutEffect } from "react";
+import { useMemo, useState, useLayoutEffect, useEffect } from "react";
 import { Header } from "./components/Header/Header";
 import { Footer } from "./components/Footer/Footer";
 import { PageHelmet } from "./components/PageHelmet/PageHelmet";
@@ -18,6 +18,7 @@ import { ScrolltopProvider } from "./context/ScrolltopContext";
 import { Helmet } from "react-helmet";
 import { useLoading } from "./context/LoadingContext";
 import clsx from "clsx";
+import { getEnvVars } from "./hooks/useEnv";
 import "./App.less";
 
 export const App = () => {
@@ -25,6 +26,7 @@ export const App = () => {
   const { isLoggedIn } = useAuth();
   const { appLoading, setPageLoading } = useLoading();
   const [matchProjectPath, setMatchProjectPath] = useState(null);
+  const [envData, setEnvData] = useState(null);
 
   const [projectRoute, projectObject] = Object.entries(routes).filter(
     ([key, value]) => value.name === "Project"
@@ -37,6 +39,19 @@ export const App = () => {
   useLayoutEffect(() => {
     setPageLoading(true);
   }, [location.pathname, setPageLoading]);
+
+  useEffect(() => {
+    const setEnv = async () => {
+      try {
+        const data = await getEnvVars();
+        setEnvData(data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    setEnv();
+  }, []);
 
   const isWithHeader =
     routes[location.pathname]?.withHeader ||
@@ -61,6 +76,9 @@ export const App = () => {
           <meta name="theme-color" content="#cccccc" />
         ) : (
           <meta name="theme-color" content="#f7f7f7" />
+        )}
+        {envData && (
+          <meta name="api-url" content={envData?.REACT_APP_API_URL} />
         )}
       </Helmet>
       <GoogleAnalytics />
