@@ -1,5 +1,3 @@
-import { Request } from "express";
-import session from "express-session";
 import { Optional } from "sequelize";
 
 declare module "express-session" {

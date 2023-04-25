@@ -5,7 +5,6 @@ import { slackConfig } from "../config/slack";
 import { envConfig } from "../config/env";
 import { WebClient } from "@slack/web-api";
 import { logger } from "../utils/logger";
-
 import {
   credentialsExistTest,
   userCredentialsTest,
@@ -184,7 +183,7 @@ export const requireAuth = (
     logger.info("User is authorized.");
     return next();
   }
-  logger.error("User is unauthorized.");
+  logger.info("User is unauthorized.");
   return res.status(400).send({ message: "Unauthorized" });
 };
 
@@ -202,6 +201,6 @@ export const requireAdminAuth = (
     return next();
   }
 
-  logger.error("User is unauthorized.");
+  logger.info("User is unauthorized.");
   return res.status(400).send({ message: "Unauthorized" });
 };

@@ -1,13 +1,6 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import { db } from "../models";
-import multer, { FileFilterCallback } from "multer";
-import multerS3 from "multer-s3";
-import path from "path";
-import {
-  S3Client,
-  GetObjectCommand,
-  PutObjectCommand,
-} from "@aws-sdk/client-s3";
+import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 import { s3Config, s3ConfigBucket } from "../config/s3";
 import { photosConfig } from "../config/photos";
 import { logger } from "../utils/logger";

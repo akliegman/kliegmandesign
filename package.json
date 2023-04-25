@@ -8,8 +8,8 @@
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc --project ./",
     "prestart": "npm run build",
-    "start": "node .",
-    "dev": "npm run build && nodemon .",
+    "start": "node server/build/index.js",
+    "dev": "npm run build && nodemon server/build/index.js",
     "heroku-postbuild": "cd client && npm install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
