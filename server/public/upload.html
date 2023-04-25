@@ -25,10 +25,10 @@
             })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                logger.info(data);
             })
             .catch(error => {
-                console.error(error);
+                logger.error(error);
             });
           
         }
