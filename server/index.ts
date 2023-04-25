@@ -9,6 +9,7 @@ import { photosSeed } from "./seed/photos";
 import { authRoutes } from "./routes/auth";
 import { sessionsRoutes } from "./routes/sessions";
 import { photosRoutes } from "./routes/photos";
+import { envRoutes } from "./routes/env";
 import { logger } from "./utils/logger";
 
 const app: Application = express();
@@ -102,6 +103,8 @@ logger.info("Setting up sessions routes...");
 sessionsRoutes(app);
 logger.info("Setting up photos routes...");
 photosRoutes(app);
+logger.info("Setting up env routes...");
+envRoutes(app);
 
 logger.info("Setting up catch-all routes...");
 app.get("/api/*", (req: Request, res: Response) => {
