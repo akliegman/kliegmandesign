@@ -140,7 +140,6 @@ git push heroku main
 
 - Server-side tests.
 - Full coverage for client side tests.
-- Proptypes, or soome methodology to mimic TypeScript
 
 ## Built With
 
