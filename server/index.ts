@@ -66,7 +66,7 @@ logger.info("-------------------------------------------------------");
 logger.info("SYNCING DB");
 logger.info("-------------------------------------------------------");
 db.sequelize
-  .sync({ force: true })
+  .sync()
   .then(() => logger.info("Synced db."))
   .catch((err: any) => logger.info("Failed to sync db: " + err.message))
   .then(() => {
