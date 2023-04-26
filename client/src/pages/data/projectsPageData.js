@@ -56,6 +56,58 @@ export const projectsPageData = [
     ],
   },
   {
+    name: "demyst-design-system",
+    protected: false,
+    title: "Demyst Data Design System",
+    summary: `Design system and component library for Demyst Data's external data platform.`,
+    description: [
+      {
+        type: "paragraph",
+        content: `The Demyst Data Design System is a design system and component library that
+        provides a set of reusable components and guidelines for building the Demyst Data Platform.`,
+      },
+      {
+        type: "paragraph",
+        content: `As the sole designer and developer of the design system, I scoped, designed, and built
+        the design system and component library from the ground up. I also led the development of the
+        design system documentation site, which is built with Storybook and React.`,
+      },
+    ],
+    thumbnail: Images.DemystDsColorsImage,
+    stack: ["React", "Storybook", "LESS"],
+    slides: [
+      {
+        description: `Design system colors library`,
+        image: Images.DemystDsColorsImage,
+      },
+      {
+        description: `Functional alignment containers for layout and spacing`,
+        image: Images.DemystDsAlignmentImage,
+      },
+      {
+        description: `Expansive button library with many variations and states`,
+        image: Images.DemystDsButtonsImage,
+      },
+      {
+        description: `Card component library for reusable content containers`,
+        image: Images.DemystDsCardImage,
+      },
+      {
+        description: `Multi-syntax code block and code editor component library`,
+        image: Images.DemystDsCodeImage,
+      },
+
+      {
+        description: `Form elements and input components library`,
+        image: Images.DemystDsFormImage,
+      },
+      {
+        description: `Table component library that handles sorting, filtering, and pagination`,
+        image: Images.DemystDsTableImage,
+      },
+    ],
+  },
+  {
     name: "demyst-marketing-site",
     protected: true,
     title: "Demyst Data Marketing Site",
