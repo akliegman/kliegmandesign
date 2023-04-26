@@ -1,5 +1,5 @@
 import * as dotenv from "dotenv";
-import { S3Config } from "../types/config";
+import { S3Config } from "./s3.interface";
 
 dotenv.config();
 

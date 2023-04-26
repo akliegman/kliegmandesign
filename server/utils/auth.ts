@@ -1,4 +1,4 @@
-import { UserCredentials } from "../types/sessions";
+import { UserCredentials } from "../types/user.types";
 import { authConfig } from "../config/auth";
 
 export const credentialsExistTest = (

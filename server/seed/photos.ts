@@ -1,8 +1,8 @@
-import { DbInterface } from "../types/db";
-import { PhotoCreationAttributes } from "../types/photos";
+import { Db } from "../models/db.interface";
+import { PhotoCreationAttributes } from "../models/photos.interface";
 import { logger } from "../utils/logger";
 
-export const photosSeed = (db: DbInterface) => {
+export const photosSeed: (db: Db) => void = (db: Db) => {
   logger.info("Attempting to seed Photos table...");
   logger.info("Checking if db is connected...");
   if (!db) {
@@ -11,6 +11,7 @@ export const photosSeed = (db: DbInterface) => {
   }
 
   logger.info("db connected.");
+
   const photosSeedData: PhotoCreationAttributes[] = [
     {
       name: "headshot.jpg",

@@ -3,7 +3,7 @@ import * as dotenv from "dotenv";
 
 dotenv.config();
 
-const filteredEnv = process.env
+const filteredEnv: object = process.env
   ? Object.keys(process.env)
       .filter((key) => key.startsWith("REACT_APP_"))
       .reduce((obj: any, key) => {
@@ -12,7 +12,7 @@ const filteredEnv = process.env
       }, {})
   : {};
 
-export const envRoutes = (app: Application) => {
+export const envRoutes: (app: Application) => void = (app: Application) => {
   app.get("/api/env", (req, res) => {
     res.json(filteredEnv);
   });

@@ -1,22 +1,6 @@
-import { Model, DataTypes } from "sequelize";
-import { SessionCreationAttributes } from "../types/sessions";
+import { DataTypes } from "sequelize";
+import { Session } from "./sessions.class";
 import { logger } from "../utils/logger";
-
-export class Session
-  extends Model<SessionCreationAttributes>
-  implements SessionCreationAttributes
-{
-  public id!: number;
-  public sid!: string;
-  public user!: string;
-  public email!: string;
-  public role!: string;
-  public ipAddress!: string;
-  public userAgent!: string;
-  public referer!: string;
-  public expiresAt!: Date;
-  public isNew!: boolean;
-}
 
 export function SessionsModel(sequelize: any): typeof Session {
   logger.info("Creating Sessions model...");

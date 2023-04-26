@@ -1,5 +1,5 @@
 import * as dotenv from "dotenv";
-import { AuthConfig } from "../types/config";
+import { AuthConfig } from "./auth.interface";
 
 dotenv.config();
 
