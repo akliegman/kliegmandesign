@@ -129,9 +129,7 @@ describe("AuthContext", () => {
     expect(loginUser).toHaveBeenCalledTimes(1);
 
     await waitFor(() => {
-      expect(result.current.errors).toEqual([
-        { loginError: "Invalid credentials" },
-      ]);
+      expect(result.current.errors).toEqual([{ loginError: mockResult.error }]);
     });
   });
 });
