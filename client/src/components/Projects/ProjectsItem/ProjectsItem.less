@@ -11,16 +11,6 @@
   transition: @transition-all;
   position: relative;
 
-  &:first-child {
-    grid-column: 2 / span 2;
-  }
-
-  @media screen and (max-width: @breakpoint-resume-width-small) {
-    &:first-child {
-      grid-column: 1 / span 2;
-    }
-  }
-
   &:hover {
     box-shadow: @box-shadow-large;
 
