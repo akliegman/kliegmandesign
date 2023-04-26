@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { db } from "../models";
+import { db } from "../models/db";
 import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 import { s3Config, s3ConfigBucket } from "../config/s3";
 import { photosConfig } from "../config/photos";
 import { logger } from "../utils/logger";
-import { RequestWithFile } from "../types/photos";
+import { PhotosCreationRequest } from "./photos.interface";
 
 const s3Client = new S3Client(s3Config);
 
@@ -30,7 +30,7 @@ export const findAllPhotos = async (
 };
 
 export const createPhoto = async (
-  req: RequestWithFile,
+  req: PhotosCreationRequest,
   res: Response
 ): Promise<Response> => {
   logger.info("-------------------------------------------------------");

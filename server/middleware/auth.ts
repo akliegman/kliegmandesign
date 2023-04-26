@@ -13,11 +13,11 @@ import {
 
 const web = new WebClient(slackConfig.botToken!);
 
-export const slackLoggedIn = async (
+export const slackLoggedIn: (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+) => void = async (req: Request, res: Response, next: NextFunction) => {
   logger.info("-------------------------------------------------------");
   logger.info("SENDING SLACK MESSAGE OF NEW LOGIN");
   logger.info("-------------------------------------------------------");
@@ -43,7 +43,10 @@ export const slackLoggedIn = async (
   next();
 };
 
-export const authSession = async (req: Request, res: Response) => {
+export const authSession: (
+  req: Request,
+  res: Response
+) => Promise<Response> = async (req: Request, res: Response) => {
   const date = new Date().toLocaleString();
   const ip = req.ip;
 
@@ -78,7 +81,10 @@ export const authSession = async (req: Request, res: Response) => {
   return res.status(200).send({ isNew: false });
 };
 
-export const authCheck = (req: Request, res: Response) => {
+export const authCheck: (req: Request, res: Response) => Response = (
+  req: Request,
+  res: Response
+) => {
   logger.info("-------------------------------------------------------");
   logger.info("CHECKING AUTHORIZATION");
   logger.info("-------------------------------------------------------");
@@ -92,7 +98,11 @@ export const authCheck = (req: Request, res: Response) => {
   return res.status(200).send({ message: "Unauthorized" });
 };
 
-export const authLogin = (req: Request, res: Response, next: NextFunction) => {
+export const authLogin: (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => Response | void = (req: Request, res: Response, next: NextFunction) => {
   logger.info("-------------------------------------------------------");
   logger.info("AUTHENTICATING USER");
   logger.info("-------------------------------------------------------");
@@ -144,7 +154,10 @@ export const authLogin = (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 
-export const authLogout = async (req: Request, res: Response) => {
+export const authLogout: (
+  req: Request,
+  res: Response
+) => Promise<Response | void> = async (req: Request, res: Response) => {
   logger.info("-------------------------------------------------------");
   logger.info("LOGGING OUT USER");
   logger.info("-------------------------------------------------------");
@@ -170,11 +183,11 @@ export const authLogout = async (req: Request, res: Response) => {
   }
 };
 
-export const requireAuth = (
+export const requireAuth: (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+) => Response | void = (req: Request, res: Response, next: NextFunction) => {
   logger.info("-------------------------------------------------------");
   logger.info("REQUIRING AUTHORIZATION");
   logger.info("-------------------------------------------------------");

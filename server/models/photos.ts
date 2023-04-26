@@ -1,20 +1,6 @@
-import { Model, DataTypes } from "sequelize";
-import { Sequelize } from "sequelize";
-import { PhotoCreationAttributes } from "../types/photos";
+import { DataTypes, Sequelize } from "sequelize";
+import { Photo } from "./photos.class";
 import { logger } from "../utils/logger";
-
-export class Photo
-  extends Model<PhotoCreationAttributes>
-  implements PhotoCreationAttributes
-{
-  public id!: number;
-  public name!: string;
-  public albumId!: number;
-  public imageUrl!: string;
-  public awsUrl!: string | null;
-  public mimetype!: string;
-  public published!: boolean;
-}
 
 export function PhotosModel(sequelize: Sequelize): typeof Photo {
   logger.info("Creating Photos model...");

@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from "express";
-import multer, { FileFilterCallback } from "multer";
+import { Request, RequestHandler, Response, NextFunction } from "express";
+import multer, { FileFilterCallback, Multer } from "multer";
 import multerS3 from "multer-s3";
 import { S3Client } from "@aws-sdk/client-s3";
 import { s3Config, s3ConfigBucket } from "../config/s3";
@@ -7,18 +7,18 @@ import { photosConfig } from "../config/photos";
 import path from "path";
 import { logger } from "../utils/logger";
 
-const s3Client = new S3Client(s3Config);
+const s3Client: S3Client = new S3Client(s3Config);
 
-export const uploadPhoto = (
+export const uploadPhoto: (
   _req: Request,
   res: Response,
   next: NextFunction
-): Response | void => {
+) => Response | void = (_req: Request, res: Response, next: NextFunction) => {
   logger.info("-------------------------------------------------------");
   logger.info("UPLOADING PHOTO");
   logger.info("-------------------------------------------------------");
 
-  const upload = multer({
+  const upload: RequestHandler = multer({
     storage: multerS3({
       s3: s3Client!,
       bucket: s3ConfigBucket!,

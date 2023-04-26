@@ -4,7 +4,7 @@ import path from "path";
 import session from "express-session";
 import { authConfig } from "./config/auth";
 import { envConfig } from "./config/env";
-import { db } from "./models";
+import { db } from "./models/db";
 import { photosSeed } from "./seed/photos";
 import { authRoutes } from "./routes/auth";
 import { sessionsRoutes } from "./routes/sessions";

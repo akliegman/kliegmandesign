@@ -1,5 +1,5 @@
 import * as dotenv from "dotenv";
-import { PhotosConfig } from "../types/config";
+import { PhotosConfig } from "./photos.interface";
 
 dotenv.config();
 
