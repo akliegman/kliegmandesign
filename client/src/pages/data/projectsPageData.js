@@ -26,7 +26,7 @@ export const projectsPageData = [
       },
     ],
     thumbnail: Images.DemystPlatformConnectorImage,
-    stack: ["React", "Redux", "LESS", "Cypress", "Storybook", "Ruby on Rails"],
+    stack: ["React", "Redux", "LESS", "Cypress", "Ruby on Rails"],
     slides: [
       {
         description: `External data product details with attributes, metadata, and usage statistics`,
