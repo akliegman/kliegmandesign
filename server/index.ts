@@ -6,9 +6,11 @@ import { authConfig } from "./config/auth";
 import { envConfig } from "./config/env";
 import { db } from "./models/db";
 import { photosSeed } from "./seed/photos";
+import { albumsSeed } from "./seed/albums";
 import { authRoutes } from "./routes/auth";
 import { sessionsRoutes } from "./routes/sessions";
 import { photosRoutes } from "./routes/photos";
+import { albumsRoutes } from "./routes/albums";
 import { envRoutes } from "./routes/env";
 import { logger } from "./utils/logger";
 
@@ -74,6 +76,7 @@ db.sequelize
     logger.info("SEEDING DB");
     logger.info("-------------------------------------------------------");
     photosSeed(db);
+    albumsSeed(db);
     logger.info("Seeded db.");
   });
 
@@ -103,6 +106,8 @@ logger.info("Setting up sessions routes...");
 sessionsRoutes(app);
 logger.info("Setting up photos routes...");
 photosRoutes(app);
+logger.info("Setting up albums routes...");
+albumsRoutes(app);
 logger.info("Setting up env routes...");
 envRoutes(app);
 

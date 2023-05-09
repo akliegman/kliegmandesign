@@ -2,6 +2,7 @@ import { Sequelize } from "sequelize";
 import { dbConfig } from "../config/db";
 import { SessionsModel } from "./sessions";
 import { PhotosModel } from "./photos";
+import { AlbumsModel } from "./albums";
 import { Db } from "./db.interface";
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
@@ -27,5 +28,6 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 export const db: Db = {
   sequelize,
   photos: PhotosModel(sequelize),
+  albums: AlbumsModel(sequelize),
   sessions: SessionsModel(sequelize),
 };
