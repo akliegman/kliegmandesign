@@ -8,6 +8,11 @@ export const LoadingProvider = ({ children }) => {
   const [appLoading, setAppLoading] = useState(true);
   const [pageLoading, setPageLoading] = useState(true);
 
+  useEffect(() => {
+    /* eslint-disable react-hooks/exhaustive-deps */
+    setAppLoading(false);
+  }, []);
+
   const value = useMemo(
     () => ({
       appLoading,
@@ -17,11 +22,6 @@ export const LoadingProvider = ({ children }) => {
     }),
     [appLoading, setAppLoading, pageLoading, setPageLoading]
   );
-
-  useEffect(() => {
-    /* eslint-disable react-hooks/exhaustive-deps */
-    setAppLoading(false);
-  }, []);
 
   return (
     <LoadingContext.Provider value={value}>

@@ -3,17 +3,22 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { App } from "./App";
 import "./index.less";
-import { AuthProvider } from "./context/AuthContext";
-import { LoadingProvider } from "./context/LoadingContext";
+import { ApiProvider } from "./contexts/ApiContext";
+import { LoadingProvider } from "./contexts/LoadingContext";
+import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
+reportWebVitals(console.log);
+
 root.render(
   <LoadingProvider>
-    <AuthProvider>
+    <ApiProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </AuthProvider>
+    </ApiProvider>
   </LoadingProvider>
 );
+
+if (process.env.NODE_ENV === "development") reportWebVitals(console.log);

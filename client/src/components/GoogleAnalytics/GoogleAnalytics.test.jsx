@@ -1,6 +1,6 @@
 import ReactGA from "react-ga4";
 import { GoogleAnalytics } from "./GoogleAnalytics";
-import { appConfig } from "../../config/appConfig";
+import { GOOGLE_ANALYTICS_ID } from "../../config/appConfig";
 import { waitFor, shallow } from "../../setupTests";
 
 jest.mock("react-ga4", () => ({
@@ -13,9 +13,7 @@ describe("GoogleAnalytics", () => {
     shallow(<GoogleAnalytics />);
 
     await waitFor(() => {
-      expect(ReactGA.initialize).toHaveBeenCalledWith(
-        appConfig.googleAnalyticsId
-      );
+      expect(ReactGA.initialize).toHaveBeenCalledWith(GOOGLE_ANALYTICS_ID);
     });
 
     await waitFor(() => {

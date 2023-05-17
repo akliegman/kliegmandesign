@@ -23,7 +23,7 @@ router.get(
 
 router.get("/auth", authCheck);
 router.get("/logout", authLogout);
-router.get("/session", requireAuth, authSession);
+router.get("/session", authSession);
 
 export const authRoutes: (app: Application) => void = (app: Application) => {
   app.use("/api", router);

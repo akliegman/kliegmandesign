@@ -34,12 +34,10 @@ describe("Nav", () => {
   });
 
   it("renders the locked icon for protected navigation items when not logged in", async () => {
-    jest
-      .spyOn(require("../../context/AuthContext"), "useAuth")
-      .mockReturnValue({
-        session: null,
-        isLoggedIn: false,
-      });
+    jest.spyOn(require("../../contexts/ApiContext"), "useApi").mockReturnValue({
+      session: null,
+      isLoggedIn: false,
+    });
 
     render(
       <Nav location={{ pathname: "/projects" }} matchProjectPath={null} />
@@ -50,12 +48,10 @@ describe("Nav", () => {
   });
 
   it("renders the correct icon for protected navigation items when logged in", async () => {
-    jest
-      .spyOn(require("../../context/AuthContext"), "useAuth")
-      .mockReturnValue({
-        session: { user: { email: "user@user.com" } },
-        isLoggedIn: true,
-      });
+    jest.spyOn(require("../../contexts/ApiContext"), "useApi").mockReturnValue({
+      session: { user: { email: "user@user.com" } },
+      isLoggedIn: true,
+    });
 
     render(
       <Nav location={{ pathname: "/projects" }} matchProjectPath={null} />

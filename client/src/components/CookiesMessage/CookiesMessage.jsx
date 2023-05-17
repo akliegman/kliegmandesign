@@ -1,33 +1,32 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useCookies } from "react-cookie";
-import { Button } from "../reusables";
 import { CSSTransition } from "react-transition-group";
+
+import { COOKIE_NAME, COOKIE_OPTIONS } from "../../config/appConfig";
+import { Button } from "../reusables";
 import "./CookiesMessage.less";
 
 export const CookiesMessage = () => {
-  const cookieName = "cookiesAccepted__adamkliegman";
-
-  const cookieOptions = {
-    path: "/",
-    maxAge: 60 * 60 * 24 * 365,
-    sameSite: true,
-  };
-
-  const [cookies, setCookie] = useCookies([cookieName]);
-  const [cookiesAccepted, setCookiesAccepted] = useState(false);
+  const [cookies, setCookie] = useCookies([COOKIE_NAME]);
+  const [cookiesAccepted, setCookiesAccepted] = useState(
+    Boolean(cookies?.[COOKIE_NAME])
+  );
 
   useEffect(() => {
-    if (cookies.cookiesAccepted__adamkliegman) {
-      setCookiesAccepted(true);
+    if (cookiesAccepted) {
+      setCookie(COOKIE_NAME, true, COOKIE_OPTIONS);
     }
-  }, [cookies]);
+  }, [cookiesAccepted, setCookie]);
 
-  const handleAcceptCookies = (e) => {
+  const handleAcceptCookies = useCallback((e) => {
     e.preventDefault();
-
-    setCookie(cookieName, true, cookieOptions);
-    setCookiesAccepted(true);
-  };
+    setCookiesAccepted((prevCookiesAccepted) => {
+      if (!prevCookiesAccepted) {
+        return true;
+      }
+      return prevCookiesAccepted;
+    });
+  }, []);
 
   return (
     <CSSTransition
@@ -43,7 +42,7 @@ export const CookiesMessage = () => {
           website. You are free to manage these via your browser settings at any
           time.
         </p>
-        <Button size="xs" type="button" onClick={(e) => handleAcceptCookies(e)}>
+        <Button size="xs" type="button" onClick={handleAcceptCookies}>
           Accept
         </Button>
       </div>

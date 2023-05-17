@@ -1,7 +1,7 @@
 import { MainLayout } from "../layouts/MainLayout";
 import { LockFilled } from "@ant-design/icons";
 import { LoginForm } from "../components/LoginForm/LoginForm";
-import { useAuth } from "../context/AuthContext";
+import { useApi } from "../contexts/ApiContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { PageHelmet } from "../components/PageHelmet/PageHelmet";
@@ -9,7 +9,7 @@ import { useMountPage } from "../hooks/useMountPage";
 
 export const LoginPage = ({ user = "user" }) => {
   useMountPage();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn } = useApi();
   const location = useLocation();
   const { from } = location.state || { from: { pathname: "/" } };
   const navigate = useNavigate();

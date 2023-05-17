@@ -1,11 +1,11 @@
 import { render, fireEvent, screen, waitFor } from "../../setupTests";
 import { LoginForm } from "./LoginForm";
 
-jest.mock("../../context/AuthContext", () => ({
-  useAuth: () => ({
+jest.mock("../../contexts/ApiContext", () => ({
+  useApi: () => ({
     login: jest.fn(() => Promise.resolve(true)),
     errors: [],
-    clearError: jest.fn(),
+    clearErrors: jest.fn(),
   }),
 }));
 
@@ -61,11 +61,11 @@ describe("LoginForm", () => {
   it("should call the login function with the correct arguments", async () => {
     const mockLogin = jest.fn(() => Promise.resolve(true));
 
-    jest.mock("../../context/AuthContext", () => ({
-      useAuth: () => ({
+    jest.mock("../../contexts/ApiContext", () => ({
+      useApi: () => ({
         login: mockLogin,
         errors: [],
-        clearError: jest.fn(),
+        clearErrors: jest.fn(),
       }),
     }));
 

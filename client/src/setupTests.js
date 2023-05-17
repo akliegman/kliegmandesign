@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import { render } from "@testing-library/react";
-import { AuthContext } from "./context/AuthContext";
-import { LoadingProvider } from "./context/LoadingContext";
+import { ApiContext } from "./contexts/ApiContext";
+import { LoadingProvider } from "./contexts/LoadingContext";
 import { BrowserRouter } from "react-router-dom";
 import SourceMapSupport from "source-map-support";
 import { createMemoryHistory } from "history";
@@ -13,14 +13,17 @@ SourceMapSupport.install({
 
 global.XMLHttpRequest = require("xhr2");
 
-const mockedAuthContextValue = {
+const mockedApiContextValue = {
   isLoggedIn: false,
   session: null,
-  newSession: false,
   errors: [],
   login: jest.fn(),
   logout: jest.fn(),
-  clearError: jest.fn(),
+  clearErrors: jest.fn(),
+  clearErrorById: jest.fn(),
+  envData: {
+    REACT_APP_API_URL: "http://localhost:3001/api",
+  },
 };
 
 const mockedLoadingContextValue = {
@@ -35,9 +38,9 @@ const history = createMemoryHistory();
 const Root = ({ children }) => {
   return (
     <LoadingProvider value={mockedLoadingContextValue}>
-      <AuthContext.Provider value={mockedAuthContextValue}>
+      <ApiContext.Provider value={mockedApiContextValue}>
         <BrowserRouter history={history}>{children}</BrowserRouter>
-      </AuthContext.Provider>
+      </ApiContext.Provider>
     </LoadingProvider>
   );
 };

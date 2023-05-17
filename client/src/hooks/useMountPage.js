@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useLoading } from "../context/LoadingContext";
+import { useLoading } from "../contexts/LoadingContext";
 
 export const useMountPage = () => {
   const { setPageLoading } = useLoading();

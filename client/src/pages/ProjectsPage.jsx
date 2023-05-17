@@ -6,6 +6,7 @@ import { useMountPage } from "../hooks/useMountPage";
 
 export const ProjectsPage = () => {
   useMountPage();
+
   return (
     <>
       <PageHelmet title="Projects" />

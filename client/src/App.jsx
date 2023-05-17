@@ -1,3 +1,4 @@
+import { useMemo, useState, useLayoutEffect, useEffect } from "react";
 import {
   Routes,
   Route,
@@ -5,32 +6,31 @@ import {
   Navigate,
   matchPath,
 } from "react-router-dom";
-import { routes } from "./routes";
+import clsx from "clsx";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { useMemo, useState, useLayoutEffect, useEffect } from "react";
+import { routes } from "./routes";
+import { ScrolltopProvider } from "./contexts/ScrolltopContext";
+import { useLoading } from "./contexts/LoadingContext";
+import { useApi } from "./contexts/ApiContext";
+import { AppHelmet } from "./components/AppHelmet/AppHelmet";
 import { Header } from "./components/Header/Header";
 import { Footer } from "./components/Footer/Footer";
 import { PageHelmet } from "./components/PageHelmet/PageHelmet";
 import { CookiesMessage } from "./components/CookiesMessage/CookiesMessage";
 import { GoogleAnalytics } from "./components/GoogleAnalytics/GoogleAnalytics";
-import { useAuth } from "./context/AuthContext";
-import { ScrolltopProvider } from "./context/ScrolltopContext";
-import { Helmet } from "react-helmet";
-import { useLoading } from "./context/LoadingContext";
-import clsx from "clsx";
-import { getEnvVars } from "./hooks/useEnv";
+import { Errors } from "./components/Errors/Errors";
 import "./App.less";
 
 export const App = () => {
   const location = useLocation();
-  const { isLoggedIn } = useAuth();
+  const state = { from: { pathname: location.pathname } };
+  const { isLoggedIn } = useApi();
   const { appLoading, setPageLoading } = useLoading();
   const [matchProjectPath, setMatchProjectPath] = useState(null);
-  const [envData, setEnvData] = useState(null);
 
-  const [projectRoute, projectObject] = Object.entries(routes).filter(
+  const [projectRoute, projectObject] = Object.entries(routes).find(
     ([key, value]) => value.name === "Project"
-  )[0];
+  );
 
   useMemo(() => {
     setMatchProjectPath(matchPath({ path: projectRoute }, location.pathname));
@@ -40,28 +40,14 @@ export const App = () => {
     setPageLoading(true);
   }, [location.pathname, setPageLoading]);
 
-  useEffect(() => {
-    const setEnv = async () => {
-      try {
-        const data = await getEnvVars();
-        setEnvData(data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
+  const { pathname } = matchProjectPath || {};
+  const { withHeader, withFooter, darkenedBackground } =
+    routes[location.pathname] || {};
 
-    setEnv();
-  }, []);
-
-  const isWithHeader =
-    routes[location.pathname]?.withHeader ||
-    (projectObject?.withHeader && matchProjectPath?.pathname);
-  const isWithFooter =
-    routes[location.pathname]?.withFooter ||
-    (projectObject?.withFooter && matchProjectPath?.pathname);
+  const isWithHeader = withHeader || (projectObject?.withHeader && pathname);
+  const isWithFooter = withFooter || (projectObject?.withFooter && pathname);
   const isDarkenedBackground =
-    routes[location.pathname]?.darkenedBackground ||
-    (projectObject?.darkenedBackground && matchProjectPath?.pathname);
+    darkenedBackground || (projectObject?.darkenedBackground && pathname);
 
   const appClassNames = clsx("App", {
     "App--noHeader": !isWithHeader,
@@ -71,16 +57,7 @@ export const App = () => {
 
   return (
     <ScrolltopProvider>
-      <Helmet>
-        {isDarkenedBackground ? (
-          <meta name="theme-color" content="#cccccc" />
-        ) : (
-          <meta name="theme-color" content="#f7f7f7" />
-        )}
-        {envData && (
-          <meta name="api-url" content={envData?.REACT_APP_API_URL} />
-        )}
-      </Helmet>
+      <AppHelmet isDarkenedBackground={isDarkenedBackground} />
       <GoogleAnalytics />
       <div className={appClassNames}>
         <CSSTransition
@@ -103,25 +80,24 @@ export const App = () => {
                 timeout={800}
               >
                 <Routes location={location}>
-                  {Object.entries(routes).map(([path, route], index) => {
-                    let state = { from: { pathname: location.pathname } };
-                    let element = !route.protected ? (
-                      route.element
-                    ) : isLoggedIn ? (
-                      route.element
-                    ) : (
-                      <Navigate to={`/login`} state={state} />
-                    );
-
-                    return (
-                      <Route
-                        key={index}
-                        path={path}
-                        exact={route.exact}
-                        element={element}
-                      />
-                    );
-                  })}
+                  {Object.entries(routes).map(([path, route]) => (
+                    <Route
+                      key={path}
+                      exact={route.exact}
+                      path={path}
+                      element={
+                        route.protected ? (
+                          isLoggedIn ? (
+                            route.element
+                          ) : (
+                            <Navigate to={`/login`} state={state} />
+                          )
+                        ) : (
+                          route.element
+                        )
+                      }
+                    />
+                  ))}
                 </Routes>
               </CSSTransition>
             </TransitionGroup>
@@ -131,6 +107,7 @@ export const App = () => {
             <CookiesMessage />
           </div>
         </CSSTransition>
+        <Errors />
       </div>
     </ScrolltopProvider>
   );

@@ -21,11 +21,9 @@ describe("Footer", () => {
   });
 
   it("renders logged in user email in footer", () => {
-    jest
-      .spyOn(require("../../context/AuthContext"), "useAuth")
-      .mockReturnValue({
-        session: { user: { email: "test@example.com" } },
-      });
+    jest.spyOn(require("../../contexts/ApiContext"), "useApi").mockReturnValue({
+      session: { user: { email: "test@example.com" } },
+    });
 
     render(<Footer />);
 
@@ -34,11 +32,9 @@ describe("Footer", () => {
   });
 
   it("does not render user email when user is not logged in", () => {
-    jest
-      .spyOn(require("../../context/AuthContext"), "useAuth")
-      .mockReturnValue({
-        session: null,
-      });
+    jest.spyOn(require("../../contexts/ApiContext"), "useApi").mockReturnValue({
+      session: null,
+    });
 
     render(<Footer />);
 

@@ -5,7 +5,7 @@ import { useRef, useEffect } from "react";
 
 export const TextInput = ({
   label,
-  value = "",
+  value,
   onChange,
   placeholder,
   type = "text",

@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { MidDot } from "../reusables";
 import clsx from "clsx";
-import { useAuth } from "../../context/AuthContext";
+import { useApi } from "../../contexts/ApiContext";
 import "./Footer.less";
 
 export const Footer = ({ className }) => {
-  const { session } = useAuth();
+  const { session } = useApi();
 
   return (
     <footer className={clsx("Footer", className)} data-testid="footer">

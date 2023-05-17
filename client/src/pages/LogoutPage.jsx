@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import { useAuth } from "../context/AuthContext";
+import { useApi } from "../contexts/ApiContext";
 import { Navigate } from "react-router-dom";
 import { useMountPage } from "../hooks/useMountPage";
 
 export const LogoutPage = () => {
   useMountPage();
-  const { logout } = useAuth();
+  const { logout } = useApi();
 
   useEffect(() => {
     logout();

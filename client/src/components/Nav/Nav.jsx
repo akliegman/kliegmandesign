@@ -8,11 +8,11 @@ import {
 import clsx from "clsx";
 import { routes } from "../../routes";
 import { replaceSpecialCharacters } from "../../helpers/replaceSpecialCharacters";
-import { useAuth } from "../../context/AuthContext";
+import { useApi } from "../../contexts/ApiContext";
 import "./Nav.less";
 
 export const Nav = ({ location, matchProjectPath, linkOnClick, className }) => {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn } = useApi();
 
   const iconMap = {
     resume: <FileTextFilled data-testid="resume-icon" />,

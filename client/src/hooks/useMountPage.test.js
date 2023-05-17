@@ -1,8 +1,8 @@
 import { render } from "../setupTests";
-import { useLoading } from "../context/LoadingContext";
+import { useLoading } from "../contexts/LoadingContext";
 import { useMountPage } from "./useMountPage";
 
-jest.mock("../context/LoadingContext", () => ({
+jest.mock("../contexts/LoadingContext", () => ({
   useLoading: jest.fn(),
 }));
 

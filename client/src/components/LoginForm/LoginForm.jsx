@@ -1,82 +1,56 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button, TextInput, Form } from "../reusables";
-import { useAuth } from "../../context/AuthContext";
+import { useApi } from "../../contexts/ApiContext";
 import { validateEmail } from "../../helpers/validateEmail";
 import "./LoginForm.less";
 
 export const LoginForm = ({ user = "user" }) => {
   const location = useLocation();
-  const { login, errors, clearError } = useAuth();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+  const { login } = useApi();
+  const [formErrors, setFormErrors] = useState({});
   const [requestInProgress, setRequestInProgress] = useState(false);
   const { from } = location.state || { from: { pathname: "/" } };
   const navigate = useNavigate();
 
-  const validatePassword = (password) => {
+  const validateForm = (email, password) => {
     if (password.length < 1) {
+      setFormErrors({ passwordError: "Password is required" });
       return false;
     }
+
+    if (email.length > 0 && !validateEmail(email)) {
+      setFormErrors({ emailError: "Invalid email address" });
+      return false;
+    }
+
     return true;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    clearError("loginError");
-    setPasswordError("");
-    setEmailError("");
     setRequestInProgress(true);
+    setFormErrors({});
+    const formData = new FormData(e.target);
+    const email = formData.get("email");
+    const password = formData.get("password");
 
-    setTimeout(() => {
-      if (!validatePassword(password)) {
-        setPasswordError("Please enter a password");
-        setRequestInProgress(false);
-        return;
-      }
-
-      if (email && !validateEmail(email)) {
-        setEmailError("Please enter a valid email address");
-        setRequestInProgress(false);
-        return;
-      }
-    }, 50);
-
-    try {
-      const success = await login(user, password, email);
-
-      if (success) {
-        setRequestInProgress(false);
-        return navigate(from.pathname, { replace: true });
-      } else {
-        setRequestInProgress(false);
-        return false;
-      }
-    } catch (error) {
+    if (!validateForm(email, password)) {
       setRequestInProgress(false);
-      console.error(error);
+      return false;
+    }
+
+    const { success, message } = await login(user, password, email);
+
+    if (success) {
+      setRequestInProgress(false);
+      return navigate(from.pathname, { replace: true });
+    } else {
+      setRequestInProgress(false);
+      setFormErrors({ passwordError: message });
+      return false;
     }
   };
-
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  useEffect(() => {
-    if (errors && errors.length > 0) {
-      errors.forEach((error) => {
-        if (error.loginError) {
-          setPasswordError(error.loginError);
-        }
-      });
-    }
-  }, [errors]);
 
   return (
     <div className="LoginForm">
@@ -84,13 +58,11 @@ export const LoginForm = ({ user = "user" }) => {
         <TextInput
           type="password"
           name="password"
-          value={password}
           placeholder="Enter password"
-          onChange={(e) => handlePasswordChange(e)}
-          autoFocus={passwordError}
+          autoFocus={formErrors?.passwordError}
           required
           withIcon
-          error={passwordError}
+          error={formErrors?.passwordError}
           disabled={requestInProgress}
         />
         {user === "user" && (
@@ -98,11 +70,9 @@ export const LoginForm = ({ user = "user" }) => {
             type="email"
             name="email"
             placeholder="Enter email (optional)"
-            value={email}
-            onChange={(e) => handleEmailChange(e)}
             withIcon
-            error={emailError}
-            autoFocus={emailError}
+            error={formErrors?.emailError}
+            autoFocus={formErrors?.emailError}
             disabled={requestInProgress}
           />
         )}
@@ -110,7 +80,6 @@ export const LoginForm = ({ user = "user" }) => {
         <Button
           type="submit"
           disabled={requestInProgress}
-          onClick={(e) => handleSubmit(e)}
           data-testid="login-button"
         >
           Submit
