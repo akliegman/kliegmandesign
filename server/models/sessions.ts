@@ -19,7 +19,7 @@ export function SessionsModel(sequelize: any): typeof Session {
       },
       user: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       email: {
         type: DataTypes.STRING,
@@ -27,7 +27,7 @@ export function SessionsModel(sequelize: any): typeof Session {
       },
       role: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       ipAddress: {
         type: DataTypes.STRING,
@@ -47,6 +47,14 @@ export function SessionsModel(sequelize: any): typeof Session {
       },
       isNew: {
         type: DataTypes.BOOLEAN,
+        allowNull: true,
+      },
+      startedAt: {
+        type: DataTypes.DATE,
+        allowNull: true,
+      },
+      endedAt: {
+        type: DataTypes.DATE,
         allowNull: true,
       },
     },

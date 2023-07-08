@@ -1,11 +1,9 @@
 import { Application, Router, Request, Response } from "express";
 import {
   slackLoggedIn,
-  authSession,
   authLogin,
   authLogout,
   authCheck,
-  requireAuth,
 } from "../middleware/auth";
 import { createSession } from "../controllers/sessions";
 
@@ -23,7 +21,6 @@ router.get(
 
 router.get("/auth", authCheck);
 router.get("/logout", authLogout);
-router.get("/session", authSession);
 
 export const authRoutes: (app: Application) => void = (app: Application) => {
   app.use("/api", router);

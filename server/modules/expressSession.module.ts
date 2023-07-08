@@ -11,5 +11,7 @@ declare module "express-session" {
     referer: string;
     expiresAt: Date;
     isNew: boolean;
+    startedAt?: Date;
+    endedAt?: Date;
   }
 }

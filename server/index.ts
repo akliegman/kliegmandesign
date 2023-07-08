@@ -10,6 +10,7 @@ import { authRoutes } from "./routes/auth";
 import { sessionsRoutes } from "./routes/sessions";
 import { photosRoutes } from "./routes/photos";
 import { envRoutes } from "./routes/env";
+import { vitalsRoutes } from "./routes/vitals";
 import { logger } from "./utils/logger";
 
 const app: Application = express();
@@ -66,7 +67,7 @@ logger.info("-------------------------------------------------------");
 logger.info("SYNCING DB");
 logger.info("-------------------------------------------------------");
 db.sequelize
-  .sync()
+  .sync({ force: true })
   .then(() => logger.info("Synced db."))
   .catch((err: any) => logger.info("Failed to sync db: " + err.message))
   .then(() => {
@@ -105,6 +106,8 @@ logger.info("Setting up photos routes...");
 photosRoutes(app);
 logger.info("Setting up env routes...");
 envRoutes(app);
+logger.info("Setting up vitals routes...");
+vitalsRoutes(app);
 
 logger.info("Setting up catch-all routes...");
 app.get("/api/*", (req: Request, res: Response) => {

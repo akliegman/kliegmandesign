@@ -61,15 +61,12 @@ export const ApiProvider = ({ children }) => {
     }
   };
 
-  const checkLogin = async () => {
+  const checkSession = async () => {
     try {
-      const { data } = await api.get("/auth");
+      const { data } = await api.get("/session");
+      setSession(data);
       if (data.user) {
-        setSession(data);
         setIsLoggedIn(true);
-      } else {
-        setSession(null);
-        setIsLoggedIn(false);
       }
     } catch (error) {
       setErrors([...errors, { ...readError(error), id: uuidv4() }]);
@@ -77,7 +74,7 @@ export const ApiProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    checkLogin();
+    checkSession();
   }, []);
 
   useEffect(() => {

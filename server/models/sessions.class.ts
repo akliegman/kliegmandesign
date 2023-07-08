@@ -15,4 +15,6 @@ export class Session
   public referer!: string;
   public expiresAt!: Date;
   public isNew!: boolean;
+  public startedAt!: Date;
+  public endedAt!: Date;
 }

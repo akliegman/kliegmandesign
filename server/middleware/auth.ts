@@ -24,61 +24,19 @@ export const slackLoggedIn: (
   const email = req.session?.user?.email || "no email";
   const date = new Date().toLocaleString();
   const ip = req.ip;
-  const message = `New user logged in: ${email} on ${date} from IP Address: ${ip}.`;
+  const message = `${envConfig.env.toLocaleUpperCase()}: New user logged in: ${email} on ${date} from IP Address: ${ip}.`;
 
   try {
-    if (envConfig.env !== "local") {
-      const result = await web.chat.postMessage({
-        channel: slackConfig.channel!,
-        text: message,
-      });
-      logger.info("Slack message sent: ", result.ts);
-    } else {
-      logger.info("Slack message sent for login");
-    }
+    const result = await web.chat.postMessage({
+      channel: slackConfig.channel!,
+      text: message,
+    });
+    logger.info("Slack message sent: ", result.ts);
   } catch (error) {
     logger.error(error);
   }
 
   next();
-};
-
-export const authSession: (
-  req: Request,
-  res: Response
-) => Promise<Response> = async (req: Request, res: Response) => {
-  const date = new Date().toLocaleString();
-  const ip = req.ip;
-
-  logger.info("-------------------------------------------------------");
-  logger.info("STARTING SESSION");
-  logger.info("-------------------------------------------------------");
-
-  if (req.session.isNew) {
-    req.session.isNew = false;
-
-    try {
-      const message = `New session started on ${date} from IP Address: ${ip}.`;
-      logger.info(message);
-
-      if (envConfig.env !== "local") {
-        const result = await web.chat.postMessage({
-          channel: slackConfig.channel!,
-          text: message,
-        });
-        logger.info("Slack message sent: ", result.ts);
-      } else {
-        logger.info("Slack message sent for session");
-      }
-    } catch (error) {
-      logger.error(error);
-    }
-
-    return res.status(200).send({ isNew: true });
-  }
-
-  logger.info("Existing session found.");
-  return res.status(200).send({ isNew: false });
 };
 
 export const authCheck: (req: Request, res: Response) => Response = (
@@ -136,14 +94,6 @@ export const authLogin: (
     email: req.query.email?.toString() || null,
     role: user?.name === authConfig.adminUser ? "admin" : "user",
   };
-
-  req.session.ipAddress = req.ip;
-  req.session.sid = Date.now().toString();
-  req.session.userAgent = req.get("User-Agent")!;
-  req.session.referer = req.get("Referer")!;
-  req.session.expiresAt = new Date(
-    Date.now() + authConfig.session.cookie.maxAge
-  );
 
   logger.info(
     `Logged in: ${
