@@ -5,7 +5,7 @@ export const termsOfUsePageData = [
   },
   {
     type: "paragraph",
-    content: "Last updated: March 31, 2023",
+    content: "Last updated: February 24, 2024",
   },
   {
     type: "heading-2",
@@ -18,15 +18,7 @@ export const termsOfUsePageData = [
         type: "text",
         content: `These Terms of Use constitute a legally binding agreement made 
             between you, whether personally or on behalf of an entity ("you")
-            and The Kliegman Design Company, Inc. (`,
-      },
-      {
-        type: "text-strong",
-        content: "Company",
-      },
-      {
-        type: "text",
-        content: `", "`,
+            and Adam Kliegman (`,
       },
       {
         type: "text-strong",

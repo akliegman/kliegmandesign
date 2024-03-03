@@ -54,6 +54,29 @@ ENV=local
 CORS_ORIGINS=http://localhost:3000,http://localhost:3001
 ```
 
+5. Create db
+
+Create a PostgreSQL database and provide the connection string in the `.env` file.
+Ensure you have PoostgreSQL@14 installed and running on your machine.
+
+```
+# install PostgreSQL@14
+brew install postgresql@14
+# start PostgreSQL@14
+brew services start postgresql@14
+# create a database
+createdb kliegmandesign
+```
+
+In the `.env` file:
+
+```
+POSTGRES_HOST=localhost
+POSTGRES_DB=kliegmandesign
+POSTGRES_USER=your_username
+POSTGRES_PASSWORD=your_password
+```
+
 The rest of the envars required to run the app should be provided by @akliegman.
 
 ### Running the app
@@ -140,7 +163,6 @@ git push heroku main
 
 - Server-side tests.
 - Full coverage for client side tests.
-- Proptypes, or soome methodology to mimic TypeScript
 
 ## Built With
 

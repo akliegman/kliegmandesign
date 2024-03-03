@@ -16,33 +16,68 @@
   padding: 0 0.75rem;
   border-radius: @border-radius-default;
   outline: none;
-  border: 0;
+  border: 1px solid transparent;
 
-  &:hover {
-    border: 0;
-    cursor: pointer;
+  &--primary {
+    background-color: @color-red-600;
     color: @color-white;
-    background-color: @color-red-800;
-    svg {
-      opacity: 0.75;
+
+    &:hover {
+      cursor: pointer;
+      color: @color-white;
+      background-color: @color-red-800;
+      svg {
+        opacity: 0.75;
+      }
+    }
+
+    &:active {
+      color: @color-white;
+      background-color: darken(@color-red-800, 5%);
+      svg {
+        opacity: 0.75;
+      }
+    }
+
+    &:focus {
+      color: @color-white;
+      box-shadow: 0 0 0 0.125rem rgba(@color-red-600, 0.5);
+      svg {
+        opacity: 0.75;
+      }
     }
   }
 
-  &:active {
-    border: 0;
-    color: @color-white;
-    background-color: darken(@color-red-800, 5%);
-    svg {
-      opacity: 0.75;
-    }
-  }
+  &--secondary {
+    background-color: transparent;
+    color: @color-red-600;
+    border-color: @color-red-600;
 
-  &:focus {
-    border: 0;
-    color: @color-white;
-    box-shadow: 0 0 0 0.125rem rgba(@color-red-600, 0.5);
-    svg {
-      opacity: 0.75;
+    &:hover {
+      cursor: pointer;
+      color: @color-red-800;
+      border-color: @color-red-800;
+      background-color: @color-gray-200;
+      svg {
+        opacity: 0.75;
+      }
+    }
+
+    &:active {
+      color: darken(@color-red-800, 5%);
+      border-color: darken(@color-red-800, 5%);
+      background-color: @color-gray-300;
+      svg {
+        opacity: 0.75;
+      }
+    }
+
+    &:focus {
+      color: @color-red-600;
+      box-shadow: 0 0 0 0.125rem rgba(@color-gray-800, 0.5);
+      svg {
+        opacity: 0.75;
+      }
     }
   }
 
@@ -75,6 +110,7 @@
   &--navlink {
     background-color: transparent;
     color: @color-gray-800;
+    border: 0 !important;
     &:hover {
       color: @color-gray-900;
       background-color: @color-gray-300;

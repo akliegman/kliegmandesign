@@ -6,12 +6,13 @@ import "./Footer.less";
 
 export const Footer = ({ className }) => {
   const { session } = useAuth();
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className={clsx("Footer", className)} data-testid="footer">
       <div className="Footer__content">
         <span className="Footer__copyright">
-          © 2023 The Kliegman Design Company. All rights reserved.
+          © {currentYear} Adam Kliegman. All rights reserved.
         </span>
         <div className="Footer__legal">
           {session && (

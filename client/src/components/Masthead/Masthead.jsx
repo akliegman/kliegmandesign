@@ -4,7 +4,7 @@ import {
   LinkedinFilled,
   GithubFilled,
   MailFilled,
-  RightCircleFilled,
+  FileTextFilled,
 } from "@ant-design/icons";
 
 export const Masthead = ({ data }) => {
@@ -27,18 +27,34 @@ export const Masthead = ({ data }) => {
         />
         <p className="Masthead__description">{data.description}</p>
         <div className="Masthead__buttons">
-          {data.ctas.map((button) => (
-            <Button
-              type="link"
-              key={button.name}
-              to={button.link}
-              icon={button.name === "resume" ? <RightCircleFilled /> : null}
-              iconPosition="right"
-              withShadow
-            >
-              {button.label}
-            </Button>
-          ))}
+          {data.ctas.map((button) => {
+            const buttonDetailsMapping = {
+              resume: {
+                icon: <FileTextFilled />,
+                variant: "secondary",
+                withShadow: false,
+              },
+              contact: {
+                icon: <MailFilled />,
+                variant: "primary",
+                withShadow: true,
+              },
+            };
+
+            return (
+              <Button
+                type="link"
+                key={button.name}
+                to={button.link}
+                icon={buttonDetailsMapping[button.name].icon}
+                variant={buttonDetailsMapping[button.name].variant}
+                withShadow={buttonDetailsMapping[button.name].withShadow}
+                iconPosition="left"
+              >
+                {button.label}
+              </Button>
+            );
+          })}
         </div>
         <div className="Masthead__social">
           {data.social.map((social) => {

@@ -5,23 +5,14 @@ export const privacyPageData = [
   },
   {
     type: "paragraph",
-    content: "Last updated: March 31, 2023",
+    content: "Last updated: February 24, 2024",
   },
   {
     type: "paragraph",
     content: [
       {
         type: "text",
-        content: `Thank you for visiting the website for The Kliegman Design Company, 
-          Inc. ("`,
-      },
-      {
-        type: "text-strong",
-        content: "Company",
-      },
-      {
-        type: "text",
-        content: `", "`,
+        content: `Thank you for visiting the website of Adam Kliegman ("`,
       },
       {
         type: "text-strong",
