@@ -36,9 +36,5 @@ export const homePageData = {
       name: "GitHub",
       link: "https://github.com/akliegman/",
     },
-    // {
-    //   name: "Mail",
-    //   link: "mailto:adam.j.kliegman@gmail.com",
-    // },
   ],
 };
