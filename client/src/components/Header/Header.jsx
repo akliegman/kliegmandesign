@@ -29,8 +29,9 @@ export const Header = ({ location, matchProjectPath }) => {
     setShowMobileMenu(!showMobileMenu);
   };
 
-  const closeMobileMenu = () => {
+  const closeMobileMenu = (e) => {
     blurRefs();
+    e.target.blur();
     setShowMobileMenu(false);
   };
 
@@ -65,6 +66,7 @@ export const Header = ({ location, matchProjectPath }) => {
           testId="menu-button"
           focusable={false}
           onClick={toggleMobileMenu}
+          onTouchEnd={() => setHoverClassName(false)}
           ref={menuButtonRef}
         />
         <div
@@ -74,7 +76,7 @@ export const Header = ({ location, matchProjectPath }) => {
           <Nav
             location={location}
             matchProjectPath={matchProjectPath}
-            linkOnClick={closeMobileMenu}
+            linkOnClick={(e) => closeMobileMenu(e)}
             linkOnTouchEnd={() => setHoverClassName(false)}
             tabbable={showMobileMenu}
           />
