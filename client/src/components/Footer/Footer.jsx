@@ -30,7 +30,7 @@ export const Footer = ({ className }) => {
         <span className={styles.Copyright}>
           © {currentYear} Adam Kliegman. All rights reserved.
         </span>
-        <div className={styles.Legal}>
+        <div className={styles.Links}>
           {session && (
             <>
               <span>
@@ -44,16 +44,18 @@ export const Footer = ({ className }) => {
           <Link className={styles.Link} to="/privacy-policy">
             Privacy Policy
           </Link>
-          {social.map((item) => (
-            <IconButton
-              key={item.name}
-              type="external"
-              to={item.link}
-              variant="simple"
-              size="xs"
-              icon={item.icon}
-            />
-          ))}
+          <div className={styles.Social}>
+            {social.map((item) => (
+              <IconButton
+                key={item.name}
+                type="external"
+                to={item.link}
+                variant="simple"
+                size="xs"
+                icon={item.icon}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </footer>

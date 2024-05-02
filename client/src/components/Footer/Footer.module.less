@@ -38,7 +38,7 @@
     color: @color-gray-1000;
   }
 
-  .Legal {
+  .Links {
     flex: 1;
     display: flex;
     justify-content: flex-end;
@@ -51,6 +51,27 @@
       .link();
       .type-body-small();
       color: @color-gray-1000;
+    }
+
+    @media screen and (max-width: @breakpoint-mobile) {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 0.75rem;
+      row-gap: 0.5rem;
+    }
+  }
+
+  .Social {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    flex: 0 0 auto;
+
+    @media screen and (max-width: @breakpoint-mobile) {
+      justify-content: flex-start;
+      gap: 0.75rem;
+      row-gap: 0.5rem;
     }
   }
 }
