@@ -16,6 +16,7 @@ import styles from "./Nav.module.less";
 export const Nav = ({
   buttonVariant = "navLink",
   linkOnClick,
+  linkOnTouchEnd,
   className,
   tabbable = true,
 }) => {
@@ -58,6 +59,7 @@ export const Nav = ({
           type="navlink"
           variant={buttonVariant}
           onClick={linkOnClick}
+          onTouchEnd={linkOnTouchEnd}
           testId="navlink"
           tabIndex={tabbable ? 0 : -1}
         >

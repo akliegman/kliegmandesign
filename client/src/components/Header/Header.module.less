@@ -53,15 +53,17 @@
     margin-left: 1.5rem;
     outline: none;
 
-    &:hover {
-      .Logo {
-        color: @color-red-100;
-        &:first-child {
-          transform: translateY(0.0875rem);
-        }
+    &.Hover {
+      &:hover {
+        .Logo {
+          color: @color-red-100;
+          &:first-child {
+            transform: translateY(0.0875rem);
+          }
 
-        &:last-child {
-          transform: translateY(-0.0875rem);
+          &:last-child {
+            transform: translateY(-0.0875rem);
+          }
         }
       }
     }

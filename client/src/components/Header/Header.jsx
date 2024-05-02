@@ -11,22 +11,31 @@ import styles from "./Header.module.less";
 
 export const Header = ({ location, matchProjectPath }) => {
   const logoRef = useRef(null);
+  const menuButtonRef = useRef(null);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [hoverClassName, setHoverClassName] = useState(true);
 
-  const toggleMobileMenu = (e) => {
-    e.target.blur();
+  const blurRefs = () => {
+    if (logoRef.current) {
+      logoRef.current.blur();
+    }
+    if (menuButtonRef.current) {
+      menuButtonRef.current.blur();
+    }
+  };
+
+  const toggleMobileMenu = () => {
+    blurRefs();
     setShowMobileMenu(!showMobileMenu);
   };
 
-  const closeMobileMenu = (e) => {
-    e.target.blur();
+  const closeMobileMenu = () => {
+    blurRefs();
     setShowMobileMenu(false);
   };
 
   useEffect(() => {
-    if (logoRef.current) {
-      logoRef.current.blur();
-    }
+    blurRefs();
   }, [showMobileMenu, location]);
 
   return (
@@ -35,8 +44,9 @@ export const Header = ({ location, matchProjectPath }) => {
         <div className={styles.Title}>
           <Link
             to={routeNames.HOME}
-            className={styles.LogoLink}
-            onClick={(e) => closeMobileMenu(e)}
+            className={clsx(styles.LogoLink, hoverClassName && styles.Hover)}
+            onClick={closeMobileMenu}
+            onTouchEnd={() => setHoverClassName(false)}
             ref={logoRef}
           >
             <span data-testid="logo" className={styles.Logo}>
@@ -48,13 +58,14 @@ export const Header = ({ location, matchProjectPath }) => {
           </Link>
         </div>
         <IconButton
-          className={clsx(styles.MenuButton)}
+          className={clsx(styles.MenuButton, hoverClassName && styles.Hover)}
           icon={showMobileMenu ? <CloseOutlined /> : <MenuOutlined />}
           type="button"
           variant={showMobileMenu ? "navLinkShow" : "navLink"}
           testId="menu-button"
           focusable={false}
           onClick={toggleMobileMenu}
+          ref={menuButtonRef}
         />
         <div
           data-testid="nav-wrapper"
@@ -63,7 +74,8 @@ export const Header = ({ location, matchProjectPath }) => {
           <Nav
             location={location}
             matchProjectPath={matchProjectPath}
-            linkOnClick={(e) => closeMobileMenu(e)}
+            linkOnClick={closeMobileMenu}
+            linkOnTouchEnd={() => setHoverClassName(false)}
             tabbable={showMobileMenu}
           />
         </div>
