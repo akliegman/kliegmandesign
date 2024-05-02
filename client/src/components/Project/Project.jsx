@@ -1,33 +1,65 @@
-import { ProjectSlider } from "./ProjectSlider/ProjectSlider";
+import clsx from "clsx";
 import { TextBlock, TextBlockItem } from "../reusables";
-import { HorizontalRule } from "../reusables";
-import "./Project.less";
+import { ImageWrapper } from "./ImageWrapper/ImageWrapper";
 
-export const Project = ({ data }) => {
+import styles from "./Project.module.less";
+
+export const Project = ({ data, projectRef }) => {
   return (
-    <div className="Project">
-      <div className="Project__description">
-        <TextBlock>
-          {data?.title && <h1 className="Project__title">{data?.title}</h1>}
-          {data?.description &&
-            data?.description?.map((item, index) => (
-              <TextBlockItem item={item} key={index} />
+    <>
+      <div
+        ref={projectRef}
+        className={clsx(styles.Container, styles.Description)}
+      >
+        <div className={styles.Main}>
+          <div className={styles.Content}>
+            <h2 className={styles.Header}>About</h2>
+            <TextBlock>
+              {data?.description.map((item) => (
+                <TextBlockItem key={item} item={item} />
+              ))}
+            </TextBlock>
+          </div>
+          <div className={styles.Categories}>
+            {Object.entries(data?.stack).map(([category, items]) => (
+              <div key={category} className={styles.Category}>
+                <h3 className={styles.CategoryName}>{category}</h3>
+                <p className={styles.Skills}>
+                  {items.map((item) => (
+                    <span key={item} className={styles.Skill}>
+                      {item}
+                    </span>
+                  ))}
+                </p>
+              </div>
             ))}
-        </TextBlock>
-        {data?.stack && (
-          <>
-            <HorizontalRule
-              className="Project__hr"
-              type="small"
-              color="gray-500"
-            />
-            <p className="Project__stack">{data?.stack.join(", ")}</p>
-          </>
-        )}
+          </div>
+        </div>
       </div>
-      {data?.slides && (
-        <ProjectSlider data={data.slides} className="Project__slider" />
-      )}
-    </div>
+      {data?.sections.map((section, index) => (
+        <div
+          key={section.index}
+          className={clsx(
+            styles.Container,
+            styles.Section,
+            index % 2 === 0 && styles.Reverse
+          )}
+        >
+          <div className={styles.Main}>
+            <div className={styles.Content}>
+              <h2 className={styles.Header}>{section?.heading}</h2>
+              <TextBlock>
+                {section?.description?.map((item) => (
+                  <TextBlockItem key={item} item={item} />
+                ))}
+              </TextBlock>
+            </div>
+            <ImageWrapper className={styles.Image}>
+              <img src={section.image} alt={section?.header} />
+            </ImageWrapper>
+          </div>
+        </div>
+      ))}
+    </>
   );
 };

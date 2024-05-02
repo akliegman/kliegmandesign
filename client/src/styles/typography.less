@@ -1,31 +1,71 @@
 @import (reference) "./variables";
 
-.header-display {
-  font-size: 3rem;
-  line-height: 3.125rem;
-  font-weight: 400;
-  font-family: @font-family-serif;
-  color: @color-red-400;
-}
-.header-1 {
-  font-size: 2rem;
-  line-height: 2.5rem;
-  font-weight: 400;
-  font-family: @font-family-serif;
-  color: @color-red-400;
+.type-button {
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: @font-family-sans-serif-letter-spacing;
+  font-family: @font-family-sans-serif;
 }
 
-.header-1-content {
+.type-logo {
+  font-family: @font-family-display;
+  font-size: 2rem;
+  line-height: 1;
+  color: @color-gray-200;
+}
+
+.type-display {
+  font-size: 4rem;
+  line-height: 1;
+  font-weight: 400;
+  font-family: @font-family-display;
+  color: @color-gray-200;
+}
+
+.type-heading {
+  font-size: 2.25rem;
+  line-height: 1.2;
+  font-weight: 400;
+  font-family: @font-family-display;
+  color: @color-gray-200;
+}
+
+.type-heading-2 {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  font-weight: 400;
+  font-family: @font-family-display;
+  color: @color-gray-200;
+}
+
+.type-subheading {
+  font-size: 1.35rem;
+  line-height: 1.35;
+  font-weight: 500;
+  letter-spacing: @font-family-sans-serif-letter-spacing;
+  color: @color-gray-400;
+  font-family: @font-family-sans-serif;
+}
+
+.type-subheading-2 {
+  font-size: 1.125rem;
+  line-height: 1.35;
+  font-weight: 500;
+  letter-spacing: @font-family-sans-serif-letter-spacing;
+  color: @color-gray-400;
+  font-family: @font-family-sans-serif;
+}
+
+.type-1-content {
   font-size: 1.375rem;
   line-height: 1.5rem;
   font-weight: 600;
   font-family: @font-family-sans-serif;
-  color: @color-red-400;
   letter-spacing: 0.1875rem;
   text-transform: uppercase;
 }
 
-.header-2 {
+.type-2 {
   font-size: 0.875rem;
   line-height: 1.25rem;
   font-family: @font-family-sans-serif;
@@ -35,76 +75,69 @@
   letter-spacing: 0.1875rem;
 }
 
-.header-2-content {
+.type-2-content {
   font-size: 1.375rem;
   line-height: 1.5rem;
   font-family: @font-family-sans-serif;
-  color: @color-red-400;
   font-weight: 600;
 }
 
-.header-3 {
+.type-3 {
   font-family: @font-family-sans-serif;
-  color: @color-red-400;
   font-weight: 600;
   font-size: 1.25rem;
   line-height: 1.625rem;
 }
 
-.header-3-content {
+.type-3-content {
   font-size: 1.0625rem;
   line-height: 1.625rem;
-  color: @color-red-400;
   font-weight: 600;
   font-family: @font-family-sans-serif;
 }
 
-.header-4 {
+.type-4 {
   font-family: @font-family-sans-serif;
   font-size: 1.25rem;
   line-height: 1.625rem;
   font-weight: 600;
-  color: @color-black;
 }
 
-.paragraph {
-  font-size: 1.0625rem;
-  line-height: 1.4375rem;
-  font-weight: 400;
-  color: @color-black;
+.type-body {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 500;
   font-family: @font-family-sans-serif;
 }
 
-.paragraph-small {
-  font-size: 0.8125rem;
+.type-body-small {
+  font-size: 0.875rem;
   line-height: 1rem;
-  font-weight: 400;
-  color: @color-black;
+  font-weight: 500;
   font-family: @font-family-sans-serif;
 }
 
-.paragraph-bold {
-  .paragraph();
+.type-body-bold {
+  .type-body();
   font-weight: 600;
 }
 
 .link {
-  transition: @transition-all;
   text-decoration: none;
   border-bottom: 1px solid transparent;
   margin-bottom: -1px;
   &:hover {
-    border-bottom: 1px solid @color-red-600;
-    color: @color-red-600;
+    border-bottom: 1px solid @color-red-200;
+    color: @color-red-200;
   }
   &:focus {
     outline: none;
-    color: @color-red-600;
-    border-bottom: 1px solid @color-red-600;
+    color: @color-red-100;
+    border-bottom: 1px solid @color-red-100;
   }
 }
 
-.header-link {
+.type-link {
   transition: @transition-all;
   text-decoration: none;
   &:hover {
@@ -116,7 +149,6 @@
   }
 }
 
-.paragraph-link-black {
+.type-body-link-black {
   .link();
-  color: @color-black;
 }

@@ -1,0 +1,33 @@
+@import (reference) "../../../styles/typography";
+@import (reference) "../../../styles/variables";
+
+.Container {
+  display: flex;
+  flex-direction: column;
+  &:not(:last-of-type) {
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid @color-gray-1000;
+  }
+  .List {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .Name {
+    .type-subheading-2();
+    margin-bottom: 1rem;
+  }
+
+  .Item {
+    .type-body-small();
+    line-height: 1.5;
+    padding: 0.25rem 0.5rem;
+    border-radius: @border-radius-small;
+    background-color: @color-gray-1000;
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+  }
+}

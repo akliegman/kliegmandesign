@@ -1,17 +1,18 @@
-import { MainLayout } from "../layouts/MainLayout";
-import { LockFilled } from "@ant-design/icons";
-import { LoginForm } from "../components/LoginForm/LoginForm";
-import { useAuth } from "../context/AuthContext";
-import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { LockFilled } from "@ant-design/icons";
+
+import { useAuth } from "../context/AuthContext";
+import { LoginForm } from "../components/LoginForm/LoginForm";
 import { PageHelmet } from "../components/PageHelmet/PageHelmet";
-import { useMountPage } from "../hooks/useMountPage";
+
+import styles from "./LoginPage.module.less";
+import { Button } from "../components/reusables";
 
 export const LoginPage = ({ user = "user" }) => {
-  useMountPage();
   const { isLoggedIn } = useAuth();
   const location = useLocation();
-  const { from } = location.state || { from: { pathname: "/" } };
+  const { from } = location.state || { from: { pathname: "/projects" } };
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,11 +26,23 @@ export const LoginPage = ({ user = "user" }) => {
   return (
     <>
       <PageHelmet title={title} />
-      <MainLayout className="LoginPage" alignItems="center">
-        <LockFilled />
-        {user === "admin" && <h2>Admin</h2>}
-        <LoginForm user={user} />
-      </MainLayout>
+      <div className={styles.Container}>
+        <div className={styles.Main}>
+          <LockFilled className={styles.Icon} />
+          <h1>Log in</h1>
+          {user === "admin" && <h2>Admin</h2>}
+          <LoginForm user={user} />
+          <p>Don't have a password? Contact me to get one.</p>
+          <Button
+            type="link"
+            to="mailto:adam.j.kliegman@gmail.com"
+            size="md"
+            variant="primaryInverted"
+          >
+            Contact
+          </Button>
+        </div>
+      </div>
     </>
   );
 };

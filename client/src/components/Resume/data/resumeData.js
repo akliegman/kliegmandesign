@@ -5,14 +5,12 @@ import ShopletLogo from "../../../assets/svg/ShopletLogo.svg";
 import TigerspikeLogo from "../../../assets/svg/TigerspikeLogo.svg";
 import SvpgLogo from "../../../assets/svg/SvpgLogo.svg";
 import WiscLogo from "../../../assets/svg/WiscLogo.svg";
+import Headshot from "../../../assets/images/headshot.png";
 
 export const resumeData = {
   header: {
+    image: Headshot,
     name: "Adam Kliegman",
-    website: {
-      link: "https://www.adamkliegman.com",
-      name: "adamkliegman.com",
-    },
     email: "adam.j.kliegman@gmail.com",
     phone: "+1 (516) 457-2014",
     location: "Greater NYC Area",
@@ -24,68 +22,191 @@ export const resumeData = {
   with cross-functional teams.`,
   skills: [
     {
-      title: "JavaScript",
-      level: 5,
+      name: "Languages",
+      items: [
+        {
+          title: "JavaScript",
+          level: 5,
+        },
+        {
+          title: "TypeScript",
+          level: 4,
+        },
+        {
+          title: "HTML",
+          level: 5,
+        },
+        {
+          title: "CSS",
+          level: 5,
+        },
+        {
+          title: "SASS/Less",
+          level: 5,
+        },
+        {
+          title: "MySQL/PostgreSQL",
+          level: 4,
+        },
+      ],
     },
     {
-      title: "React",
-      level: 5,
+      name: "Frameworks",
+      items: [
+        {
+          title: "React",
+          level: 5,
+        },
+        {
+          title: "Next.js",
+          level: 5,
+        },
+        {
+          title: "Node.js",
+          level: 5,
+        },
+        {
+          title: "Express",
+          level: 4,
+        },
+        {
+          title: "Rest APIs",
+          level: 5,
+        },
+        {
+          title: "Redux",
+          level: 4,
+        },
+        {
+          title: "Gatsby",
+          level: 4,
+        },
+        {
+          title: "Vue",
+          level: 3,
+        },
+        { title: "GraphQL", level: 3 },
+        { title: "Django/Flask", level: 4 },
+      ],
     },
     {
-      title: "CSS",
-      level: 5,
+      name: "Tools",
+      items: [
+        {
+          title: "Git",
+          level: 5,
+        },
+        {
+          title: "Webpack",
+          level: 5,
+        },
+        {
+          title: "Storybook",
+          level: 5,
+        },
+        {
+          title: "LightHouse",
+          level: 5,
+        },
+        {
+          title: "A11y",
+          level: 5,
+        },
+        {
+          title: "Babel",
+          level: 5,
+        },
+        {
+          title: "Jest",
+          level: 4,
+        },
+        {
+          title: "Puppeteer",
+          level: 4,
+        },
+        {
+          title: "Cypress",
+          level: 3,
+        },
+      ],
     },
     {
-      title: "Git",
-      level: 5,
+      name: "Design",
+      items: [
+        {
+          title: "Figma",
+          level: 5,
+        },
+        {
+          title: "Sketch",
+          level: 5,
+        },
+        {
+          title: "Adobe Suite",
+          level: 5,
+        },
+        {
+          title: "Zeplin",
+          level: 5,
+        },
+        {
+          title: "Design Systems",
+          level: 5,
+        },
+        {
+          title: "Atomic Design",
+          level: 5,
+        },
+        {
+          title: "Material Design",
+          level: 5,
+        },
+        {
+          title: "WCAG/ADA",
+          level: 5,
+        },
+        {
+          title: "Responsive Design",
+          level: 5,
+        },
+        {
+          title: "SEO",
+          level: 5,
+        },
+      ],
     },
     {
-      title: "Next.js",
-      level: 5,
-    },
-    {
-      title: "Figma",
-      level: 5,
-    },
-    {
-      title: "Design Systems",
-      level: 5,
-    },
-    {
-      title: "Storybook",
-      level: 5,
-    },
-    {
-      title: "Lighthouse",
-      level: 4,
-    },
-    {
-      title: "Redux",
-      level: 4,
-    },
-    {
-      title: "REST APIs",
-      level: 4,
-    },
-    {
-      title: "WCAG/ADA",
-      level: 4,
-    },
-    {
-      title: "Node.js",
-      level: 4,
-    },
-    {
-      title: "TypeScript",
-      level: 4,
-    },
-    {
-      title: "Express",
-      level: 3,
-    },
-    {
-      title: "React Testing Library",
-      level: 3,
+      name: "Methodologies",
+      items: [
+        {
+          title: "Agile",
+          level: 5,
+        },
+        {
+          title: "Scrum",
+          level: 5,
+        },
+        {
+          title: "Kanban",
+          level: 5,
+        },
+        {
+          title: "Lean",
+          level: 5,
+        },
+        {
+          title: "Product Led Growth",
+          level: 5,
+        },
+        {
+          title: "Design Thinking",
+          level: 5,
+        },
+        {
+          title: "User Centered Design",
+          level: 5,
+        },
+      ],
     },
   ],
   experience: [
@@ -121,7 +242,7 @@ export const resumeData = {
             "Storybook",
             "Express",
             "Node.js",
-            "Elaticsearch",
+            "Elastic Search",
             "Puppeteer",
           ],
         },
@@ -242,12 +363,12 @@ export const resumeData = {
           ],
         },
         {
-          title: "Frontend Developer",
+          title: "UX/UI Engineer",
           start_date: "Oct 2014",
           end_date: "Jan 2016",
           description: [
             {
-              type: "highlight",
+              type: "text",
               value: `Engineered first-of-their-kind web products that
                 integrated with university systems to match students with tutors
                 & allowed them to meet virtually via interactive whiteboard &
@@ -279,7 +400,7 @@ export const resumeData = {
           end_date: "Jun 2014",
           description: [
             {
-              type: "highlight",
+              type: "text",
               value: `Developed & maintained the frontend, email templates, &
                 admin site for shoplet.com & sister sites (20,000 daily unique
                 visitors & $50M in ARR). Launched new Canada website; Lead UI
@@ -363,7 +484,7 @@ export const resumeData = {
     {
       name: "University of Wisconsin-Madison",
       type: "University",
-      website: "https://wisc.edu",
+      website: "https://wisc.edu/",
       logo: WiscLogo,
       items: [
         {

@@ -1,22 +1,29 @@
-import { Button } from "../reusables";
 import {
+  ArrowRightOutlined,
   FileTextFilled,
-  CodeFilled,
   ExperimentFilled,
   LockFilled,
 } from "@ant-design/icons";
 import clsx from "clsx";
+
+import { Button } from "../reusables";
 import { routes } from "../../routes";
 import { replaceSpecialCharacters } from "../../helpers/replaceSpecialCharacters";
 import { useAuth } from "../../context/AuthContext";
-import "./Nav.less";
 
-export const Nav = ({ location, matchProjectPath, linkOnClick, className }) => {
+import styles from "./Nav.module.less";
+
+export const Nav = ({
+  buttonVariant = "navLink",
+  linkOnClick,
+  className,
+  tabbable = true,
+}) => {
   const { isLoggedIn } = useAuth();
 
   const iconMap = {
     resume: <FileTextFilled data-testid="resume-icon" />,
-    projects: <CodeFilled data-testid="projects-icon" />,
+    projects: <ExperimentFilled data-testid="projects-icon" />,
     sandbox: <ExperimentFilled data-testid="sandbox-icon" />,
   };
 
@@ -32,7 +39,11 @@ export const Nav = ({ location, matchProjectPath, linkOnClick, className }) => {
     .sort((a, b) => a.order - b.order);
 
   return (
-    <nav className={clsx("Nav", className)} role="navigation" data-testid="nav">
+    <nav
+      className={clsx(styles.Nav, className)}
+      role="navigation"
+      data-testid="nav"
+    >
       {navData.map((item) => (
         <Button
           key={item.label}
@@ -45,17 +56,13 @@ export const Nav = ({ location, matchProjectPath, linkOnClick, className }) => {
           }
           to={item.link}
           type="navlink"
-          variant="navlink"
-          focusable={false}
+          variant={buttonVariant}
           onClick={linkOnClick}
           testId="navlink"
-          activeClass={
-            (item.label === "Projects" &&
-              matchProjectPath?.pathname?.length > 0) ||
-            location.pathname === item.link
-          }
+          tabIndex={tabbable ? 0 : -1}
         >
-          {item.label}
+          <span>{item.label}</span>
+          <ArrowRightOutlined />
         </Button>
       ))}
     </nav>

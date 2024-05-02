@@ -1,0 +1,24 @@
+@import (reference) "../../styles/variables";
+
+.Container {
+  width: 100%;
+  max-width: @breakpoint-desktop-small;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: @header-height;
+  position: relative;
+  padding: @header-height 1.5rem;
+
+  .Content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  @media screen and (max-width: @breakpoint-tablet) {
+    grid-template-columns: 1fr;
+    padding: (@header-height / 2) 1.5rem;
+    gap: 1.5rem;
+  }
+}

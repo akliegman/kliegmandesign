@@ -1,0 +1,103 @@
+@import (reference) "../../../styles/variables";
+@import (reference) "../../../styles/typography";
+
+.Item {
+  border-radius: @border-radius-large;
+  background: @color-white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-decoration: none;
+  position: relative;
+  padding: 0;
+  gap: 1.5rem;
+  transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  overflow: hidden;
+  z-index: 0;
+  border: 2px solid transparent;
+  &::after {
+    background: linear-gradient(
+      90deg,
+      rgba(@color-black, 0) 0%,
+      rgba(@color-black, 3%) 100%
+    );
+    content: "";
+    height: 100%;
+    width: 100%;
+    left: -300%;
+    position: absolute;
+    filter: blur(1rem);
+    transform: skew(10deg);
+    transition: all 0.75s cubic-bezier(0.19, 1, 0.22, 1);
+    z-index: -1;
+  }
+  &:hover {
+    box-shadow: @box-shadow-default;
+    background-color: @color-gray-1200;
+    cursor: pointer;
+    &::after {
+      left: 0;
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .Title {
+      color: @color-red-100;
+    }
+  }
+
+  .Thumbnail {
+    padding: 1.5rem 1.5rem 0;
+    border-radius: @border-radius-large @border-radius-large 0 0;
+    display: flex;
+    position: relative;
+
+    img {
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      object-position: left top;
+      border-radius: @border-radius-default;
+      position: relative;
+      z-index: 1;
+      border: 1px solid @color-gray-1000;
+    }
+  }
+
+  .Content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem 1.5rem 1.5rem;
+    height: 100%;
+  }
+  .Title {
+    .type-heading();
+    color: @color-red-200;
+  }
+
+  .Summary {
+    .type-body();
+    color: @color-gray-400;
+    min-height: 1.5rem * 2;
+    flex: 1 0 auto;
+    margin: 0 0 1rem;
+  }
+
+  .Stack {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 0.5rem;
+    flex: 1 0 auto;
+
+    .StackItem {
+      .type-body-small();
+
+      line-height: 1.5;
+      max-height: 0.5rem + (0.875rem * 1.5);
+      padding: 0.25rem 0.5rem;
+      border-radius: @border-radius-small;
+      background-color: @color-gray-1000;
+      color: @color-gray-400;
+    }
+  }
+}

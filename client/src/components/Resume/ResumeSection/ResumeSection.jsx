@@ -1,23 +1,18 @@
 import clsx from "clsx";
-import { toTitleCase } from "../../../helpers/toTitleCase";
 import { ResumeSectionItem } from "./ResumeSectionItem";
 import { ResumeSectionSkillsList } from "./ResumeSectionSkillsList";
 import { ResumeSectionHeader } from "./ResumeSectionHeader";
-import { ResumeSectionContent } from "./ResumeSectionContent";
 import { ResumeSectionParagraph } from "./ResumeSectionParagraph";
 
-import "./ResumeSection.less";
+import { toTitleCase } from "../../../helpers/toTitleCase";
+
+import styles from "./ResumeSection.module.less";
 
 export const ResumeSection = ({ type, data }) => {
   return (
-    <div
-      className={clsx(
-        "ResumeSection",
-        (type === "summary" || type === "skills") && "ResumeSection--oneRow"
-      )}
-    >
+    <div className={clsx(styles.Section)} id={type}>
       <ResumeSectionHeader>{toTitleCase(type)}</ResumeSectionHeader>
-      <ResumeSectionContent>
+      <div>
         {type === "summary" && (
           <ResumeSectionParagraph>{data}</ResumeSectionParagraph>
         )}
@@ -26,8 +21,11 @@ export const ResumeSection = ({ type, data }) => {
             <ResumeSectionItem key={index} type={type} data={item} />
           ))}
 
-        {type === "skills" && <ResumeSectionSkillsList data={data} />}
-      </ResumeSectionContent>
+        {type === "skills" &&
+          data?.map((item, index) => (
+            <ResumeSectionSkillsList key={index} data={item} />
+          ))}
+      </div>
     </div>
   );
 };

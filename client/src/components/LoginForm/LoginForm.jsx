@@ -3,11 +3,13 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Button, TextInput, Form } from "../reusables";
 import { useAuth } from "../../context/AuthContext";
 import { validateEmail } from "../../helpers/validateEmail";
-import "./LoginForm.less";
+
+import styles from "./LoginForm.module.less";
 
 export const LoginForm = ({ user = "user" }) => {
   const location = useLocation();
   const { login, errors, clearError } = useAuth();
+  const [pageMounted, setPageMounted] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -42,7 +44,7 @@ export const LoginForm = ({ user = "user" }) => {
         setRequestInProgress(false);
         return;
       }
-    }, 50);
+    }, 0);
 
     try {
       const success = await login(user, password, email);
@@ -78,16 +80,20 @@ export const LoginForm = ({ user = "user" }) => {
     }
   }, [errors]);
 
+  useEffect(() => {
+    setPageMounted(true);
+  }, []);
+
   return (
-    <div className="LoginForm">
-      <Form className="LoginForm__form" onSubmit={(e) => handleSubmit(e)}>
+    <div className={styles.Form}>
+      <Form onSubmit={(e) => handleSubmit(e)}>
         <TextInput
           type="password"
           name="password"
           value={password}
           placeholder="Enter password"
           onChange={(e) => handlePasswordChange(e)}
-          autoFocus={passwordError}
+          autoFocus={passwordError || pageMounted}
           required
           withIcon
           error={passwordError}
@@ -112,6 +118,7 @@ export const LoginForm = ({ user = "user" }) => {
           disabled={requestInProgress}
           onClick={(e) => handleSubmit(e)}
           data-testid="login-button"
+          className={styles.SubmitButton}
         >
           Submit
         </Button>

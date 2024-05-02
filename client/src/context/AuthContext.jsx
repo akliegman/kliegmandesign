@@ -12,6 +12,7 @@ import {
   logoutUser,
   checkNewSession,
 } from "../hooks/useAuthApi";
+import { useLoading } from "./LoadingContext";
 
 export const AuthContext = createContext();
 
@@ -20,6 +21,7 @@ export const AuthProvider = ({ children }) => {
   const [session, setSession] = useState(null);
   const [newSession, setNewSession] = useState(false);
   const [errors, setErrors] = useState([]);
+  const { setAppLoading } = useLoading();
 
   const clearError = useCallback(
     (errorType) => {
@@ -88,17 +90,19 @@ export const AuthProvider = ({ children }) => {
           setIsLoggedIn(false);
         }
       }
+
+      setAppLoading(false);
     } catch (error) {
       console.log(error);
+      setAppLoading(false);
     }
   }, [errors]);
 
   useEffect(() => {
     checkLogin();
-  }, [checkLogin]);
+  }, []);
 
   useEffect(() => {
-    /* eslint-disable react-hooks/exhaustive-deps */
     checkIfNewSession();
   }, []);
 

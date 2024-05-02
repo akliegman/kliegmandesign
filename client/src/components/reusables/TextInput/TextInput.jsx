@@ -1,7 +1,8 @@
-import clsx from "clsx";
-import "./TextInput.less";
 import { MailFilled, KeyOutlined } from "@ant-design/icons";
+import clsx from "clsx";
 import { useRef, useEffect } from "react";
+
+import styles from "./TextInput.module.less";
 
 export const TextInput = ({
   label,
@@ -24,11 +25,10 @@ export const TextInput = ({
   ...rest
 }) => {
   const classNames = clsx(
-    "TextInput",
-    `TextInput--${size}`,
-    withIcon && "TextInput--withIcon",
-    error && "TextInput--error",
-    disabled && "TextInput--disabled",
+    styles.TextInput,
+    withIcon && styles.withIcon,
+    error && styles.Error,
+    disabled && styles.Disabled,
     className
   );
   const inputRef = useRef(null);
@@ -42,20 +42,18 @@ export const TextInput = ({
   return (
     <div className={classNames}>
       {label && (
-        <label className="TextInput__label" htmlFor={name}>
+        <label className={styles.Label} htmlFor={name}>
           {label}
         </label>
       )}
       {withIcon && (
-        <div className="TextInput__icon">
+        <div className={styles.Icon}>
           {type === "email" && <MailFilled />}
           {type === "password" && <KeyOutlined />}
         </div>
       )}
       <input
-        className={clsx("TextInput__input", {
-          "TextInput__input--error": error,
-        })}
+        className={styles.Input}
         type={type}
         name={name}
         value={value}
@@ -69,12 +67,10 @@ export const TextInput = ({
         autoFocus={autoFocus}
         ref={inputRef}
         aria-invalid={error ? "true" : "false"}
-        aria-describedby={error ? `${name}-error` : undefined}
         invalid={error ? "true" : "false"}
         data-testid={testId}
         {...rest}
       />
-      {/* {error && <span className="TextInput__error">{error}</span>} */}
     </div>
   );
 };

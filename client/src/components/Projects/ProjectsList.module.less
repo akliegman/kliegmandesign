@@ -1,0 +1,14 @@
+@import (reference) "../../styles/variables";
+@import (reference) "../../styles/typography";
+
+.Container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: (@header-height / 2);
+  max-width: @breakpoint-tablet;
+
+  @media screen and (max-width: @breakpoint-mobile) {
+    grid-template-columns: 1fr;
+    gap: (@header-height / 4);
+  }
+}

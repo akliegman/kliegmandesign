@@ -1,11 +1,9 @@
-import { MainLayout } from "../layouts/MainLayout";
 import { PageHelmet } from "../components/PageHelmet/PageHelmet";
 import { Resume } from "../components/Resume/Resume";
-import { ResumeDownloadButton } from "../components/Resume/ResumeDownloadButton";
-import { useMountPage } from "../hooks/useMountPage";
+
+import styles from "./ResumePage.module.less";
 
 export const ResumePage = () => {
-  useMountPage();
   return (
     <>
       <PageHelmet
@@ -14,10 +12,9 @@ export const ResumePage = () => {
         product development & frontend engineering to create user-friendly \
         web apps on a cutting-edge technology stack.`}
       />
-      <MainLayout className="ResumePage">
+      <div className={styles.Container}>
         <Resume />
-        <ResumeDownloadButton />
-      </MainLayout>
+      </div>
     </>
   );
 };

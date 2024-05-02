@@ -1,0 +1,64 @@
+@import (reference) "../../../styles/typography";
+@import (reference) "../../../styles/variables";
+
+.Container {
+  display: flex;
+  flex-direction: column;
+  align-self: start;
+  max-width: 17.5rem;
+  align-items: center;
+  width: 100%;
+  position: sticky;
+  gap: 0;
+  padding: 0;
+  top: calc(@header-height + 1.5rem);
+  background-color: @color-white;
+  border-radius: @border-radius-large;
+
+  .Image {
+    border-radius: @border-radius-large @border-radius-large 0 0;
+    overflow: hidden;
+    flex: 0 0 auto;
+    z-index: 1;
+    box-shadow: @box-shadow-default;
+    aspect-ratio: 1;
+
+    img {
+      width: 105%;
+      height: 105%;
+      object-fit: cover;
+    }
+  }
+
+  .Content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 1.5rem;
+    .Facet {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: @breakpoint-tablet) {
+    max-width: 100%;
+    top: 0;
+    position: relative;
+    flex-direction: row;
+
+    .Image {
+      border-radius: @border-radius-large 0 0 @border-radius-large;
+      max-width: 9.4375rem;
+    }
+  }
+
+  @media screen and (max-width: @breakpoint-mobile-small) {
+    flex-direction: column;
+    .Image {
+      margin-top: 1.5rem;
+      max-width: 7.5rem;
+      border-radius: @border-radius-default;
+    }
+  }
+}

@@ -1,17 +1,13 @@
-import { ResumeSectionStars } from "./ResumeSectionStars";
-// import { toTitleCase } from "../../../helpers/toTitleCase";
-import "./ResumeSectionSkillsList.less";
+import styles from "./ResumeSectionSkillsList.module.less";
 
 export const ResumeSectionSkillsList = ({ data }) => {
   return (
-    <div className="ResumeSectionSkillsList">
-      <ul className="ResumeSectionSkillsList__list">
-        {data?.map((item, index) => (
-          <li key={index} className="ResumeSectionSkillsList__listItem">
-            <p className="ResumeSectionSkillsList__listItem__paragraph">
-              {item.title}
-            </p>
-            <ResumeSectionStars count={item.level} />
+    <div className={styles.Container}>
+      <h3 className={styles.Name}>{data?.name}</h3>
+      <ul className={styles.List}>
+        {data?.items?.map((item, index) => (
+          <li key={index} className={styles.Item}>
+            {item.title}
           </li>
         ))}
       </ul>

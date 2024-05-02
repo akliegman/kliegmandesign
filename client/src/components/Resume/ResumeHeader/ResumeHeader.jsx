@@ -1,22 +1,29 @@
-import { MidDot } from "../../reusables";
-import { Link } from "react-router-dom";
-import "./ResumeHeader.less";
+import { Button, Chip } from "../../reusables";
+
+import styles from "./ResumeHeader.module.less";
 
 export const ResumeHeader = ({ data }) => {
   return (
-    <div className="ResumeHeader">
-      <h1 className="ResumeHeader__title">
-        <Link to="/">{data.name}</Link>
-      </h1>
-      <div className="ResumeHeader__links">
-        <Link to={data.website.link}>{data.website.name}</Link>
-        <MidDot />
-
-        <a href={`mailto:${data.email}`}>{data.email}</a>
-        <MidDot />
-        <p>{data.phone}</p>
-        <MidDot />
-        <p>{data.location}</p>
+    <div className={styles.Container}>
+      <div className={styles.Image}>
+        <img src={data.image} alt="Adam Kliegman" />
+      </div>
+      <div className={styles.Content}>
+        <Button
+          type="external"
+          to={`mailto:${data.email}`}
+          size="sm"
+          variant="tertiary"
+          className={styles.Facet}
+        >
+          {data.email}
+        </Button>
+        <Chip size="sm" variant="tertiary" className={styles.Facet}>
+          {data.phone}
+        </Chip>
+        <Chip size="sm" variant="tertiary" className={styles.Facet}>
+          {data.location}
+        </Chip>
       </div>
     </div>
   );

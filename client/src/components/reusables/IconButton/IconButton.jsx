@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom";
-import "./IconButton.less";
 import clsx from "clsx";
+import { Link } from "react-router-dom";
+
+import { toTitleCase } from "../../../helpers/toTitleCase";
+
+import styles from "./IconButton.module.less";
 
 export const IconButton = ({
   icon,
@@ -9,7 +12,7 @@ export const IconButton = ({
   to,
   activeClass = false,
   size = "md",
-  variant = "",
+  variant = "primary",
   focusable = true,
   withShadow = false,
   onClick,
@@ -19,13 +22,12 @@ export const IconButton = ({
   ...rest
 }) => {
   const classNames = clsx(
-    "IconButton",
-    `IconButton--${size.toLowerCase()}`,
-    `IconButton--${variant.toLowerCase()}`,
-    activeClass && "IconButton--active",
-    focusable === false && "IconButton--notFocusable",
-    withShadow && "IconButton--withShadow",
-    disabled === true && "IconButton--disabled",
+    styles.IconButton,
+    styles[toTitleCase(size)],
+    styles[toTitleCase(variant)],
+    focusable === false && styles.NotFocusable,
+    disabled === true && styles.Disabled,
+    activeClass === true && styles.Active,
     className
   );
 
@@ -47,7 +49,7 @@ export const IconButton = ({
           data-testid={testId}
           {...rest}
         >
-          {icon}
+          <span>{icon}</span>
         </Link>
       )}
       {type === "external" && (
@@ -62,7 +64,20 @@ export const IconButton = ({
           data-testid={testId}
           {...rest}
         >
-          {icon}
+          <span>{icon}</span>
+        </a>
+      )}
+      {type === "anchor" && (
+        <a
+          href={to}
+          name={name}
+          className={classNames}
+          onClick={(e) => handleOnClick(e)}
+          disabled={disabled}
+          data-testid={testId}
+          {...rest}
+        >
+          <span>{icon}</span>
         </a>
       )}
       {type === "download" && (
@@ -76,7 +91,7 @@ export const IconButton = ({
           data-testid={testId}
           {...rest}
         >
-          {icon}
+          <span>{icon}</span>
         </a>
       )}
       {type === "button" && (
@@ -89,7 +104,7 @@ export const IconButton = ({
           data-testid={testId}
           {...rest}
         >
-          {icon}
+          <span>{icon}</span>
         </button>
       )}
       {type === "submit" && (
@@ -102,7 +117,7 @@ export const IconButton = ({
           data-testid={testId}
           {...rest}
         >
-          {icon}
+          <span>{icon}</span>
         </button>
       )}
     </>

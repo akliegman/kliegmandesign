@@ -1,0 +1,90 @@
+@import (reference) "../../../styles/variables";
+@import (reference) "../../../styles/typography";
+
+.Container {
+  background-color: @color-white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 100vw;
+
+  .Main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: @header-height;
+    width: 100%;
+    max-width: @breakpoint-desktop;
+    gap: (@header-height / 2);
+
+    @media screen and (max-width: @breakpoint-tablet) {
+      padding: (@header-height / 2) 1.5rem;
+      gap: (@header-height / 2);
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+    }
+  }
+
+  .Content {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    gap: 1rem;
+  }
+
+  .Categories {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .Category {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    background-color: @color-gray-1100;
+    border-radius: @border-radius-large;
+
+    .CategoryName {
+      .type-heading-2();
+    }
+
+    .Skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .Skill {
+      .type-body-small();
+      line-height: 1.5;
+      padding: 0.25rem 0.5rem;
+      border-radius: @border-radius-small;
+      background-color: @color-gray-1000;
+    }
+  }
+
+  .Header {
+    .type-heading();
+  }
+
+  .Description {
+    .type-body();
+    max-width: @breakpoint-mobile;
+
+    @media screen and (max-width: @breakpoint-tablet) {
+      max-width: 100%;
+    }
+  }
+
+  .Buttons {
+    display: flex;
+    gap: 0.75rem;
+    margin: 1rem 0 0;
+  }
+}

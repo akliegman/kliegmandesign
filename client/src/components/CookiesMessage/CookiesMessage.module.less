@@ -1,0 +1,93 @@
+@import (reference) "../../styles/variables";
+@import (reference) "../../styles/typography";
+
+.Container {
+  position: fixed;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  right: 0.75rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  z-index: 1000;
+
+  @media screen and (max-width: @breakpoint-tablet) {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(@color-black-300, 0.875);
+    z-index: -1;
+  }
+
+  .Content {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 1rem;
+    padding: 2rem;
+
+    @media screen and (max-width: @breakpoint-tablet) {
+      padding: 1.5rem 1.5rem 0;
+    }
+  }
+
+  .Header {
+    font-family: @font-family-display;
+    font-size: 2rem;
+    line-height: 2rem;
+    color: @color-green-400;
+  }
+
+  .Body {
+    .type-body();
+    color: @color-gray-1200;
+  }
+
+  .Buttons {
+    display: flex;
+    padding: 2rem;
+
+    @media screen and (max-width: @breakpoint-tablet) {
+      padding: 1.5rem;
+    }
+  }
+}
+
+:global .CookiesMessageFadeIn {
+  &-enter,
+  &-appear {
+    opacity: 0;
+  }
+  &-enter.CookiesMessageFadeIn-enter-active,
+  &-appear.CookiesMessageFadeIn-appear-active,
+  &-appear-done,
+  &-enter-done {
+    opacity: 1;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    transition-delay: 1s;
+  }
+
+  &-exit {
+    opacity: 1;
+  }
+  &-exit-active {
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  &-exit-done {
+    opacity: 0;
+    display: none;
+  }
+}

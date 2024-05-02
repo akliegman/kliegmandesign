@@ -55,7 +55,6 @@ export const routes = {
     protected: false,
     withHeader: true,
     withFooter: true,
-    darkenedBackground: true,
     element: <Page.LoginPage />,
   },
   "/logout": {
@@ -74,7 +73,6 @@ export const routes = {
     protected: false,
     withHeader: true,
     withFooter: true,
-    darkenedBackground: true,
     element: <Page.LoginPage user={"admin"} />,
   },
   "/privacy-policy": {
@@ -100,7 +98,7 @@ export const routes = {
     name: "Error 404",
     exact: true,
     protected: false,
-    withHeader: false,
+    withHeader: true,
     withFooter: true,
     element: <Page.Error404Page />,
   },

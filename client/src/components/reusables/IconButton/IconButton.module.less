@@ -1,0 +1,162 @@
+@import (reference) "../../../styles/variables";
+@import (reference) "../../../styles/typography";
+
+.IconButton {
+  text-decoration: none;
+  color: @color-gray-500;
+  height: 3.5rem;
+  width: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: @border-radius-default;
+  outline: none;
+  border: 2px solid rgba(@color-gray-400, 0.2);
+  z-index: 0;
+  transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  overflow: hidden;
+  position: relative;
+  svg {
+    height: 1.25rem;
+    width: 1.25rem;
+  }
+  &::after {
+    background: linear-gradient(
+      90deg,
+      rgba(@color-black, 0) 0%,
+      rgba(@color-black, 20%) 100%
+    );
+    content: "";
+    height: 100%;
+    width: 100%;
+    left: -300%;
+    position: absolute;
+    filter: blur(0.5rem);
+    transform: skew(10deg);
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    z-index: -1;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: @color-gray-1100;
+    color: @color-gray-400;
+    border-color: @color-gray-900;
+    &::after {
+      left: 0;
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  > span {
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &.Simple {
+    background-color: transparent;
+    color: @color-gray-1000;
+    border-color: transparent;
+    &::after {
+      background: none;
+    }
+    &:hover {
+      background-color: transparent;
+      color: @color-red-200;
+    }
+    &:focus {
+      color: @color-red-100;
+    }
+  }
+
+  &.NavLink {
+    background-color: transparent;
+    color: @color-black-700;
+    height: @header-height;
+    width: @header-height;
+    border-radius: 0;
+    border: 0;
+    &::after {
+      background: linear-gradient(
+        90deg,
+        rgba(@color-black, 0) 0%,
+        rgba(@color-black, 10%) 100%
+      );
+    }
+    svg {
+      width: 2rem;
+      height: 2rem;
+    }
+    &:focus {
+      color: @color-red-300;
+    }
+
+    &:hover {
+      color: @color-red-300;
+    }
+    &:active {
+      color: @color-red-200;
+      transform: scale(1);
+    }
+  }
+
+  &.NavLinkShow {
+    background-color: @color-black-700;
+    color: @color-gray-1300;
+    height: @header-height;
+    width: @header-height;
+    border-radius: 0;
+    border: 0;
+    svg {
+      width: 2rem;
+      height: 2rem;
+    }
+    &:hover {
+      color: @color-red-500;
+    }
+
+    &:focus {
+      color: @color-red-500;
+    }
+
+    &:active {
+      color: @color-red-400;
+      transform: scale(1);
+    }
+  }
+
+  &.NotFocusable {
+    &:focus {
+      box-shadow: none !important;
+    }
+  }
+
+  &.Small,
+  &.Sm {
+    height: 2.75rem;
+    width: 2.75rem;
+    border-radius: @border-radius-default;
+    svg {
+      height: 1rem;
+      width: 1rem;
+    }
+  }
+
+  &.Xs,
+  &.Xsmall {
+    height: fit-content;
+    width: fit-content;
+    border-radius: @border-radius-small;
+    svg {
+      height: 1rem;
+      width: 1rem;
+    }
+  }
+}

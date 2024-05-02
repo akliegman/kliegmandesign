@@ -1,16 +1,20 @@
-import { Nav } from "../Nav/Nav";
-import { IconButton, Button } from "../reusables/";
-import { CaretLeftFilled, MenuOutlined } from "@ant-design/icons";
-import { useState, useLayoutEffect } from "react";
+import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
 import clsx from "clsx";
+import { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom";
+
+import { Nav } from "../Nav/Nav";
+import { IconButton } from "../reusables/";
 import { routeNames } from "../../routes";
-import "./Header.less";
+
+import styles from "./Header.module.less";
 
 export const Header = ({ location, matchProjectPath }) => {
+  const logoRef = useRef(null);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const [backButton, setBackButton] = useState({});
 
-  const toggleMobileMenu = () => {
+  const toggleMobileMenu = (e) => {
+    e.target.blur();
     setShowMobileMenu(!showMobileMenu);
   };
 
@@ -19,63 +23,50 @@ export const Header = ({ location, matchProjectPath }) => {
     setShowMobileMenu(false);
   };
 
-  useLayoutEffect(() => {
-    if (location.pathname === routeNames?.HOME) {
-      setBackButton({});
-    } else if (matchProjectPath?.pathname) {
-      setBackButton({
-        to: routeNames?.PROJECTS,
-        label: "Projects",
-      });
-    } else {
-      setBackButton({
-        to: routeNames?.HOME,
-        label: "Home",
-      });
+  useEffect(() => {
+    if (logoRef.current) {
+      logoRef.current.blur();
     }
-  }, [location, matchProjectPath, setBackButton]);
+  }, [showMobileMenu, location]);
 
   return (
-    <header className="Header" data-testid="header">
-      <div className="Header__content">
-        <div className="Header__title">
-          {!Object.entries(backButton)?.length ? (
-            <span data-testid="logo" className="Header__logo">
+    <header className={styles.Header} data-testid="header">
+      <div className={clsx(styles.Content, showMobileMenu && styles.Show)}>
+        <div className={styles.Title}>
+          <Link
+            to={routeNames.HOME}
+            className={styles.LogoLink}
+            onClick={(e) => closeMobileMenu(e)}
+            ref={logoRef}
+          >
+            <span data-testid="logo" className={styles.Logo}>
               Adam Kliegman
             </span>
-          ) : (
-            <Button
-              to={backButton?.to}
-              data-testid="back-button"
-              type="link"
-              variant="navlink"
-              icon={<CaretLeftFilled />}
-              focusable={false}
-              aria-label={`Back to ${backButton?.label}`}
-            >
-              {backButton?.label}
-            </Button>
-          )}
+            <span data-testid="logo" className={styles.Logo} aria-hidden="true">
+              Adam Kliegman
+            </span>
+          </Link>
         </div>
+        <IconButton
+          className={clsx(styles.MenuButton)}
+          icon={showMobileMenu ? <CloseOutlined /> : <MenuOutlined />}
+          type="button"
+          variant={showMobileMenu ? "navLinkShow" : "navLink"}
+          testId="menu-button"
+          focusable={false}
+          onClick={toggleMobileMenu}
+        />
         <div
           data-testid="nav-wrapper"
-          className={clsx("Header__nav", showMobileMenu && "Header__nav--show")}
+          className={clsx(styles.Nav, showMobileMenu && styles.NavShow)}
         >
           <Nav
             location={location}
             matchProjectPath={matchProjectPath}
             linkOnClick={(e) => closeMobileMenu(e)}
+            tabbable={showMobileMenu}
           />
         </div>
-        <IconButton
-          className="Header__menuButton"
-          icon={<MenuOutlined />}
-          type="button"
-          variant="navlink"
-          testId="menu-button"
-          focusable={false}
-          onClick={toggleMobileMenu}
-        />
       </div>
     </header>
   );

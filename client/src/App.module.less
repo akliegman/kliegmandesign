@@ -1,0 +1,20 @@
+@import (reference) "./styles/variables";
+
+.App {
+  opacity: 0;
+
+  &.Loaded {
+    opacity: 1;
+    background-color: @color-white;
+    transition: opacity 0.75s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

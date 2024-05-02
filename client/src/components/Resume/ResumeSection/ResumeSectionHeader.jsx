@@ -1,5 +1,5 @@
-import "./ResumeSectionHeader.less";
+import styles from "./ResumeSectionHeader.module.less";
 
 export const ResumeSectionHeader = ({ children }) => {
-  return <h2 className="ResumeSectionHeader">{children}</h2>;
+  return <h2 className={styles.Header}>{children}</h2>;
 };

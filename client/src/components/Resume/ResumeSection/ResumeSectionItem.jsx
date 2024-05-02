@@ -1,54 +1,47 @@
-import { MidDot, HorizontalRule } from "../../reusables";
-import "./ResumeSectionItem.less";
+import styles from "./ResumeSectionItem.module.less";
 
 export const ResumeSectionItem = ({ type, data }) => {
   return (
-    <div className="ResumeSectionItem">
-      <div className="ResumeSectionItem__header">
+    <div className={styles.Container}>
+      <div className={styles.Header}>
         {(type === "experience" || type === "education") && (
           <>
-            <div className="ResumeSectionItem__header__column">
-              <h3 className="ResumeSectionItem__title">
+            <div className={styles.Image}>
+              <img src={data?.logo} alt={data?.name} height="34" width="34" />
+            </div>
+            <div className={styles.Title}>
+              <h3 className={styles.Name}>
                 <a href={data?.website} target="_blank" rel="noreferrer">
                   {data?.name}
                 </a>
               </h3>
               {type === "experience" && (
-                <>
-                  <MidDot color="red-400" />
-                  <p className="ResumeSectionItem__subtitle">
-                    <span>{data?.type}</span>
-                    {data?.transaction_type && (
-                      <>
-                        <MidDot color="red-400" />
-                        <span>{data?.transaction_type}</span>
-                      </>
-                    )}
-                  </p>
-                </>
+                <p className={styles.Types}>
+                  <span>{data?.type}</span>
+                  {data?.transaction_type && (
+                    <>
+                      <span>&bull;</span>
+                      <span>{data?.transaction_type}</span>
+                    </>
+                  )}
+                </p>
               )}
-            </div>
-            <div className="ResumeSectionItem__header__column">
-              <HorizontalRule />
-
-              <img src={data?.logo} alt={data?.name} height="34" width="34" />
             </div>
           </>
         )}
       </div>
-      <div className="ResumeSectionItem__content">
+      <div className={styles.Content}>
         {data?.items?.map((item, index) => (
-          <div className="ResumeSectionItem__content__item" key={index}>
-            <div className="ResumeSectionItem__content__item__header">
-              <h4 className="ResumeSectionItem__content__item__title">
-                {item?.title}
-              </h4>
-              <h5 className="ResumeSectionItem__content__item__subtitle">
-                {item?.start_date} - {item?.end_date}
+          <div className={styles.Item} key={index}>
+            <div className={styles.ItemHeader}>
+              <h4 className={styles.ItemTitle}>{item?.title}</h4>
+              <h5 className={styles.ItemDivider}>&bull;</h5>
+              <h5 className={styles.ItemDate}>
+                {item?.start_date} to {item?.end_date}
               </h5>
             </div>
-            <div className="ResumeSectionItem__content__item__body">
-              <p className="ResumeSectionItem__content__item__paragraph">
+            <div className={styles.Body}>
+              <p className={styles.Text}>
                 {item?.description.map((text, index) => (
                   <span key={index}>
                     {text.type === "text" && text.value}
@@ -58,8 +51,12 @@ export const ResumeSectionItem = ({ type, data }) => {
                 ))}
               </p>
               {item?.tech_stack && item?.tech_stack.length > 0 && (
-                <p className="ResumeSectionItem__content__item__stack">
-                  {item?.tech_stack.join(", ")}
+                <p className={styles.Stack}>
+                  {item?.tech_stack.map((tech, index) => (
+                    <span key={index} className={styles.StackItem}>
+                      {tech}
+                    </span>
+                  ))}
                 </p>
               )}
             </div>

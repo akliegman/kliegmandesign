@@ -1,6 +1,9 @@
-import { Link, NavLink } from "react-router-dom";
-import "./Button.less";
 import clsx from "clsx";
+import { Link, NavLink } from "react-router-dom";
+
+import { toTitleCase } from "../../../helpers/toTitleCase";
+
+import styles from "./Button.module.less";
 
 export const Button = ({
   children,
@@ -21,15 +24,12 @@ export const Button = ({
   ...rest
 }) => {
   const classNames = clsx(
-    "Button",
-    `Button--${size.toLowerCase()}`,
-    `Button--${variant.toLowerCase()}`,
-    icon && iconPosition === "left" && "Button--withIcon-left",
-    icon && iconPosition === "right" && "Button--withIcon-right",
-    focusable === false && "Button--notFocusable",
-    withShadow && "Button--withShadow",
-    disabled === true && "Button--disabled",
-    activeClass === true && "Button--active",
+    styles.Button,
+    styles[toTitleCase(size)],
+    styles[toTitleCase(variant)],
+    focusable === false && styles.NotFocusable,
+    disabled === true && styles.Disabled,
+    activeClass === true && styles.Active,
     className
   );
 
@@ -43,11 +43,11 @@ export const Button = ({
   };
 
   const buttonContent = (
-    <>
+    <span>
       {iconPosition === "left" && icon}
       {children}
       {iconPosition === "right" && icon}
-    </>
+    </span>
   );
 
   return (
@@ -70,7 +70,7 @@ export const Button = ({
           to={to}
           name={name}
           className={({ isActive, isPending }) =>
-            clsx(classNames, (isActive || isPending) && "Button--active")
+            clsx(classNames, (isActive || isPending) && styles.Active)
           }
           onClick={(e) => handleOnClick(e)}
           disabled={disabled}

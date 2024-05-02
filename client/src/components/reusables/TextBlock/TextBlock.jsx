@@ -1,8 +1,8 @@
-import "./TextBlock.less";
+import styles from "./TextBlock.module.less";
 
 export const TextBlock = ({ children }) => {
   return (
-    <div className="TextBlock" data-testid="text-block">
+    <div className={styles.TextBlock} data-testid="text-block">
       {children}
     </div>
   );

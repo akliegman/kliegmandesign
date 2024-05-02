@@ -1,5 +1,6 @@
 import clsx from "clsx";
-import "./Form.less";
+
+import styles from "./Form.module.less";
 
 export const Form = ({
   children,
@@ -8,10 +9,9 @@ export const Form = ({
   testId = "form",
   ...rest
 }) => {
-  const classNames = clsx("Form", className);
   return (
     <form
-      className={classNames}
+      className={clsx(styles.Form, className)}
       onSubmit={onSubmit}
       data-testid={testId}
       {...rest}

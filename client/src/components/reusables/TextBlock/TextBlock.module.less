@@ -1,0 +1,39 @@
+@import (reference) "../../../styles/variables";
+@import (reference) "../../../styles/typography";
+
+.TextBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  h1 {
+    .type-display();
+    margin: 0 0 2rem;
+  }
+
+  h2 {
+    .type-heading();
+    margin: 0.5rem 0 0.75rem;
+  }
+
+  h3 {
+    .type-subheading();
+    margin: 0.25rem 0 0.5rem;
+  }
+  p {
+    .type-body();
+    margin: 0.125rem 0 0.75rem;
+    color: @color-gray-400;
+  }
+
+  ul {
+    .type-body();
+    list-style-type: disc;
+    margin-left: 2rem;
+    color: @color-gray-700;
+    margin-bottom: 0.25rem;
+    li {
+      padding-left: 0.5rem;
+    }
+  }
+}
