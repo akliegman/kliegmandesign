@@ -1,3 +1,8 @@
+export { default as ArcherHomeImage } from "./archer-home.png";
+export { default as ArcherNewsImage } from "./archer-news.png";
+export { default as ArcherPracticeImage } from "./archer-practice.png";
+export { default as ArcherServicesImage } from "./archer-services.png";
+
 export { default as DemystMarketingHomeImage } from "./demyst-marketing-home.png";
 
 export { default as DemystPlatformBillingImage } from "./demyst-platform-billing.png";
