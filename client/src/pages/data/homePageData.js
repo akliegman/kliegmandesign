@@ -8,7 +8,7 @@ export const homePageData = {
     video: BackgroundVideo,
     image: Headshot,
     header: "Hello, I'm Adam.",
-    subheader: `I'm an NYC-based senior frontend developer with over a decade of experience.`,
+    subheader: `I'm an NYC-based frontend developer with over a decade of experience.`,
     ctas: [
       {
         name: "projects",

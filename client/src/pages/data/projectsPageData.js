@@ -6,29 +6,29 @@ export const projectsPageData = {
   heading: "Projects",
   description: `I've worked on a wide range of projects across various industries and technologies.`,
   list: [
-    {
-      name: "archer-website",
-      protected: false,
-      title: "Archer Law Website",
-      summary: `RubyLaw powered website for a law firm that utilizes a custom CLM for managing content and the RubyLaw express component library.`,
-      description: [
-        {
-          type: "paragraph",
-          content: `The Archer Law website is a custom configured website powered buy the RubyLaw CLM headless API for managing its content. The website is built using the RubyLaw express component library which is built with Node.js and React. This website includes a number of features, such as a blog, a news section, a practice area section, and more.`,
-        },
-        {
-          type: "paragraph",
-          content: `As the lead developer on this project, I was responsible for building the website's frontend and core user experience to specific design specifications. I built all of the connectors to the RubyLaw API to hydrate and select the appropriate data for each page, and mananged everything from initial integration, bespoke designns assigned to the to express component library, to advanced features such as custom Word document proposal generation and interactive maps with the Google Maps API. I also handled all WCAG/ADA compliance requirements and ensured that the site was cross-platform compatible and responsive.`,
-        },
-      ],
-      thumbnail: Images.ArcherPracticeImage,
-      stack: {
-        languages: ["JavaScript", "Less"],
-        frameworks: ["React", "Node.js", "Redux", "CSS Modules", "Puppeteer"],
-        tools: ["NPM Registry", "Webpack", "Babel", "Git", "Google Maps API"],
-      },
-      sections: [],
-    },
+    // {
+    //   name: "archer-website",
+    //   protected: false,
+    //   title: "Archer Law Website",
+    //   summary: `RubyLaw powered website for a law firm that utilizes a custom CLM for managing content and the RubyLaw express component library.`,
+    //   description: [
+    //     {
+    //       type: "paragraph",
+    //       content: `The Archer Law website is a custom configured website powered buy the RubyLaw CLM headless API for managing its content. The website is built using the RubyLaw express component library which is built with Node.js and React. This website includes a number of features, such as a blog, a news section, a practice area section, and more.`,
+    //     },
+    //     {
+    //       type: "paragraph",
+    //       content: `As the lead developer on this project, I was responsible for building the website's frontend and core user experience to specific design specifications. I built all of the connectors to the RubyLaw API to hydrate and select the appropriate data for each page, and mananged everything from initial integration, bespoke designns assigned to the to express component library, to advanced features such as custom Word document proposal generation and interactive maps with the Google Maps API. I also handled all WCAG/ADA compliance requirements and ensured that the site was cross-platform compatible and responsive.`,
+    //     },
+    //   ],
+    //   thumbnail: Images.ArcherPracticeImage,
+    //   stack: {
+    //     languages: ["JavaScript", "Less"],
+    //     frameworks: ["React", "Node.js", "Redux", "CSS Modules", "Puppeteer"],
+    //     tools: ["NPM Registry", "Webpack", "Babel", "Git", "Google Maps API"],
+    //   },
+    //   sections: [],
+    // },
     {
       name: "demyst-platform",
       protected: false,

@@ -15,11 +15,7 @@ export const resumeData = {
     phone: "+1 (516) 457-2014",
     location: "Greater NYC Area",
   },
-  summary: `Senior frontend developer with over a decade of tech experience.
-  Combines engineering best practices with design, data, psychology, and
-  practicality to deliver value and craft in team environments. Experienced
-  across the entire product development lifecycle, and can fluently interface
-  with cross-functional teams.`,
+  summary: `Frontend development leader with over a decade of tech experience. Combines engineering best practices with design, data, psychology, and practicality to deliver value and craft in team environments. Experienced across the entire product development lifecycle, and can fluently interface with cross-functional teams.`,
   skills: [
     {
       name: "Languages",
