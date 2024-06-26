@@ -55,7 +55,10 @@ export const App = () => {
     routes[location.pathname]?.withFooter ||
     (projectObject?.withFooter && matchProjectPath?.pathname);
 
-  const appClassNames = clsx(styles.App, !appLoading && styles.Loaded);
+  const appClassNames = useMemo(
+    () => clsx(styles.App, !appLoading && styles.Loaded),
+    [appLoading]
+  );
 
   useEffect(() => {
     window.scrollTo(0, 0, { behavior: "auto" });
