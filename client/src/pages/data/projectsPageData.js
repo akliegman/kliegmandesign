@@ -6,32 +6,95 @@ export const projectsPageData = {
   heading: "Projects",
   description: `I've worked on a wide range of projects across various industries and technologies.`,
   list: [
-    // {
-    //   name: "archer-website",
-    //   protected: false,
-    //   title: "Archer Law Website",
-    //   summary: `RubyLaw powered website for a law firm that utilizes a custom CLM for managing content and the RubyLaw express component library.`,
-    //   description: [
-    //     {
-    //       type: "paragraph",
-    //       content: `The Archer Law website is a custom configured website powered buy the RubyLaw CLM headless API for managing its content. The website is built using the RubyLaw express component library which is built with Node.js and React. This website includes a number of features, such as a blog, a news section, a practice area section, and more.`,
-    //     },
-    //     {
-    //       type: "paragraph",
-    //       content: `As the lead developer on this project, I was responsible for building the website's frontend and core user experience to specific design specifications. I built all of the connectors to the RubyLaw API to hydrate and select the appropriate data for each page, and mananged everything from initial integration, bespoke designns assigned to the to express component library, to advanced features such as custom Word document proposal generation and interactive maps with the Google Maps API. I also handled all WCAG/ADA compliance requirements and ensured that the site was cross-platform compatible and responsive.`,
-    //     },
-    //   ],
-    //   thumbnail: Images.ArcherPracticeImage,
-    //   stack: {
-    //     languages: ["JavaScript", "Less"],
-    //     frameworks: ["React", "Node.js", "Redux", "CSS Modules", "Puppeteer"],
-    //     tools: ["NPM Registry", "Webpack", "Babel", "Git", "Google Maps API"],
-    //   },
-    //   sections: [],
-    // },
+    {
+      name: "archer-website",
+      order: 3,
+      protected: false,
+      title: "Archer Law Website",
+      summary: `RubyLaw powered website for a law firm that utilizes a custom CLM for managing content and the RubyLaw express component library.`,
+      description: [
+        {
+          type: "paragraph",
+          content: `The Archer Law website is a custom configured website powered buy the RubyLaw CLM headless API for managing its content. The website is built using the RubyLaw express component library which is built with Node.js and React. This website includes a number of features, such as a blog, a news section, a practice area section, and more.`,
+        },
+        {
+          type: "paragraph",
+          content: `As the lead developer on this project, I was responsible for building the website's frontend and core user experience to specific design specifications. I built all of the connectors to the RubyLaw API to hydrate and select the appropriate data for each page, and mananged everything from initial integration, bespoke designns assigned to the to express component library, to advanced features such as custom Word document proposal generation and interactive maps with the Google Maps API. I also handled all WCAG/ADA compliance requirements and ensured that the site was cross-platform compatible and responsive.`,
+        },
+      ],
+      thumbnail: Images.ArcherPracticeImage,
+      stack: {
+        languages: ["JavaScript", "Less"],
+        frameworks: ["React", "Node.js", "Redux", "CSS Modules", "Puppeteer"],
+        tools: ["NPM Registry", "Webpack", "Babel", "Git", "Google Maps API"],
+      },
+      sections: [
+        {
+          image: Images.ArcherHomeImage,
+          heading: `Custom designs with hero banners, featured content sections, and live search functionality`,
+          description: [
+            {
+              type: "paragraph",
+              content: `The homepage includes a hero banner that showcases the firm's brand and values. The firm can update the slideshow content and images through the RubyLaw CLM, and the website will automatically update to reflect the changes.`,
+            },
+            {
+              type: "paragraph",
+              content: `The page is fully responsive with a mobile-first design, and includes a number of modular sections that can be rearranged and customized to suit the firm's needs.`,
+            },
+            {
+              type: "paragraph",
+              content: `The sticky header changes color as the user scrolls down the page or navigates elsewhere on the site, and includes child navigation items for easy access to the site's content.`,
+            },
+          ],
+        },
+        {
+          image: Images.ArcherServicesImage,
+          heading: `The firm can list their services and practice areas with structured content that is easy to manage and update`,
+          description: [
+            {
+              type: "paragraph",
+              content: `Using the RubyLaw CLM, the firm can add or remove custom practice areas and services to the website. Each practice area is a custom data object that can be associated with specific attorneys, articles, and other content.`,
+            },
+            {
+              type: "paragraph",
+              content: `Services can have child- and grandchild-services to allow for a hierarchical structure that is easy to navigate and understand. The firm can also add custom content to each service, such as descriptions, images, and links to related content, and all of this is indexed in the RubyLaw search engine for easy discovery.`,
+            },
+          ],
+        },
+        {
+          image: Images.ArcherPracticeImage,
+          heading: `Custom practice area pages with completely customizable and modular content with a frontend that responds to the user's selections`,
+          description: [
+            {
+              type: "paragraph",
+              content: `The practice area pages include a set of modular sections that can be rearranged and customized to suit the firm's needs. The firm can add or remove sections, such as attorney bios, articles, news, and more, to create a unique and engaging experience for their users.`,
+            },
+            {
+              type: "paragraph",
+              content: `While each page is modular, it still maintains the integrity of the firm's brand and design guidelines. The firm can customize the colors, fonts, and styles of each section to create a cohesive and professional look and feel for each webpage, all while maintaining the site's identity, responsiveness and cross-platform compatibility.`,
+            },
+          ],
+        },
+        {
+          image: Images.ArcherNewsImage,
+          heading: `A bespoke blog/news and insights engine with custom article types and categories`,
+          description: [
+            {
+              type: "paragraph",
+              content: `The blog and news section includes a custom article type that allows the firm to create articles with custom fields, such as author, date, and category. The firm can also add custom tags to each article to help users find related content.`,
+            },
+            {
+              type: "paragraph",
+              content: `Articles can be associated with specific practice areas, attorneys, and more, and can be filtered in a variety of ways. In articles, the firm can also add custom images, videos, and other media to each article to create a rich and engaging experience for their users.`,
+            },
+          ],
+        },
+      ],
+    },
     {
       name: "demyst-platform",
       protected: false,
+      order: 1,
       title: "Demyst Data Platform",
       summary: `SaaS platform used to discover, onboard, ingest, and monitor external data.`,
       description: [
@@ -149,6 +212,7 @@ export const projectsPageData = {
     {
       name: "demyst-design-system",
       protected: false,
+      order: 2,
       title: "Demyst Design System",
       summary: `Design system and component library for Demyst Data's external data platform.`,
       description: [
