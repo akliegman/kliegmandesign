@@ -20,17 +20,21 @@
     justify-content: flex-start;
     width: 100%;
     transition: background-color 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+
     &.Show {
       background-color: @color-black-700;
+
       .LogoLink {
         .Logo {
           color: @color-gray-500;
         }
+
         &:hover {
           .Logo {
             color: @color-gray-300;
           }
         }
+
         &:active {
           .Logo {
             color: @color-gray-200;
@@ -57,6 +61,7 @@
       &:hover {
         .Logo {
           color: @color-red-100;
+
           &:first-child {
             transform: translateY(0.0875rem);
           }
@@ -67,10 +72,12 @@
         }
       }
     }
+
     &:active {
       .Logo {
         transition-duration: 0.1s;
         color: @color-red-100;
+
         &:first-child {
           transform: translateY(0);
         }
@@ -83,6 +90,7 @@
 
     &:focus {
       outline: none !important;
+
       .Logo {
         color: @color-gray-200;
       }
@@ -94,9 +102,11 @@
     .type-heading();
     transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
     color: @color-red-200;
+
     &:first-child {
       clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
     }
+
     &:last-child {
       clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
     }
@@ -121,6 +131,7 @@
     background-color: @color-black-700;
     z-index: -1;
     opacity: 0;
+
     &.NavShow {
       opacity: 1;
       transform: translateY(0);
@@ -134,15 +145,25 @@
     justify-content: center;
     flex: 0 1 auto;
   }
+
+  .ProjectsLink {
+    margin-right: 1.5rem;
+
+    @media screen and (max-width: @breakpoint-mobile) {
+      display: none;
+    }
+  }
 }
 
 @keyframes slideDown {
   0% {
     transform: translateY(-100%);
   }
+
   50% {
     transform: translateY(-100%);
   }
+
   100% {
     transform: translateY(0);
   }

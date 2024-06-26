@@ -1,10 +1,10 @@
-import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
+import { MenuOutlined, CloseOutlined, ExperimentOutlined } from "@ant-design/icons";
 import clsx from "clsx";
 import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
 import { Nav } from "../Nav/Nav";
-import { IconButton } from "../reusables/";
+import { Button, IconButton } from "../reusables/";
 import { routeNames } from "../../routes";
 
 import styles from "./Header.module.less";
@@ -58,6 +58,19 @@ export const Header = ({ location, matchProjectPath }) => {
             </span>
           </Link>
         </div>
+        {matchProjectPath && (
+          <Button
+            variant="primaryInverted"
+            type="link"
+            icon={<ExperimentOutlined />}
+            to={routeNames.PROJECTS}
+            className={clsx(styles.ProjectsLink, hoverClassName && styles.Hover)}
+            onClick={closeMobileMenu}
+            onTouchEnd={() => setHoverClassName(false)}
+          >
+            Back To Projects
+          </Button>
+        )}
         <IconButton
           className={clsx(styles.MenuButton, hoverClassName && styles.Hover)}
           icon={showMobileMenu ? <CloseOutlined /> : <MenuOutlined />}
