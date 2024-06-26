@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
     (errorType) => {
       setErrors(errors.filter((error) => error[errorType] === undefined));
     },
-    [errors]
+    [errors],
   );
 
   const checkIfNewSession = useCallback(async () => {
@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }) => {
         console.log(error);
       }
     },
-    [errors]
+    [errors],
   );
 
   const logout = useCallback(async () => {
@@ -116,7 +116,7 @@ export const AuthProvider = ({ children }) => {
       errors,
       clearError,
     }),
-    [isLoggedIn, login, logout, session, newSession, errors, clearError]
+    [isLoggedIn, login, logout, session, newSession, errors, clearError],
   );
 
   return (

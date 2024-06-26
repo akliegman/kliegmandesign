@@ -10,7 +10,7 @@ export const LoadingProvider = ({ children }) => {
       appLoading,
       setAppLoading,
     }),
-    [appLoading, setAppLoading]
+    [appLoading, setAppLoading],
   );
 
   return (
