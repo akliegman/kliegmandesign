@@ -50,6 +50,7 @@
     "postcss-loader": "^7.1.0",
     "postcss-normalize": "^10.0.1",
     "postcss-preset-env": "^8.0.1",
+    "prettier": "^3.3.2",
     "prompts": "^2.4.2",
     "react": "^18.2.0",
     "react-app-polyfill": "^3.0.0",
@@ -80,7 +81,8 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "lint": "NODE_ENV=development BABEL_ENV=development eslint src --ext .js,.jsx",
-    "lint:fix": "NODE_ENV=development BABEL_ENV=development eslint src --ext .js,.jsx --fix"
+    "lint:fix": "NODE_ENV=development BABEL_ENV=development eslint src --ext .js,.jsx --fix",
+    "prettify": "prettier --write src/**/*.{js,jsx,ts,tsx,json,css,scss,md}"
   },
   "eslintConfig": {
     "extends": [
