@@ -8,7 +8,7 @@ export const homePageData = {
     video: BackgroundVideo,
     image: Headshot,
     header: "Hello, I'm Adam.",
-    subheader: `I'm an NYC-based frontend developer with over a decade of experience.`,
+    subheader: `I'm an NYC-based software engineer with over a decade of experience.`,
     ctas: [
       {
         name: "projects",
@@ -79,8 +79,8 @@ export const homePageData = {
     description: `I have a diverse skill set and a wide range of experience across the product development lifecycle. Here are a few areas where I excel:`,
     areas: [
       {
-        name: "Frontend Development",
-        description: `I specialize in building modern, responsive, and accessible web applications using the latest frontend technologies and best practices.`,
+        name: "Software Development",
+        description: `I specialize in building modern, responsive, and accessible web applications using the latest technologies and best practices.`,
       },
       {
         name: "Design Systems",

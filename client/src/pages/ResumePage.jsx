@@ -9,7 +9,7 @@ export const ResumePage = () => {
       <PageHelmet
         title="Résumé"
         description={`Seeking a position that will leverage my expertise in \
-        product development & frontend engineering to create user-friendly \
+        product development & software engineering to create user-friendly \
         web apps on a cutting-edge technology stack.`}
       />
       <div className={styles.Container}>
