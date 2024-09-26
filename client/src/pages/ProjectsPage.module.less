@@ -71,7 +71,26 @@
   margin: 1rem 0;
 }
 
-.List {
+.SandboxList {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  padding: @header-height 1.5rem;
+  width: 100%;
+  gap: @header-height;
+  background-color: @color-white;
+
+  @media screen and (max-width: @breakpoint-tablet) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: (@header-height / 2) 1.5rem;
+    gap: (@header-height / 2);
+  }
+}
+
+
+.ProjectsList {
   display: flex;
   flex-direction: row;
   align-items: flex-start;

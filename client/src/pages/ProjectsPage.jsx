@@ -3,6 +3,7 @@ import { ArrowDownOutlined } from "@ant-design/icons";
 
 import { PageHelmet } from "../components/PageHelmet/PageHelmet";
 import { ProjectsList } from "../components/Projects/ProjectsList";
+import { SandboxList } from "../components/Projects/SandboxList";
 import { projectsPageData } from "./data/projectsPageData";
 import { IconButton } from "../components/reusables";
 
@@ -41,8 +42,11 @@ export const ProjectsPage = () => {
             />
           </div>
         </div>
-        <div className={styles.List} ref={listRef}>
+        <div className={styles.ProjectsList}>
           <ProjectsList data={projectsPageData?.list} />
+        </div>
+        <div className={styles.SandboxList} ref={listRef}>
+          <SandboxList data={projectsPageData?.sandbox} />
         </div>
       </div>
     </>

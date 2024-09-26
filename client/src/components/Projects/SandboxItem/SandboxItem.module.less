@@ -1,0 +1,71 @@
+@import (reference) "../../../styles/variables";
+@import (reference) "../../../styles/typography";
+
+.Item {
+  border-radius: @border-radius-large;
+  background: @color-gray-1100;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  text-decoration: none;
+  position: relative;
+  padding: 1.5rem;
+  gap: 1.5rem;
+  transition: all 0.25s cubic-bezier(0.19, 1, 0.22, 1);
+  overflow: hidden;
+
+  &::after {
+    background: linear-gradient(
+      90deg,
+      rgba(@color-black, 0) 0%,
+      rgba(@color-black, 3%) 100%
+    );
+    content: "";
+    height: 100%;
+    width: 100%;
+    left: -300%;
+    position: absolute;
+    filter: blur(1rem);
+    transform: skew(10deg);
+    transition: all 0.75s cubic-bezier(0.19, 1, 0.22, 1);
+    z-index: -1;
+  }
+  &:hover {
+    box-shadow: @box-shadow-default;
+    background-color: @color-gray-1000;
+    cursor: pointer;
+    &::after {
+      left: 0;
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .Title {
+      color: @color-red-100;
+    }
+  }
+
+  .MainLink {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    width: 100%;
+    text-decoration: none;
+
+    .Title {
+      .type-heading();
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      color: @color-red-200;
+    }
+
+    .Summary {
+      .type-body();
+      line-height: 1.5;
+      color: @color-gray-400;
+      flex: 1 0 auto;
+    }
+  }
+
+  .GithubLink {
+    flex: 0 0 auto;
+  }
+}

@@ -5,6 +5,22 @@ export const projectsPageData = {
   image: CodeImage,
   heading: "Projects",
   description: `I've worked on a wide range of projects across various industries and technologies.`,
+  sandbox: [
+    {
+      name: "form-wizard",
+      url: "https://form-wizard-demo.vercel.app/",
+      github_url: "https://github.com/akliegman/form-wizard-demo",
+      title: "Form Wizard Demo",
+      summary: `A multi-step form wizard with sample Next.js backend API and configurable admin section, completed for a coding exercise.`,
+    },
+    {
+      name: "storybook",
+      url: "https://storybook.adamkliegman.com/",
+      github_url: "https://github.com/akliegman/design-system",
+      title: "Storybook Design System",
+      summary: `A demo design system and component library designed to showcase a modern web design-system built with Next.js and Storybook.`,
+    },
+  ],
   list: [
     {
       name: "archer-website",
