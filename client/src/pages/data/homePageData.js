@@ -154,7 +154,7 @@ export const homePageData = {
   },
   projects: {
     header: "Projects",
-    description: `I've worked on a wide range of projects across various industries and technologies. Much of my work is proprietary, but click below to view a selection of my recent projects. If you need a login to view my private projects, please don't hesitate to reach out.`,
+    description: `I've worked on a wide range of projects across various industries and technologies, with specialization in product-led and systemic frontend practices.`,
     ctas: [
       {
         name: "projects",

@@ -1,4 +1,4 @@
-import { LockFilled } from "@ant-design/icons";
+import { ExperimentFilled } from "@ant-design/icons";
 import { Button } from "../../reusables";
 
 import styles from "./Projects.module.less";
@@ -8,7 +8,7 @@ export const Projects = ({ data }) => {
     <div className={styles.Container}>
       <div className={styles.Main}>
         <div className={styles.Icon}>
-          <LockFilled />
+          <ExperimentFilled />
         </div>
         <div className={styles.Content}>
           <h2 className={styles.Header}>{data.header}</h2>
