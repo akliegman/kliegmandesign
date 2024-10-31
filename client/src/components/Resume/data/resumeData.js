@@ -15,13 +15,13 @@ export const resumeData = {
     phone: "+1 (516) 457-2014",
     location: "Greater NYC Area",
   },
-  summary: `Software development leader with over a decade of tech experience. Combines engineering best practices with design, data, psychology, and practicality to deliver value and craft in team environments. Experienced across the entire product development lifecycle, and can fluently interface with cross-functional teams.`,
+  summary: `Senior software engineer with over a decade of tech experience. Combines engineering best practices with design, data, psychology, and practicality to deliver value and craft in team environments. Experienced across the entire product development lifecycle, and can fluently interface with cross-functional teams while maintaining focus on performance, timeliness, reliability, simplicity, and leadership.`,
   skills: [
     {
       name: "Languages",
       items: [
         {
-          title: "JavaScript",
+          title: "Javascript",
           level: 5,
         },
         {
@@ -37,7 +37,7 @@ export const resumeData = {
           level: 5,
         },
         {
-          title: "SASS/Less",
+          title: "Sass/LESS",
           level: 5,
         },
         {
@@ -63,6 +63,10 @@ export const resumeData = {
         },
         {
           title: "Express",
+          level: 4,
+        },
+        {
+          title: "Vercel",
           level: 4,
         },
         {
@@ -124,6 +128,14 @@ export const resumeData = {
           title: "Cypress",
           level: 3,
         },
+        {
+          title: "AWS",
+          level: 3,
+        },
+        {
+          title: "Github/Gitlab Actions",
+          level: 3,
+        },
       ],
     },
     {
@@ -163,10 +175,6 @@ export const resumeData = {
         },
         {
           title: "Responsive Design",
-          level: 5,
-        },
-        {
-          title: "SEO",
           level: 5,
         },
       ],
@@ -216,21 +224,15 @@ export const resumeData = {
         {
           title: "Software Engineer III",
           start_date: "Jul 2023",
-          end_date: "Present",
+          end_date: "Jul 2024",
           description: [
             {
               type: "text",
-              value: `Engineering an integrating Figma design system, stock
-                component library, React starter toolkit, pdf/word document
-                generator, and backend CLM for the country's leading law firms
-                (20 of the top 50), enabling them to build, configure, maintain
-                & update their websites, blogs, intranets & extranets. Working
-                with designers to build custom CLM-powered & WCAG/ADA compliant
-                websites using core stock component library & React toolkit.`,
+              value: `Engineered and integrated Figma design system, stock component library, React starter toolkit, pdf/word document generator, and backend CLM for the country's leading law firms (20 of the top 50), enabling them to build, configure, maintain & update their websites, blogs, intranets & extranets. Worked with designers to build custom CLM-powered & WCAG/ADA compliant websites using core stock component library & React toolkit.`,
             },
           ],
           tech_stack: [
-            "JavaScript",
+            "Javascript",
             "React",
             "Redux",
             "Sass",
@@ -258,17 +260,11 @@ export const resumeData = {
           description: [
             {
               type: "text",
-              value: `Drove the strategic re-imagination of the Demyst product
-                to an API-first SaaS platform experience by engineering a UI
-                focused on self-service & data management, catalyzing Series-C
-                funding; Engineered exhaustive atomic design system used across
-                all products; Engineered the frontend for marketing website &
-                customer- facing platform; Managed a multilingual globally
-                distributed 8 member platform team.`,
+              value: `Drove the strategic re-imagination of the Demyst product to an API-first SaaS platform experience by engineering a UI focused on self-service & data management, catalyzing Series-C funding; Engineered exhaustive atomic design system used across all products; Engineered the frontend for marketing website & customer- facing platform; Managed a multilingual globally distributed 8 member platform team.`,
             },
           ],
           tech_stack: [
-            "JavaScript",
+            "Javascript",
             "React",
             "Redux",
             "LESS",
@@ -288,16 +284,11 @@ export const resumeData = {
           description: [
             {
               type: "text",
-              value: `Liaised with engineering team in the development & release
-                 of a new web product that enabled clients to push external data
-                to their data lakes, quadrupling platform's active user base;
-                Principal engineer for company-wide rebrand & marketing site
-                refresh, growing site impressions by 6,000/ day & doubling the
-                lead pipeline.`,
+              value: `Liaised with engineering team in the development & release of a new web product that enabled clients to push external data to their data lakes, quadrupling platform's active user base; Principal engineer for company-wide rebrand & marketing site refresh, growing site impressions by 6,000/day & doubling the lead pipeline.`,
             },
           ],
           tech_stack: [
-            "JavaScript",
+            "Javascript",
             "React",
             "Redux",
             "LESS",
@@ -326,11 +317,7 @@ export const resumeData = {
           description: [
             {
               type: "text",
-              value: `Led team of four to implement multi-million-dollar API
-                pipelines that delivered lead data to third parties; Streamlined
-                company-wide operational bottlenecks, inconsistencies, &
-                tightly-coupled interdependencies by engineering dashboards,
-                roadmaps, & implementing agile development processes.`,
+              value: `Led team of four to implement multi-million-dollar API pipelines that delivered lead data to third parties; Streamlined company-wide operational bottlenecks, inconsistencies, & tightly-coupled interdependencies by engineering dashboards, roadmaps, & implementing agile development processes.`,
             },
           ],
         },
@@ -341,15 +328,11 @@ export const resumeData = {
           description: [
             {
               type: "text",
-              value: `Doubled YoY revenue (> $2M annually), grew site traffic
-                (by ~5,000/mo), & halved average sales cycle by engineering a
-                tutoring services & administration web product; Developed
-                experiences for user types (student, parent, tutor, admin)
-                soup-to-nuts as part of new startup rollout.`,
+              value: `Doubled YoY revenue (>$2M annually), grew site traffic (by ~5,000/mo), & halved average sales cycle by engineering a tutoring services & administration web product; Developed experiences for user types (student, parent, tutor, admin) soup-to-nuts as part of new startup rollout.`,
             },
           ],
           tech_stack: [
-            "JavaScript",
+            "Javascript",
             "Django",
             "Sass",
             "MySQL",
@@ -365,14 +348,11 @@ export const resumeData = {
           description: [
             {
               type: "text",
-              value: `Engineered first-of-their-kind web products that
-                integrated with university systems to match students with tutors
-                & allowed them to meet virtually via interactive whiteboard &
-                bespoke learning management platform.`,
+              value: `Engineered first-of-their-kind web products that integrated with university systems to match students with tutors & allowed them to meet virtually via interactive whiteboard & bespoke learning management platform.`,
             },
           ],
           tech_stack: [
-            "JavaScript",
+            "Javascript",
             "Flask/Jinja",
             "Sass",
             "MySQL",
@@ -397,14 +377,11 @@ export const resumeData = {
           description: [
             {
               type: "text",
-              value: `Developed & maintained the frontend, email templates, &
-                admin site for shoplet.com & sister sites (20,000 daily unique
-                visitors & $50M in ARR). Launched new Canada website; Lead UI
-                developer in brand refresh.`,
+              value: `Developed & maintained the frontend, email templates, & admin site for shoplet.com & sister sites (20,000 daily unique visitors & $50M in ARR). Launched new Canada website; Lead UI developer in brand refresh.`,
             },
           ],
           tech_stack: [
-            "JavaScript",
+            "Javascript",
             "Wordpress",
             "php",
             "CSS",
@@ -427,10 +404,7 @@ export const resumeData = {
           description: [
             {
               type: "text",
-              value: `Key player in securing 3 high-value clients (>$5M) by
-                structuring activities for leadership team; Maintained sales
-                pipeline & forecasting; Focused on responsive, cross-platform
-                tech solutions for Fortune 100 companies.`,
+              value: `Key player in securing 3 high-value clients (>$5M) by structuring activities for leadership team; Maintained sales pipeline & forecasting; Focused on responsive, cross-platform tech solutions for Fortune 100 companies.`,
             },
           ],
         },
