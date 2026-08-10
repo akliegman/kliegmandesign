@@ -1,4 +1,5 @@
 import * as Page from "./pages";
+import { appConfig } from "./config/appConfig";
 
 export const routes = {
   "/": {
@@ -18,6 +19,7 @@ export const routes = {
     withHeader: true,
     withFooter: true,
     navOrder: 1,
+    external: appConfig.resumePath,
     element: <Page.ResumePage />,
   },
   "/projects": {
@@ -118,5 +120,5 @@ export const routeNames = Object.entries(routes).reduce(
     ...acc,
     [route.id]: path,
   }),
-  {}
+  {},
 );

@@ -2,6 +2,7 @@ import { GithubOutlined, LinkedinFilled } from "@ant-design/icons";
 
 import Headshot from "../../assets/images/headshot.png";
 import BackgroundVideo from "../../assets/videos/background.mp4";
+import { appConfig } from "../../config/appConfig";
 
 export const homePageData = {
   masthead: {
@@ -146,7 +147,8 @@ export const homePageData = {
       {
         name: "resume",
         label: "View Résumé",
-        link: "/resume",
+        link: appConfig.resumePath,
+        external: true,
       },
     ],
   },
