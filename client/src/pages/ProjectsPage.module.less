@@ -89,7 +89,7 @@
   }
 }
 
-
+.FeaturedList,
 .ProjectsList {
   display: flex;
   flex-direction: row;
@@ -105,5 +105,13 @@
     align-items: flex-start;
     padding: (@header-height / 2) 1.5rem;
     gap: (@header-height / 2);
+  }
+}
+
+.FeaturedList {
+  padding-bottom: 0;
+
+  @media screen and (max-width: @breakpoint-tablet) {
+    padding-bottom: 0;
   }
 }

@@ -1,20 +1,17 @@
-import { PageHelmet } from "../components/PageHelmet/PageHelmet";
-import { Resume } from "../components/Resume/Resume";
+import { useEffect } from "react";
 
-import styles from "./ResumePage.module.less";
+import { PageHelmet } from "../components/PageHelmet/PageHelmet";
+import { appConfig } from "../config/appConfig";
 
 export const ResumePage = () => {
+  useEffect(() => {
+    window.location.replace(appConfig.resumePath);
+  }, []);
+
   return (
-    <>
-      <PageHelmet
-        title="Résumé"
-        description={`Seeking a position that will leverage my expertise in \
-        product development & software engineering to create user-friendly \
-        web apps on a cutting-edge technology stack.`}
-      />
-      <div className={styles.Container}>
-        <Resume />
-      </div>
-    </>
+    <PageHelmet
+      title="Résumé"
+      description="Adam Kliegman's résumé: frontend and design-systems engineer with 13+ years building design systems, frontend architecture, and AI product surfaces."
+    />
   );
 };
