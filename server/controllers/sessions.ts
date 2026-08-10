@@ -8,7 +8,7 @@ const Sessions = db.sessions;
 export const createSession = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> => {
   logger.info("-------------------------------------------------------");
   logger.info("CREATING SESSION");
@@ -32,25 +32,5 @@ export const createSession = async (
     next();
   } catch (error: any) {
     logger.error(error);
-  }
-};
-
-export const findAllSessions = async (
-  req: Request,
-  res: Response
-): Promise<Response> => {
-  logger.info("-------------------------------------------------------");
-  logger.info("FINDING ALL SESSIONS");
-  logger.info("-------------------------------------------------------");
-  try {
-    const sessions = await Sessions.findAll();
-    logger.info(`${sessions.length} sessions found.`);
-    return res.send(sessions);
-  } catch (error: any) {
-    const message = `Error occurred while retrieving sessions: ${error.message}`;
-    logger.error(message);
-    return res.status(500).send({
-      message,
-    });
   }
 };
