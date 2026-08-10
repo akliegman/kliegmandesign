@@ -5,6 +5,25 @@ export const projectsPageData = {
   image: CodeImage,
   heading: "Projects",
   description: `I've worked on a wide range of projects across various industries and technologies.`,
+  featured: [
+    {
+      name: "spellbook",
+      order: 1,
+      company: "MagicSchool AI",
+      title: "Spellbook Design System",
+      summary: `The design system and frontend architecture powering MagicSchool AI, an AI-native education platform serving more than 8 million educators. Founded and driven to 100% adoption across a 50-engineer organization, halving redundant UI code, alongside a full migration off Material UI onto a unified React, TypeScript, ShadCN, Radix UI, and Tailwind CSS foundation.`,
+      stack: {
+        frameworks: [
+          "React",
+          "TypeScript",
+          "ShadCN",
+          "Radix UI",
+          "Tailwind CSS",
+          "Storybook",
+        ],
+      },
+    },
+  ],
   sandbox: [
     {
       name: "form-wizard",

@@ -16,7 +16,7 @@ const web = new WebClient(slackConfig.botToken!);
 export const slackLoggedIn: (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => void = async (req: Request, res: Response, next: NextFunction) => {
   logger.info("-------------------------------------------------------");
   logger.info("SENDING SLACK MESSAGE OF NEW LOGIN");
@@ -45,7 +45,7 @@ export const slackLoggedIn: (
 
 export const authSession: (
   req: Request,
-  res: Response
+  res: Response,
 ) => Promise<Response> = async (req: Request, res: Response) => {
   const date = new Date().toLocaleString();
   const ip = req.ip;
@@ -83,7 +83,7 @@ export const authSession: (
 
 export const authCheck: (req: Request, res: Response) => Response = (
   req: Request,
-  res: Response
+  res: Response,
 ) => {
   logger.info("-------------------------------------------------------");
   logger.info("CHECKING AUTHORIZATION");
@@ -101,7 +101,7 @@ export const authCheck: (req: Request, res: Response) => Response = (
 export const authLogin: (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => Response | void = (req: Request, res: Response, next: NextFunction) => {
   logger.info("-------------------------------------------------------");
   logger.info("AUTHENTICATING USER");
@@ -142,13 +142,13 @@ export const authLogin: (
   req.session.userAgent = req.get("User-Agent")!;
   req.session.referer = req.get("Referer")!;
   req.session.expiresAt = new Date(
-    Date.now() + authConfig.session.cookie.maxAge
+    Date.now() + authConfig.session.cookie.maxAge,
   );
 
   logger.info(
     `Logged in: ${
       req.session.user.email || req.session.user.user
-    } at ${new Date().toLocaleString()}`
+    } at ${new Date().toLocaleString()}`,
   );
 
   next();
@@ -156,7 +156,7 @@ export const authLogin: (
 
 export const authLogout: (
   req: Request,
-  res: Response
+  res: Response,
 ) => Promise<Response | void> = async (req: Request, res: Response) => {
   logger.info("-------------------------------------------------------");
   logger.info("LOGGING OUT USER");
@@ -165,7 +165,7 @@ export const authLogout: (
   logger.info(
     `Logout: ${
       req.session?.user?.email || req.session?.user?.user
-    } at ${new Date().toLocaleString()}`
+    } at ${new Date().toLocaleString()}`,
   );
   try {
     await req.session.destroy((err) => {
@@ -186,7 +186,7 @@ export const authLogout: (
 export const requireAuth: (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => Response | void = (req: Request, res: Response, next: NextFunction) => {
   logger.info("-------------------------------------------------------");
   logger.info("REQUIRING AUTHORIZATION");
@@ -196,24 +196,6 @@ export const requireAuth: (
     logger.info("User is authorized.");
     return next();
   }
-  logger.info("User is unauthorized.");
-  return res.status(400).send({ message: "Unauthorized" });
-};
-
-export const requireAdminAuth = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  logger.info("-------------------------------------------------------");
-  logger.info("REQUIRING ADMIN AUTHORIZATION");
-  logger.info("-------------------------------------------------------");
-
-  if (req.session.user && req.session.user.role === "admin") {
-    logger.info("User is authorized.");
-    return next();
-  }
-
   logger.info("User is unauthorized.");
   return res.status(400).send({ message: "Unauthorized" });
 };

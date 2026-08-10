@@ -33,6 +33,7 @@ export const Nav = ({
       label: item.name,
       order: item.navOrder,
       link: path,
+      external: item.external,
       protected: item.protected,
       icon: iconMap[replaceSpecialCharacters(item.name.toLowerCase())],
     }))
@@ -55,8 +56,8 @@ export const Nav = ({
               item.icon
             )
           }
-          to={item.link}
-          type="navlink"
+          to={item.external || item.link}
+          type={item.external ? "external" : "navlink"}
           variant={buttonVariant}
           onClick={linkOnClick}
           onTouchEnd={linkOnTouchEnd}

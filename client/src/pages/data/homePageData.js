@@ -2,13 +2,14 @@ import { GithubOutlined, LinkedinFilled } from "@ant-design/icons";
 
 import Headshot from "../../assets/images/headshot.png";
 import BackgroundVideo from "../../assets/videos/background.mp4";
+import { appConfig } from "../../config/appConfig";
 
 export const homePageData = {
   masthead: {
     video: BackgroundVideo,
     image: Headshot,
     header: "Hello, I'm Adam.",
-    subheader: `I'm an NYC-based software engineer with over a decade of experience.`,
+    subheader: `I'm an NYC-based software engineer specializing in design systems, frontend architecture, and AI-native products.`,
     ctas: [
       {
         name: "projects",
@@ -19,7 +20,7 @@ export const homePageData = {
   },
   about: {
     header: "About Me",
-    description: `With a background in development, design, and product leadership, I combine engineering best practices with design, data, psychology, and practicality to deliver value and craft in growth environments. I'm experienced across the entire product development lifecycle, and can fluently interface with cross-functional teams. I'm passionate about crafting delightful user experiences and building scalable, maintainable, and performant applications. I take special interest in design systems and configuration-driven component libraries that enable rapid development and brand consistency. I'm always looking for new opportunities to learn, grow, and contribute, so please don't hesitate to reach out.`,
+    description: `I'm a frontend and design-systems engineer with over 13 years building user-facing products across EdTech, AI, FinTech, and eCommerce at scale. I founded and scaled a design system to full adoption across a 50-engineer organization, and I set technical direction for frontend architecture, accessibility, and AI product surfaces. I combine engineering best practices with design, data, and psychology to turn ambiguous product problems into durable systems other engineers build on. I lead through standards, documentation, migration strategy, and mentorship as much as through code. I'm always looking for new opportunities to learn, grow, and contribute, so please don't hesitate to reach out.`,
     ctas: [
       {
         name: "contact",
@@ -41,23 +42,23 @@ export const homePageData = {
     ],
     location: {
       header: "Located In",
-      body: ["Hoboken, NJ (Remote)"],
+      body: ["New York City (Remote)"],
     },
     education: {
       header: "Education",
-      body: ["University of Wisconsin"],
+      body: ["University of Wisconsin–Madison"],
     },
     years: {
       header: "Years Exp.",
-      body: ["11"],
+      body: ["13"],
     },
     roles: {
       header: "Recent Roles",
       body: [
+        "Senior Software Engineer",
         "Software Engineer III",
         "Director of Product",
-        "Lead Product Developer",
-        "UX/UI Engineer",
+        "Lead Product Engineer",
       ],
     },
     companies: {
@@ -71,7 +72,7 @@ export const homePageData = {
     },
     verticals: {
       header: "Industries",
-      body: ["FinTech", "EdTech", "LegalTech", "eCommerce"],
+      body: ["AI", "EdTech", "FinTech", "eCommerce"],
     },
   },
   expertise: {
@@ -79,20 +80,20 @@ export const homePageData = {
     description: `I have a diverse skill set and a wide range of experience across the product development lifecycle. Here are a few areas where I excel:`,
     areas: [
       {
-        name: "Software Development",
-        description: `I specialize in building modern, responsive, and accessible web applications using the latest technologies and best practices.`,
-      },
-      {
         name: "Design Systems",
-        description: `I have a passion for building and maintaining design systems and component libraries that enable rapid development and brand consistency.`,
+        description: `I found and scale design systems with semantic tokens, governance, and contribution models that drive full adoption and cut redundant UI code in half.`,
       },
       {
-        name: "UI/UX Design",
-        description: `I have a strong eye for designing user interfaces and user experiences that are intuitive, engaging, and delightful.`,
+        name: "Frontend Architecture",
+        description: `I set technical direction for frontend architecture on React and TypeScript, defining the standards, migration strategy, and patterns other engineers build on.`,
       },
       {
-        name: "Product Leadership",
-        description: `I have experience leading product development teams, managing product roadmaps, and working cross-functionally to deliver value.`,
+        name: "AI Product Engineering",
+        description: `I build AI product surfaces end to end: streaming responses, structured outputs, tool calling, and human-in-the-loop review so users steer generation.`,
+      },
+      {
+        name: "Accessibility",
+        description: `I define and enforce accessibility to WCAG 2.2 AA, driving remediation, semantic HTML, keyboard navigation, and focus management across products.`,
       },
     ],
   },
@@ -103,12 +104,11 @@ export const homePageData = {
       {
         name: "Languages",
         skills: [
-          "JavaScript",
           "TypeScript",
+          "JavaScript",
           "HTML",
           "CSS",
-          "SASS/Less",
-          "MySQL/PostgreSQL",
+          "PostgreSQL",
           "GraphQL",
           "REST",
           "Bash",
@@ -118,29 +118,28 @@ export const homePageData = {
         name: "Frameworks",
         skills: [
           "React",
+          "Next.js",
           "Node.js",
           "Express",
-          "Next.js",
-          "Gatsby",
-          "Django",
-          "Flask",
-          "Vue",
+          "Tailwind CSS",
+          "Radix UI",
+          "ShadCN",
+          "Zustand",
+          "TanStack Query",
         ],
       },
       {
         name: "Tools",
         skills: [
           "Git",
-          "Webpack",
-          "Babel",
-          "Jest",
-          "Puppeteer",
-          "Cypress",
           "Storybook",
+          "Vite",
+          "Vitest",
+          "Playwright",
           "Figma",
-          "Sketch",
-          "Photoshop",
-          "Illustrator",
+          "Vercel AI SDK",
+          "Turborepo",
+          "Sentry",
         ],
       },
     ],
@@ -148,7 +147,8 @@ export const homePageData = {
       {
         name: "resume",
         label: "View Résumé",
-        link: "/resume",
+        link: appConfig.resumePath,
+        external: true,
       },
     ],
   },

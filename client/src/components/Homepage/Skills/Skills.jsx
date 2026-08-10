@@ -12,7 +12,7 @@ export const Skills = ({ data }) => {
           <div className={styles.Buttons}>
             {data.ctas.map((button) => (
               <Button
-                type="link"
+                type={button.external ? "external" : "link"}
                 key={button.name}
                 to={button.link}
                 size="md"

@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { ArrowDownOutlined } from "@ant-design/icons";
 
 import { PageHelmet } from "../components/PageHelmet/PageHelmet";
+import { FeaturedList } from "../components/Projects/FeaturedList";
 import { ProjectsList } from "../components/Projects/ProjectsList";
 import { SandboxList } from "../components/Projects/SandboxList";
 import { projectsPageData } from "./data/projectsPageData";
@@ -41,6 +42,9 @@ export const ProjectsPage = () => {
               icon={<ArrowDownOutlined />}
             />
           </div>
+        </div>
+        <div className={styles.FeaturedList}>
+          <FeaturedList data={projectsPageData?.featured} />
         </div>
         <div className={styles.ProjectsList}>
           <ProjectsList data={projectsPageData?.list} />
