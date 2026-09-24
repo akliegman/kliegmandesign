@@ -38,7 +38,6 @@ export function WorkIndexPage() {
                       decorative
                       aspectRatio={16 / 10}
                       sizes="(min-width: 48rem) 18rem, 100vw"
-                      transitionName={`work-${item.slug}`}
                       className="transition-[border-color,box-shadow] group-hover:border-input group-hover:shadow-raised"
                     />
                     <div className="flex flex-col gap-2 md:py-2">

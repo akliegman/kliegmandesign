@@ -47,7 +47,7 @@ export function RootLayout() {
         Skip to content
       </a>
       <SiteHeader />
-      <main id="main" tabIndex={-1} className="[view-transition-name:page]">
+      <main id="main" tabIndex={-1}>
         <Outlet />
       </main>
       <SiteFooter onAnalyticsSettings={() => setShowConsent(true)} />

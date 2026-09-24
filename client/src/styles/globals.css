@@ -509,43 +509,11 @@
 }
 
 /*
- * Route transitions. The page content fades out and rises in, and shared work covers morph between
- * card and case study. The header has its own group that swaps instantly: it is translucent, so a
- * crossfade would let the page show through it mid-transition.
+ * Page changes crossfade, which smooths over the moment the new page renders. Nothing is named or
+ * moved: the whole page fades as one image.
  */
-::view-transition-old(site-header),
-::view-transition-new(site-header) {
-  animation: none;
-}
-
-/* biome-ignore lint/correctness/noUnknownTypeSelector: `page` is a view-transition group name, not an element */
-::view-transition-old(page) {
-  animation: var(--duration-fast) var(--ease-standard) both fade-out;
-}
-
-/* biome-ignore lint/correctness/noUnknownTypeSelector: `page` is a view-transition group name, not an element */
-::view-transition-new(page) {
-  animation: var(--duration-slow) var(--ease-emphasized) both rise;
-}
-
-::view-transition-group(*) {
-  animation-duration: var(--duration-slow);
-  animation-timing-function: var(--ease-emphasized);
-}
-
-@keyframes fade-out {
-  to {
-    opacity: 0;
-  }
-}
-
-/* During a theme change the whole page is revealed at once, so no element keeps its own group. */
-:root[data-theme-transition] * {
-  view-transition-name: none !important;
-}
-
-:root[data-theme-transition]::view-transition-old(root),
-:root[data-theme-transition]::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: var(--duration-base);
+  animation-timing-function: var(--ease-standard);
 }

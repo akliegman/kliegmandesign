@@ -12,8 +12,6 @@ export interface WorkCardProps {
   feature?: boolean;
   /** Keep the gradient stroke faintly turning at rest. Use on one or two cards per page. */
   ambient?: boolean;
-  /** Share the cover's view-transition name with the case study page, so it morphs into place. */
-  morph?: boolean;
 }
 
 /**
@@ -22,7 +20,7 @@ export interface WorkCardProps {
  * container query: image beside text once the card is wider than 42rem, stacked when narrower, so
  * the same component works as a feature, in a three-up grid, and in a single tablet column.
  */
-export function WorkCard({ item, feature = false, ambient = false, morph = true }: WorkCardProps) {
+export function WorkCard({ item, feature = false, ambient = false }: WorkCardProps) {
   return (
     <article
       className={cn(
@@ -40,7 +38,6 @@ export function WorkCard({ item, feature = false, ambient = false, morph = true 
               : "(min-width: 64rem) 24rem, (min-width: 42rem) 50vw, 100vw"
           }
           aspectRatio={16 / 10}
-          transitionName={morph ? `work-${item.slug}` : undefined}
           className={cn(
             "w-full rounded-none border-0 border-b [&_img]:transition-transform [&_img]:duration-(--duration-slow) [&_img]:ease-emphasized group-hover:[&_img]:-translate-y-1.5",
             // Width and height are both definite side by side, so the aspect ratio yields and the

@@ -12,8 +12,6 @@ export interface MediaFrameProps {
   priority?: boolean;
   /** Treat the image as decorative, for example when a card heading already names it. */
   decorative?: boolean;
-  /** Shared name so the browser can morph this media between routes during a view transition. */
-  transitionName?: string;
   /** Fix the frame to this width-to-height ratio; screenshots crop from the top, specimens center. */
   aspectRatio?: number;
   className?: string;
@@ -73,11 +71,10 @@ export function MediaFrame({
   sizes = "(min-width: 76rem) 48rem, 100vw",
   priority = false,
   decorative = false,
-  transitionName,
   aspectRatio,
   className,
 }: MediaFrameProps) {
-  const style: React.CSSProperties = { viewTransitionName: transitionName, aspectRatio };
+  const style: React.CSSProperties = { aspectRatio };
   const stage = "relative overflow-hidden rounded-xl border bg-dot-grid bg-muted";
 
   if (media.kind === "pending") {

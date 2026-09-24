@@ -60,7 +60,6 @@ export function CaseStudyPage() {
           media={item.cover}
           priority
           sizes="(min-width: 80rem) 48rem, (min-width: 64rem) calc(100vw - 20rem), 100vw"
-          transitionName={`work-${item.slug}`}
           className="gradient-stroke mt-12 stroke-ambient stroke-idle"
         />
 

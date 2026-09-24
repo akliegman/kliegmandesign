@@ -539,10 +539,10 @@ export function SystemPage() {
           title="Motion"
           description={
             <p>
-              Three durations and two curves. State changes use the fast duration, panels use the
-              base, and route transitions and the logo use the slow one with the emphasized curve.
-              Navigating between pages uses the View Transitions API where the browser supports it,
-              so a case study's cover image carries over from the card you selected.
+              Three durations and two curves. State changes use the fast duration, panels and the
+              crossfade between pages use the base, and the logo uses the slow one with the
+              emphasized curve. Page changes crossfade through the View Transitions API where the
+              browser supports it, which smooths over the moment the new page loads.
             </p>
           }
         >
@@ -690,14 +690,11 @@ export function SystemPage() {
           description={
             <p>
               A case study teaser. The title link stretches across the card, so the whole card is
-              one target with one accessible name and no nested controls. Its cover shares a
-              view-transition name with the case study it opens.
+              one target with one accessible name and no nested controls.
             </p>
           }
         >
-          <div className="max-w-sm">
-            {exampleCard && <WorkCard item={exampleCard} morph={false} />}
-          </div>
+          <div className="max-w-sm">{exampleCard && <WorkCard item={exampleCard} />}</div>
         </SpecSection>
 
         <SpecSection

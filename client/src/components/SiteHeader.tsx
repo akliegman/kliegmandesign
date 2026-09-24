@@ -31,7 +31,7 @@ function ResumeLink({ className }: { className?: string }) {
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur-md backdrop-saturate-150 [view-transition-name:site-header]">
+    <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur-md backdrop-saturate-150">
       <div className="container-page flex h-(--header-height) items-center gap-6">
         <Wordmark />
 
