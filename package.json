@@ -4,13 +4,13 @@
   "description": "Server-side for adamkliiegman.com",
   "main": "server/build/index.js",
   "scripts": {
-    "client": "cd client && npm start",
+    "client": "cd client && npm run dev",
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc --project ./",
     "prestart": "npm run build",
     "start": "node server/build/index.js",
     "dev": "npm run build && nodemon server/build/index.js",
-    "heroku-postbuild": "cd client && npm install && npm run build",
+    "heroku-postbuild": "cd client && npm ci --include=dev && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -47,7 +47,7 @@
     "winston": "^3.8.2"
   },
   "engines": {
-    "node": "19.x",
-    "npm": "9.5.x"
+    "node": "22.x",
+    "npm": "10.x"
   }
 }

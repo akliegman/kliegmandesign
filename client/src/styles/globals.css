@@ -1,0 +1,551 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/geist-mono";
+
+/*
+ * Theme layer. Every color, radius, shadow, and timing on the site resolves to a variable in this
+ * block, and the /system page reads this file to document it, so a value added here shows up there.
+ *
+ * Colors are shadcn's semantic roles, authored in oklch. Each color variable holds its light and
+ * dark value in one light-dark() declaration; the active theme is whichever `color-scheme` the root
+ * element resolves to (the system preference, or the .light/.dark class set by the theme toggle).
+ */
+:root {
+  color-scheme: light dark;
+
+  --background: light-dark(oklch(0.985 0.003 255), oklch(0.165 0.01 255));
+  --foreground: light-dark(oklch(0.22 0.015 255), oklch(0.95 0.004 255));
+  --card: light-dark(oklch(1 0 0), oklch(0.205 0.011 255));
+  --card-foreground: var(--foreground);
+  --popover: var(--card);
+  --popover-foreground: var(--foreground);
+  --primary: light-dark(oklch(0.5 0.19 18), oklch(0.7 0.16 18));
+  --primary-foreground: light-dark(oklch(1 0 0), oklch(0.165 0.01 255));
+  --secondary: light-dark(oklch(0.945 0.006 255), oklch(0.255 0.012 255));
+  --secondary-foreground: var(--foreground);
+  --muted: light-dark(oklch(0.955 0.006 255), oklch(0.235 0.012 255));
+  --muted-foreground: light-dark(oklch(0.47 0.014 255), oklch(0.74 0.01 255));
+  --accent: light-dark(oklch(0.955 0.022 18), oklch(0.27 0.05 18));
+  --accent-foreground: light-dark(oklch(0.46 0.18 18), oklch(0.8 0.12 18));
+  --border: light-dark(oklch(0.905 0.006 255), oklch(0.31 0.012 255));
+  --input: light-dark(oklch(0.62 0.01 255), oklch(0.55 0.012 255));
+  --ring: var(--primary);
+
+  --radius: 0.5rem;
+
+  --duration-fast: 150ms;
+  --duration-base: 220ms;
+  --duration-slow: 360ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasized: cubic-bezier(0.19, 1, 0.22, 1);
+
+  --header-height: 4rem;
+}
+
+/*
+ * `dark:` matches whenever the dark theme is active, whether pinned by the toggle or inherited from
+ * the system. Colors never need it, since the tokens already switch. It exists for choosing between
+ * light and dark screenshots of work.
+ */
+@custom-variant dark {
+  &:where(:root.dark *) {
+    @slot;
+  }
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not(.light) *) {
+      @slot;
+    }
+  }
+}
+
+:root.light {
+  color-scheme: light;
+}
+
+:root.dark {
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --ease-standard: var(--ease-standard);
+  --ease-emphasized: var(--ease-emphasized);
+  --default-transition-duration: var(--duration-fast);
+  --default-transition-timing-function: var(--ease-standard);
+}
+
+@theme {
+  --font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --text-display: clamp(2.75rem, 1.9rem + 3.6vw, 4.75rem);
+  --text-display--line-height: 1;
+  --text-display--letter-spacing: -0.04em;
+  --text-title: clamp(2rem, 1.55rem + 1.8vw, 3rem);
+  --text-title--line-height: 1.08;
+  --text-title--letter-spacing: -0.035em;
+  --text-lede: 1.1875rem;
+  --text-lede--line-height: 1.65;
+
+  --shadow-raised: 0 1px 2px oklch(0 0 0 / 0.05), 0 6px 18px -6px oklch(0 0 0 / 0.12);
+  --shadow-overlay: 0 24px 60px -12px oklch(0 0 0 / 0.35);
+
+  --animate-rise: rise var(--duration-slow) var(--ease-emphasized) both;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      translate: 0 0.5rem;
+    }
+  }
+}
+
+/* Page width and gutters, shared by the header, footer, and every page. */
+@utility container-page {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 78rem;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+}
+
+/*
+ * Typography roles. Pages use these instead of composing size, weight, and tracking by hand, so the
+ * hierarchy has one definition and /system can show it.
+ */
+@utility type-display {
+  font-size: var(--text-display);
+  line-height: var(--text-display--line-height);
+  letter-spacing: var(--text-display--letter-spacing);
+  font-weight: 600;
+}
+
+@utility type-title {
+  font-size: var(--text-title);
+  line-height: var(--text-title--line-height);
+  letter-spacing: var(--text-title--letter-spacing);
+  font-weight: 600;
+}
+
+@utility type-heading {
+  font-size: 1.5rem;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+@utility type-subheading {
+  font-size: 1.125rem;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+@utility type-lede {
+  font-size: var(--text-lede);
+  line-height: var(--text-lede--line-height);
+  color: var(--muted-foreground);
+}
+
+@utility type-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+/* A faint dot grid for surfaces that present work: media stages and the home masthead. */
+@utility bg-dot-grid {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    color-mix(in oklch, var(--foreground) 11%, transparent) 1px,
+    transparent 0
+  );
+  background-size: 1rem 1rem;
+}
+
+/*
+ * Scroll-linked entrance for content below the fold. It only exists where the browser supports
+ * scroll-driven animations and the visitor hasn't asked for reduced motion; everywhere else the
+ * content is simply there.
+ */
+@utility reveal {
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    translate: 0 1.5rem;
+  }
+}
+
+/*
+ * Animated gradient stroke. A conic gradient is masked down to a border ring on a pseudo-element
+ * and rotated through a registered custom property, which is what lets the angle animate. It
+ * appears on hover and when something inside receives keyboard focus, and it is decoration only:
+ * focus itself is still shown by the outline. Without @property the ring simply doesn't rotate.
+ */
+@property --stroke-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes stroke-spin {
+  to {
+    --stroke-angle: 360deg;
+  }
+}
+
+@utility gradient-stroke {
+  position: relative;
+  isolation: isolate;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    padding: 1px;
+    border-radius: inherit;
+    background: conic-gradient(
+      from var(--stroke-angle),
+      var(--primary),
+      color-mix(in oklch, var(--primary) 15%, transparent) 30%,
+      var(--muted-foreground) 50%,
+      color-mix(in oklch, var(--primary) 15%, transparent) 70%,
+      var(--primary)
+    );
+    mask:
+      linear-gradient(#000 0 0) content-box exclude,
+      linear-gradient(#000 0 0);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--duration-base) var(--ease-standard);
+  }
+
+  &:hover::after,
+  &:has(:focus-visible)::after,
+  &:focus-visible::after {
+    opacity: 1;
+    animation: stroke-spin 10s linear infinite;
+  }
+}
+
+/*
+ * The ambient version of the stroke: always faintly present and slowly turning, brightening on
+ * hover. Reserved for a handful of surfaces per page, since each one repaints while it turns.
+ */
+@utility stroke-ambient {
+  &::after {
+    opacity: 0.5;
+    animation: stroke-spin 18s linear infinite;
+  }
+
+  &:hover::after,
+  &:has(:focus-visible)::after {
+    opacity: 1;
+    animation: stroke-spin 18s linear infinite;
+  }
+}
+
+/*
+ * For ambient strokes on surfaces that aren't clickable: the ring keeps turning at rest and does
+ * not respond to hover, since a hover response would suggest the surface does something.
+ */
+@utility stroke-idle {
+  &:hover::after,
+  &:has(:focus-visible)::after {
+    opacity: 0.5;
+    animation: stroke-spin 18s linear infinite;
+  }
+}
+
+/* A small framed icon that labels a point; decorative, so it is always paired with text. */
+@utility icon-tile {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--card), var(--card)) padding-box,
+    conic-gradient(
+      from var(--stroke-angle),
+      var(--primary),
+      var(--border) 35%,
+      var(--muted-foreground) 55%,
+      var(--border) 75%,
+      var(--primary)
+    )
+    border-box;
+  color: var(--primary);
+  box-shadow: var(--shadow-raised);
+  animation: stroke-spin 16s linear infinite;
+
+  & svg {
+    width: 1.05rem;
+    height: 1.05rem;
+  }
+}
+
+/* Text filled with a slowly moving crimson gradient, used once, for the key phrase on the home page. */
+@utility text-shimmer {
+  background: linear-gradient(
+    100deg,
+    var(--foreground) 0%,
+    var(--primary) 30%,
+    var(--accent-foreground) 50%,
+    var(--primary) 70%,
+    var(--foreground) 100%
+  );
+  background-size: 250% 100%;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 16s ease-in-out infinite alternate;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: 0% 0;
+  }
+}
+
+/* A slow light sweep across a filled button on hover. */
+@utility sheen {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      105deg,
+      transparent 30%,
+      color-mix(in oklch, white 30%, transparent) 50%,
+      transparent 70%
+    );
+    translate: -110% 0;
+  }
+
+  /* The sweep runs only on the way in; on the way out it resets instantly while out of view. */
+  &:hover::before,
+  &:focus-visible::before {
+    translate: 110% 0;
+    transition: translate 900ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+}
+
+/* The logo's strokes draw themselves in once, on load. */
+@utility logo-stroke {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 900ms var(--ease-emphasized) forwards;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Soft light sources for the home masthead. Gradients rather than blur filters keep them cheap to move. */
+@utility glow-primary {
+  background: radial-gradient(
+    closest-side,
+    color-mix(in oklch, var(--primary) 16%, transparent),
+    transparent
+  );
+}
+
+@utility glow-neutral {
+  background: radial-gradient(
+    closest-side,
+    color-mix(in oklch, var(--foreground) 7%, transparent),
+    transparent
+  );
+}
+
+/* The home masthead's two light sources drift on long, offset loops. */
+@keyframes drift-a {
+  50% {
+    translate: -8% 12%;
+    scale: 1.15;
+  }
+}
+
+@keyframes drift-b {
+  50% {
+    translate: 10% -10%;
+    scale: 0.9;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-padding-top: calc(var(--header-height) + 1.5rem);
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-foreground);
+  }
+
+  /* One focus treatment for every interactive element, visible against every surface. */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  /* Tailwind 4 resets buttons to the default cursor; every enabled button on this site is clickable. */
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]) {
+    cursor: pointer;
+  }
+
+  /* Headings receive programmatic focus after navigation; they need no visible ring. */
+  [tabindex="-1"]:focus {
+    outline: none;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/*
+ * Reduced motion keeps every state change and drops the movement: durations collapse, entrance
+ * animations are skipped, and view transitions become an instant swap. `!important` is deliberate
+ * here, so no component-level transition can opt back into motion.
+ */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0ms !important;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* The site-wide pause control stops every running animation where it is. */
+:root[data-motion="paused"] *,
+:root[data-motion="paused"] *::before,
+:root[data-motion="paused"] *::after {
+  animation-play-state: paused !important;
+}
+
+/*
+ * Route transitions. The page content fades out and rises in, and shared work covers morph between
+ * card and case study. The header has its own group that swaps instantly: it is translucent, so a
+ * crossfade would let the page show through it mid-transition.
+ */
+::view-transition-old(site-header),
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+/* biome-ignore lint/correctness/noUnknownTypeSelector: `page` is a view-transition group name, not an element */
+::view-transition-old(page) {
+  animation: var(--duration-fast) var(--ease-standard) both fade-out;
+}
+
+/* biome-ignore lint/correctness/noUnknownTypeSelector: `page` is a view-transition group name, not an element */
+::view-transition-new(page) {
+  animation: var(--duration-slow) var(--ease-emphasized) both rise;
+}
+
+::view-transition-group(*) {
+  animation-duration: var(--duration-slow);
+  animation-timing-function: var(--ease-emphasized);
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+/* During a theme change the whole page is revealed at once, so no element keeps its own group. */
+:root[data-theme-transition] * {
+  view-transition-name: none !important;
+}
+
+:root[data-theme-transition]::view-transition-old(root),
+:root[data-theme-transition]::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}

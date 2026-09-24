@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f9fafc" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b0f13" />
+    <meta
+      name="description"
+      content="Adam Kliegman is a software engineer who builds design systems, frontend architecture, and AI product surfaces. He founded Spellbook, the design system at MagicSchool AI."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Adam Kliegman, software engineer for design systems and frontend architecture" />
+    <meta
+      property="og:description"
+      content="Case studies in design systems, frontend architecture, and AI product surfaces, including Spellbook, the design system at MagicSchool AI."
+    />
+    <meta property="og:site_name" content="Adam Kliegman" />
+    <meta property="og:url" content="https://www.adamkliegman.com/" />
+    <meta property="og:image" content="https://www.adamkliegman.com/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="The adamkliegman.com home page: I build design systems and the frontend foundations other engineers ship on."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="google-site-verification" content="c7P0SFEg16UGqJfn8rq6CbtxT84bcPiqDswU4xSgFWA" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" href="/apple-icon-180x180.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <!-- Apply saved theme and motion choices before first paint (keys in src/lib/theme.ts and motion.ts). -->
+    <script>
+      try {
+        const theme = localStorage.getItem("theme");
+        if (theme === "light" || theme === "dark") document.documentElement.classList.add(theme);
+        if (localStorage.getItem("motion") === "paused") document.documentElement.dataset.motion = "paused";
+      } catch {}
+    </script>
+    <title>Adam Kliegman, software engineer for design systems and frontend architecture</title>
+  </head>
+  <body>
+    <noscript>
+      <p style="padding: 2rem; font-family: system-ui, sans-serif; max-width: 40rem">
+        Adam Kliegman is a software engineer who builds design systems, frontend architecture, and
+        AI product surfaces. This site needs JavaScript. You can reach Adam at
+        adam.j.kliegman@gmail.com, or <a href="/resume_kliegman_adam_2026.pdf">read his résumé</a>.
+      </p>
+    </noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

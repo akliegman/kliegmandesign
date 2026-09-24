@@ -1,188 +1,145 @@
-<p align="right">
-  <img src="https://img.shields.io/npm/l/express" />
-</p>
-
 # adamkliegman.com
 
-This is repository that contains both the backend and frontend for adamkliegman.com.
+The portfolio of Adam Kliegman, a software engineer who builds design systems, frontend
+architecture, and AI product surfaces. The site presents its case studies the way a design
+system presents its documentation, and it documents its own design system at
+[`/system`](https://www.adamkliegman.com/system).
 
-## Getting Started
+## Stack
 
-### Prerequisites
-
-- Node.js (version 19 or later - this project uses Node v19.7.0)
-- NPM (version 9 or later - this project uses NPM v9.5.0)
-
-_Older versions may work, but have not been tested._
-
-### Installation
-
-1. Clone the repository to your local machine.
-
-In terminal:
+| Layer | Choice |
+| --- | --- |
+| Client | React 19, TypeScript (strict), Vite, React Router |
+| UI | shadcn/ui on Radix primitives, Tailwind CSS 4, lucide icons, Geist and Geist Mono |
+| Quality | Biome for linting and formatting, Vitest with Testing Library and vitest-axe |
+| Server | Express on Node 22, serving the built client |
+| Hosting | Heroku behind Cloudflare |
 
 ```
-git clone https://github.com/akliegman/kliegmandesign
+client/                 the site
+  src/
+    components/         site components; ui/ holds the shadcn/ui primitives
+    content/            typed content: case studies, profile, legal copy
+    lib/                theme, motion, analytics, color and token helpers
+    pages/              one component per route
+    styles/globals.css  the theme layer: every token and custom utility
+    assets/work/        screenshots, with their sizes in dimensions.json
+  scripts/              maintenance scripts
+server/                 Express server, which serves client/build
 ```
 
-2. Install server dependencies.
+## Getting started
 
-In terminal:
+Requires Node 22.22 or later and npm 10.
 
-```
-# from root directory
-npm install
-```
+The client runs on its own; it doesn't call the server.
 
-3. Install client dependencies.
-
-In terminal:
-
-```
-# from root directory
+```sh
 cd client
-npm install
+npm ci
+npm run dev          # http://localhost:5173
 ```
 
-4. Create .env file.
+### Client scripts
 
-Create a `.env` or `.env.local` file in the root directory, with the following content:
+Run from `client/`.
 
-```
+| Script | What it does |
+| --- | --- |
+| `npm run dev` | Vite dev server |
+| `npm run build` | Typecheck, then build to `client/build` |
+| `npm run preview` | Serve the production build locally |
+| `npm run lint` | Biome lint and format check |
+| `npm run lint:fix` | Apply Biome's safe fixes and formatting |
+| `npm run typecheck` | TypeScript with no emit |
+| `npm test` | Vitest, once |
+
+CI runs lint, typecheck, tests, and the build on every pull request to `main`.
+
+### Running the full app
+
+To run the site the way it runs in production, build the client and start the server from the
+repository root. The server needs a `.env` in the root with at least:
+
+```sh
 PORT=3001
 ENV=local
-CORS_ORIGINS=http://localhost:3000,http://localhost:3001
+CORS_ORIGINS=http://localhost:3001
+AUTH_SESSION_SECRET=any-long-random-string
 ```
 
-5. Create db
+It also expects `POSTGRES_HOST`, `POSTGRES_DB`, `POSTGRES_USER`, and `POSTGRES_PASSWORD` for its
+session store, and starts without a database if they are missing.
 
-Create a PostgreSQL database and provide the connection string in the `.env` file.
-Ensure you have PoostgreSQL@14 installed and running on your machine.
-
-```
-# install PostgreSQL@14
-brew install postgresql@14
-# start PostgreSQL@14
-brew services start postgresql@14
-# create a database
-createdb kliegmandesign
+```sh
+npm ci
+(cd client && npm ci && npm run build)
+npm start            # http://localhost:3001
 ```
 
-In the `.env` file:
+## The design system
 
-```
-POSTGRES_HOST=localhost
-POSTGRES_DB=kliegmandesign
-POSTGRES_USER=your_username
-POSTGRES_PASSWORD=your_password
-```
+Everything visual comes from one place, `client/src/styles/globals.css`.
 
-The rest of the envars required to run the app should be provided by @akliegman.
+- **Color** uses shadcn/ui's semantic roles (`background`, `foreground`, `primary`, `muted`,
+  `accent`, `border`, `input`, `ring`, and so on), authored in oklch. Each role holds its light and
+  dark value in a single `light-dark()` declaration, and the theme toggle pins `color-scheme` with
+  a class on the root element. Components use role utilities such as `bg-card` and
+  `text-muted-foreground`, never raw colors.
+- **Typography** is a set of named roles (`type-display`, `type-title`, `type-heading`,
+  `type-subheading`, `type-lede`, `type-eyebrow`) so pages don't compose size, weight, and tracking
+  by hand.
+- **Motion** has three durations and two easing curves as tokens. Under
+  `prefers-reduced-motion: reduce` they collapse to zero, and a site-wide pause control stops the
+  ambient animations.
+- **shadcn/ui components** live in `src/components/ui` and are changed at the source where the
+  site needs different defaults, such as button heights and focus treatment. Variants exist only
+  for differences the site actually uses.
 
-### Running the app
+`/system` reads the theme file at build time, so the documented values are the shipped values. A
+unit test checks every foreground and background pair the site renders against its WCAG minimum in
+both themes.
 
-1. Start the server.
+## Content
 
-In terminal:
+Case studies are typed objects in `client/src/content/work.ts`. Each has a cover, sections, and
+figures, and an image is either a finished screenshot or a pending placeholder:
 
-```
-# from root directory
-npm start
-```
-
-_or (if you want live updates)_
-
-```
-# from root directory
-npm run dev
-```
-
-The server should be running on **localhost:3001**
-
-2. Start the client.
-
-From a new terminal:
-
-```
-# from root directory
-npm run client
+```ts
+cover: screenshot("demyst-ds-colors", "The Demyst color library in Storybook"),
+figures: [{ media: pending("The document editor with its action row") }],
 ```
 
-_or (if you want to run from client directory)_
+To add a screenshot, export it at two widths and record its size:
 
-```
-# from root directory
+```sh
 cd client
-npm start
+scripts/add-screenshot.sh ~/Desktop/capture.png my-screen
 ```
 
-The client should be running on **localhost:3000**
+Then reference it as `screenshot("my-screen", "Alt text that describes the image")`. Pass
+`{ dark: "my-screen-dark" }` for a matching dark capture, which the site swaps in with its own
+theme, or `{ specimen: true }` for an isolated component shown at its natural size.
 
-### Additional terminal commands
+## Accessibility
 
-1. Lint the client using ESLint.
-
-```
-# from root directory
-cd client
-npm run lint
-
-# or, if you want auto fixing:
-npm run lint:fix
-```
-
-2. Test the client using React-Testing-Library.
-
-Note: this command runs any time you open a new PR.
-
-```
-# from root directory
-cd client
-npm run test
-```
-
-3. Build the client.
-
-```
-# from root directory
-cd client
-npm run build
-```
+The site targets WCAG 2.2 AA. It has landmarks and a skip link, visible focus on every control,
+focus moved to the new page's heading after navigation, and dialogs and the mobile menu that trap
+and return focus. Contrast is tested in both themes, and reduced-motion preferences are respected
+everywhere. Component tests run axe, and the pages were also checked by keyboard, in the
+accessibility tree, and at widths from 320px up.
 
 ## Deployment
 
-From terminal:
+The site deploys to Heroku. `heroku-postbuild` installs the client's dependencies and builds it,
+and `npm start` compiles and starts the Express server, which serves `client/build` and falls back
+to `index.html` for client-side routes.
 
-```
-# from root directory
-heroku login # should prompt browser login
+```sh
+heroku login
 git push heroku main
 ```
 
-## TODOs
-
-- Server-side tests.
-- Full coverage for client side tests.
-
-## Built With
-
-- [React](https://reactjs.org/) - A JavaScript library for building user interfaces.
-- [Express](https://expressjs.com/) - A fast, unopinionated, minimalist web framework for Node.js.
-- [TypeScript](https://www.typescriptlang.org/) - A typed superset of JavaScript that compiles to plain JavaScript.
-- [Node.js](https://nodejs.org/) - A JavaScript runtime built on Chrome's V8 JavaScript engine.
-- [PostgreSQL](https://www.postgresql.org/) - A powerful, open source object-relational database system.
-- [LESS](http://lesscss.org/) - A dynamic stylesheet language that can be compiled into CSS.
-- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) - A testing utility for React that encourages good testing practices.
-
-### Public With
-
-- [Heroku](https://www.heroku.com/) - A cloud platform that lets you build, deliver, monitor, and scale apps.
-- [Cloudflare](https://www.cloudflare.com/) - A global cloud platform that provides a range of network services to businesses of all sizes.
-
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE.txt) file for details.
-
-## Authors
-
-- [Adam Kliegman](https://github.com/akliegman) - All of the work.
+MIT. See [LICENSE.txt](LICENSE.txt).
