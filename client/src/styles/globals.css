@@ -179,11 +179,15 @@
   color: var(--muted-foreground);
 }
 
-/* A faint dot grid for surfaces that present work: media stages and the home masthead. */
+/*
+ * A faint dot grid for surfaces that present work: media stages and the home masthead. It is
+ * decoration, so it sits outside contrast requirements; one-pixel dots on a 16px grid stay light
+ * enough that text over them keeps its measured contrast in practice.
+ */
 @utility bg-dot-grid {
   background-image: radial-gradient(
     circle at 1px 1px,
-    color-mix(in oklch, var(--foreground) 11%, transparent) 1px,
+    color-mix(in oklch, var(--foreground) 17%, transparent) 1px,
     transparent 0
   );
   background-size: 1rem 1rem;
