@@ -11,7 +11,8 @@
     "start": "node server/build/index.js",
     "dev": "npm run build && nodemon server/build/index.js",
     "heroku-postbuild": "cd client && npm ci --include=dev && npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "tsc --project ./ && node --test \"server/build/**/*.test.js\"",
+    "test:visits": "VISITS_TEST_DATABASE_URL=${VISITS_TEST_DATABASE_URL:-postgres://localhost/kliegmandesign_visits_test} VISITS_TEST_PRINT=1 npm test"
   },
   "keywords": [],
   "author": "Adam Kliegman",

@@ -20,12 +20,13 @@ client/                 the site
   src/
     components/         site components; ui/ holds the shadcn/ui primitives
     content/            typed content: case studies, profile, legal copy
-    lib/                theme, motion, analytics, color and token helpers
+    lib/                theme, motion, visit analytics, color and token helpers
     pages/              one component per route
     styles/globals.css  the theme layer: every token and custom utility
     assets/work/        screenshots, with their sizes in dimensions.json
   scripts/              maintenance scripts
 server/                 Express server, which serves client/build
+  visits/               visit analytics: collector, Postgres queue, Slack notifications
 ```
 
 ## Getting started
@@ -54,28 +55,65 @@ Run from `client/`.
 | `npm run typecheck` | TypeScript with no emit |
 | `npm test` | Vitest, once |
 
-CI runs lint, typecheck, tests, and the build on every pull request to `main`.
+CI runs the client's lint, typecheck, tests, and build, and the server's tests against Postgres, on
+every pull request to `main`.
 
 ### Running the full app
 
 To run the site the way it runs in production, build the client and start the server from the
-repository root. The server needs a `.env` in the root with at least:
-
-```sh
-PORT=3001
-ENV=local
-CORS_ORIGINS=http://localhost:3001
-AUTH_SESSION_SECRET=any-long-random-string
-```
-
-It also expects `POSTGRES_HOST`, `POSTGRES_DB`, `POSTGRES_USER`, and `POSTGRES_PASSWORD` for its
-session store, and starts without a database if they are missing.
+repository root. Copy [`.env.example`](.env.example) to `.env` and fill in the Postgres
+connection; the server still serves the site without a database.
 
 ```sh
 npm ci
 (cd client && npm ci && npm run build)
 npm start            # http://localhost:3001
 ```
+
+## Visit analytics
+
+`server/visits` records visits and posts them to a private Slack channel: a notice when a visit
+starts, then a threaded summary once the visitor has been inactive for 30 minutes.
+
+- **Collected:** page views with estimated visible time, résumé and contact-link clicks, IP
+  address, Cloudflare's location estimate, network name and ASN, browser, OS and device class,
+  referring host, and `utm_` parameters. An explicit allowlist rejects everything else.
+- **Client IP:** Heroku appends the connecting address to `X-Forwarded-For`, so only the last
+  entry is trusted. `CF-Connecting-IP` is used only when that address is a Cloudflare edge.
+- **Network data:** the public-domain [iptoasn.com](https://iptoasn.com) dataset, downloaded at
+  boot and daily and looked up in memory. No visitor address leaves the server for enrichment.
+- **Consent:** in the EEA, UK, and Switzerland (by Cloudflare's country header), and when the
+  country is unknown, nothing is recorded until the visitor allows it. Global Privacy Control and
+  Do Not Track turn collection off everywhere. The server enforces this as well as the client.
+- **Filtering:** crawler, previewer, monitor, and automation user agents; foreign origins;
+  `VISITS_IGNORE_NETWORKS`; and single-page visits from cloud networks.
+- **Delivery:** jobs live in Postgres and are claimed with `FOR UPDATE SKIP LOCKED`, so they
+  survive restarts. Failures retry at 1, 5, 15, and 60 minutes, then stop. A per-network cooldown
+  and an hourly cap keep Slack quiet. Logs carry job ids and outcome codes, never visitor data.
+- **Retention:** full IPs are cleared after `VISITS_IP_RETENTION_DAYS` (7) and visits deleted
+  after `VISITS_RETENTION_DAYS` (30), by an hourly sweep.
+
+The privacy policy in `client/src/content/legal.ts` describes all of this; keep them in sync.
+
+### Setup
+
+1. Create a Slack app at [api.slack.com/apps](https://api.slack.com/apps) in your own workspace,
+   add the `chat:write` bot scope, install it, and invite the bot to a private channel.
+2. In Cloudflare, enable the **Add visitor location headers** managed transform (under Rules)
+   for city and region; without it, location is country only.
+3. Set the config and deploy:
+
+```sh
+heroku config:set VISITS_ENABLED=true VISITS_SLACK_BOT_TOKEN=xoxb-... VISITS_SLACK_CHANNEL_ID=C...
+```
+
+### Tests
+
+Run from the repository root. `npm test` compiles the server and runs its unit tests;
+`npm run test:visits` also runs the end-to-end tests against a local Postgres database (created
+with `createdb kliegmandesign_visits_test`) and prints each notification. With
+`VISITS_TEST_SLACK_BOT_TOKEN` and `VISITS_TEST_SLACK_CHANNEL_ID` set, those notifications are also
+posted to that Slack channel, marked `[test]`.
 
 ## The design system
 

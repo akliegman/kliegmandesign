@@ -17,9 +17,21 @@ export function SiteFooter({ onAnalyticsSettings }: SiteFooterProps) {
   return (
     <footer className="mt-32 border-t">
       <div className="container-page flex flex-col gap-6 py-10 text-muted-foreground text-sm md:flex-row md:items-center md:justify-between">
-        <p>
-          © {new Date().getFullYear()} {profile.name}
-        </p>
+        <div className="flex max-w-[48ch] flex-col gap-2">
+          <p>
+            © {new Date().getFullYear()} {profile.name}
+          </p>
+          <p>
+            This site records visits, including pages viewed, IP address, and approximate location.{" "}
+            <Link
+              className="underline underline-offset-4 hover:text-foreground"
+              to="/privacy-policy"
+              viewTransition
+            >
+              How and why
+            </Link>
+          </p>
+        </div>
         <nav aria-label="Footer">
           <ul className="flex flex-wrap gap-x-5 gap-y-2">
             <li>
@@ -59,7 +71,7 @@ export function SiteFooter({ onAnalyticsSettings }: SiteFooterProps) {
             </li>
             <li>
               <button type="button" className={linkClass} onClick={onAnalyticsSettings}>
-                Analytics settings
+                Analytics choice
               </button>
             </li>
           </ul>

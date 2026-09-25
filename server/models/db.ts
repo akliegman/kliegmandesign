@@ -1,11 +1,12 @@
 import { Sequelize } from "sequelize";
 import { dbConfig } from "../config/db";
-import { SessionsModel } from "./sessions";
 import { Db } from "./db.interface";
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
   dialect: "postgres",
+  // Default query logging would print visit queries to the log stream.
+  logging: false,
   ...(dbConfig.shouldUseSSL && {
     dialectOptions: {
       ssl: {
@@ -23,7 +24,4 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   },
 });
 
-export const db: Db = {
-  sequelize,
-  sessions: SessionsModel(sequelize),
-};
+export const db: Db = { sequelize };

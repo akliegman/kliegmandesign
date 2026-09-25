@@ -4,7 +4,8 @@ import { Outlet, ScrollRestoration, useLocation, useNavigationType } from "react
 import { ConsentNotice } from "@/components/ConsentNotice";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { trackPageview, useAnalyticsConsent } from "@/lib/analytics";
+import { useVisitAnalytics } from "@/hooks/useVisitAnalytics";
+import { hasOptOutSignal, useVisitConsent } from "@/lib/visits";
 
 /**
  * After an in-app navigation, moves focus to the new page's h1 so keyboard and screen reader users
@@ -29,14 +30,14 @@ function useRouteFocus() {
 
 export function RootLayout() {
   const { pathname } = useLocation();
-  const [consent, setConsent] = useAnalyticsConsent();
+  const [consent, setConsent] = useVisitConsent();
   const [showConsent, setShowConsent] = useState(false);
+  const policy = useVisitAnalytics(pathname, consent);
+  // Visitors where consent is required are asked once; everyone else can change it from the footer.
+  const askForConsent =
+    policy?.enabled && policy.consentRequired && consent === "unset" && !hasOptOutSignal();
 
   useRouteFocus();
-
-  useEffect(() => {
-    if (consent === "granted") trackPageview(pathname);
-  }, [consent, pathname]);
 
   return (
     <>
@@ -51,8 +52,11 @@ export function RootLayout() {
         <Outlet />
       </main>
       <SiteFooter onAnalyticsSettings={() => setShowConsent(true)} />
-      {(consent === "unset" || showConsent) && (
+      {(askForConsent || showConsent) && (
         <ConsentNotice
+          consent={consent}
+          optedOutByBrowser={hasOptOutSignal()}
+          onClose={() => setShowConsent(false)}
           onChoose={(choice) => {
             setConsent(choice);
             setShowConsent(false);
