@@ -7,7 +7,7 @@ export const profile = {
   location: "New York area, working remotely",
   current: "Senior Software Engineer at MagicSchool AI",
   focus: "Design systems, frontend, accessibility, AI",
-  resumePath: "/resume_kliegman_adam_2026.pdf",
+  resumePath: "/adamkliegman_resume_2026.pdf",
   links: {
     linkedIn: "https://www.linkedin.com/in/adamkliegman/",
     gitHub: "https://github.com/akliegman",

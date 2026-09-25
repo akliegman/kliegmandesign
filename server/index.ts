@@ -47,6 +47,11 @@ logger.info("-------------------------------------------------------");
 logger.info("Checking path...");
 logger.info(path.join(__dirname, "../../client/build"));
 
+// The résumé was renamed; links already sent out still resolve.
+app.get("/resume_kliegman_adam_2026.pdf", (req: Request, res: Response) => {
+  res.redirect(301, "/adamkliegman_resume_2026.pdf");
+});
+
 logger.info("Setting up static routes...");
 logger.info(path.join(__dirname, "../../client/build"));
 app.use(express.static(path.join(__dirname, "../../client/build")));

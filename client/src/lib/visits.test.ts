@@ -55,7 +55,7 @@ describe("shouldCollect", () => {
 
 describe("linkEvent", () => {
   it("tracks only the résumé and contact links", () => {
-    expect(linkEvent("/resume_kliegman_adam_2026.pdf", "/resume")).toEqual({
+    expect(linkEvent("/adamkliegman_resume_2026.pdf", "/resume")).toEqual({
       type: "resume_download",
       path: "/resume",
     });

@@ -16,7 +16,7 @@ export function ResumePage() {
       <PageHeader
         kicker={<p className="type-eyebrow">Résumé</p>}
         title="Résumé"
-        lede="The PDF has my full work history, skills, and education. For the story behind the work, the case studies go further."
+        lede="A one-page summary of my work history, skills, and education. For the story behind the work, the case studies go further."
       >
         <div className="flex flex-wrap gap-3 pt-2">
           <Button asChild size="lg">
