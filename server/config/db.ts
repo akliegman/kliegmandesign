@@ -4,6 +4,7 @@ import { DbConfig } from "./db.interface";
 dotenv.config();
 
 export const dbConfig: DbConfig = {
+  URL: process.env.DATABASE_URL,
   HOST: process.env.POSTGRES_HOST!,
   USER: process.env.POSTGRES_USER!,
   PASSWORD: process.env.POSTGRES_PASSWORD!,

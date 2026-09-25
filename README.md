@@ -12,7 +12,7 @@ system presents its documentation, and it documents its own design system at
 | Client | React 19, TypeScript (strict), Vite, React Router |
 | UI | shadcn/ui on Radix primitives, Tailwind CSS 4, lucide icons, Geist and Geist Mono |
 | Quality | Biome for linting and formatting, Vitest with Testing Library and vitest-axe |
-| Server | Express on Node 22, serving the built client |
+| Server | Express on Node 24, serving the built client |
 | Hosting | Heroku behind Cloudflare |
 
 ```
@@ -31,7 +31,7 @@ server/                 Express server, which serves client/build
 
 ## Getting started
 
-Requires Node 22.22 or later and npm 10.
+Requires Node 22.22 or later and npm 10; production runs Node 24.
 
 The client runs on its own; it doesn't call the server.
 

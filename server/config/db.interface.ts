@@ -1,4 +1,5 @@
 export interface DbConfig {
+  URL?: string;
   HOST: string;
   USER: string;
   PASSWORD: string;
