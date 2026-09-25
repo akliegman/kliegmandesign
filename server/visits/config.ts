@@ -44,7 +44,7 @@ export function readVisitsConfig(env: Env = process.env): VisitsConfig {
     visitRetentionDays: positiveNumber(env.VISITS_RETENTION_DAYS, 30),
     startDelaySeconds: positiveNumber(env.VISITS_START_DELAY_SECONDS, 20),
     inactivityMinutes: positiveNumber(env.VISITS_INACTIVITY_MINUTES, 30),
-    startCooldownMinutes: positiveNumber(env.VISITS_START_COOLDOWN_MINUTES, 360),
+    startCooldownMinutes: positiveNumber(env.VISITS_START_COOLDOWN_MINUTES, 30),
     maxNotificationsPerHour: positiveNumber(env.VISITS_MAX_NOTIFICATIONS_PER_HOUR, 20),
     maskIp: env.VISITS_MASK_IP === "true",
     timeZone: env.VISITS_TIME_ZONE ?? "America/New_York",

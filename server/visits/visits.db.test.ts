@@ -54,7 +54,7 @@ function config(overrides: Partial<VisitsConfig> = {}): VisitsConfig {
     visitRetentionDays: 30,
     startDelaySeconds: 1,
     inactivityMinutes: 30,
-    startCooldownMinutes: 360,
+    startCooldownMinutes: 30,
     maxNotificationsPerHour: 20,
     maskIp: false,
     timeZone: "America/New_York",
