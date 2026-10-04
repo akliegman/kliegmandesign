@@ -4,6 +4,7 @@ import { Outlet, ScrollRestoration, useLocation, useNavigationType } from "react
 import { ConsentNotice } from "@/components/ConsentNotice";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { XrayLayer } from "@/components/XrayLayer";
 import { useVisitAnalytics } from "@/hooks/useVisitAnalytics";
 import { hasOptOutSignal, useVisitConsent } from "@/lib/visits";
 
@@ -63,6 +64,7 @@ export function RootLayout() {
           }}
         />
       )}
+      <XrayLayer />
       <ScrollRestoration />
     </>
   );

@@ -22,10 +22,15 @@ export function WorkIndexPage() {
         lede="Products and systems I've built, newest first. Each one opens with screens from the product, then explains what the problem was and the decisions behind the result."
       />
 
-      {companies.map((company) => {
+      {companies.map((company, companyIndex) => {
         const items = work.filter((item) => item.company === company);
         return (
-          <section key={company} aria-labelledby={`company-${items[0]?.slug}`} className="mt-20">
+          <section
+            key={company}
+            data-xray={companyIndex === 0 ? "work-company" : undefined}
+            aria-labelledby={`company-${items[0]?.slug}`}
+            className="mt-20"
+          >
             <h2 id={`company-${items[0]?.slug}`} className="type-eyebrow mb-4">
               {company}
             </h2>

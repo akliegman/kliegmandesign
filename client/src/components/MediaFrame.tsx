@@ -102,7 +102,11 @@ export function MediaFrame({
 
   if (media.specimen) {
     return (
-      <div className={cn(stage, "grid place-items-center p-[6%]", className)} style={style}>
+      <div
+        data-xray={media.dark ? "themed-media" : undefined}
+        className={cn(stage, "grid place-items-center p-[6%]", className)}
+        style={style}
+      >
         {/* Specimens are 2x captures, so half the pixel width is their natural CSS size. */}
         <div className="w-full" style={{ maxWidth: media.width / 2 }}>
           <ThemedImage
@@ -118,7 +122,11 @@ export function MediaFrame({
   }
 
   return (
-    <div className={cn(stage, "px-[4%] pt-[4%]", className)} style={style}>
+    <div
+      data-xray={media.dark ? "themed-media" : undefined}
+      className={cn(stage, "px-[4%] pt-[4%]", className)}
+      style={style}
+    >
       <ThemedImage
         media={media}
         sizes={sizes}

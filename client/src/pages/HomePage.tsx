@@ -32,7 +32,10 @@ export function HomePage() {
         <MastheadBackdrop />
         <div className="container-page relative grid gap-12 py-20 md:py-32 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
           <div className="flex flex-col gap-6">
-            <h1 className="type-display max-w-[21ch] animate-rise [animation-delay:60ms]">
+            <h1
+              data-xray="hero-headline"
+              className="type-display max-w-[21ch] animate-rise [animation-delay:60ms]"
+            >
               I build <span className="text-shimmer">design systems</span> and the frontend
               foundations other engineers ship on.
             </h1>
@@ -61,6 +64,7 @@ export function HomePage() {
               sizes="(min-width: 64rem) 14rem, (min-width: 48rem) 10rem, 8rem"
               width={960}
               height={960}
+              data-xray="hero-portrait"
               alt={`Portrait of ${profile.name} in sunglasses against a pink shuttered wall`}
               fetchPriority="high"
               className="aspect-[4/5] w-full rounded-xl border object-cover object-[40%_30%] shadow-raised"
@@ -68,7 +72,7 @@ export function HomePage() {
           </div>
         </div>
         <div className="container-page relative">
-          <dl className="grid border-t sm:grid-cols-3">
+          <dl data-xray="hero-facts" className="grid border-t sm:grid-cols-3">
             {[
               { label: "Currently", value: profile.current, Icon: BriefcaseIcon },
               { label: "Focus", value: profile.focus, Icon: CrosshairIcon },
@@ -111,14 +115,18 @@ export function HomePage() {
           </Link>
         </div>
 
-        {featured && <WorkCard item={featured} feature ambient />}
+        {featured && (
+          <div data-xray="featured-work">
+            <WorkCard item={featured} feature ambient />
+          </div>
+        )}
         <div className="reveal mt-6 grid gap-6 lg:grid-cols-3">
           {highlighted.map((item) => item && <WorkCard key={item.slug} item={item} />)}
         </div>
 
         <div className="reveal mt-16">
           <h3 className="type-eyebrow mb-4">Earlier work</h3>
-          <ul className="border-t">
+          <ul data-xray="earlier-work" className="border-t">
             {earlier.map((item) => (
               <li key={item.slug} className="border-b">
                 <Link
@@ -159,7 +167,7 @@ export function HomePage() {
             />
           </Link>
         </div>
-        <ol className="reveal grid gap-6 md:grid-cols-3">
+        <ol data-xray="ai-summary" className="reveal grid gap-6 md:grid-cols-3">
           {aiSummary.map((point) => (
             <li
               key={point.title}
@@ -181,7 +189,7 @@ export function HomePage() {
         <h2 id="how-i-work" className="type-heading mb-10">
           How I work
         </h2>
-        <ol className="grid gap-x-12 border-t lg:grid-cols-3">
+        <ol data-xray="principles" className="grid gap-x-12 border-t lg:grid-cols-3">
           {principles.map((principle) => (
             <li key={principle.title} className="reveal flex flex-col gap-3 border-b py-10">
               <span className="icon-tile">
@@ -224,7 +232,10 @@ export function HomePage() {
             </Button>
           </div>
 
-          <div className="gradient-stroke overflow-hidden rounded-2xl border bg-card stroke-ambient stroke-idle">
+          <div
+            data-xray="system-panel"
+            className="gradient-stroke overflow-hidden rounded-2xl border bg-card stroke-ambient stroke-idle"
+          >
             <div className="grid gap-6 bg-dot-grid bg-muted p-6 sm:grid-cols-2 sm:p-8">
               <div className="flex flex-col gap-3">
                 <p className="type-eyebrow">Color roles</p>
@@ -284,6 +295,7 @@ export function HomePage() {
               Email is the quickest way to reach me.
             </p>
             <a
+              data-xray="contact-email"
               href={`mailto:${profile.email}`}
               className="w-fit break-all rounded-sm font-mono text-lg underline decoration-border underline-offset-8 transition-colors hover:decoration-primary sm:text-xl"
             >

@@ -5,7 +5,9 @@ export type VisitEvent =
   | { type: "pageview"; path: string; previousEngagedMs: number | null }
   | { type: "leave"; path: string; engagedMs: number }
   | { type: "resume_download"; path: string }
-  | { type: "contact_click"; path: string; target: ContactTarget };
+  | { type: "contact_click"; path: string; target: ContactTarget }
+  | { type: "xray_toggle"; path: string; on: boolean }
+  | { type: "xray_note"; path: string; note: string };
 
 export interface Attribution {
   referrerHost: string | null;
@@ -28,6 +30,8 @@ const SESSION_ID = /^[A-Za-z0-9-]{16,64}$/;
 const PATH = /^\/[a-z0-9\-/]{0,120}$/;
 const HOST = /^(?=.{1,253}$)([a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}$/;
 const CAMPAIGN_VALUE = /^[A-Za-z0-9._+ -]{1,64}$/;
+/** X-ray note ids are short slugs defined by the client's content; nothing else is accepted. */
+const XRAY_NOTE = /^[a-z0-9-]{1,40}$/;
 /** Engaged time is capped at an hour; anything longer is a tab left open. */
 const MAX_ENGAGED_MS = 60 * 60 * 1000;
 
@@ -77,6 +81,12 @@ function sanitizeEvent(value: unknown): VisitEvent | null {
     case "contact_click":
       return CONTACT_TARGETS.includes(event.target as ContactTarget)
         ? { type: "contact_click", path, target: event.target as ContactTarget }
+        : null;
+    case "xray_toggle":
+      return typeof event.on === "boolean" ? { type: "xray_toggle", path, on: event.on } : null;
+    case "xray_note":
+      return typeof event.note === "string" && XRAY_NOTE.test(event.note)
+        ? { type: "xray_note", path, note: event.note }
         : null;
     default:
       return null;

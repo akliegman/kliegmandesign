@@ -32,6 +32,11 @@
   --input: light-dark(oklch(0.62 0.01 255), oklch(0.55 0.012 255));
   --ring: var(--primary);
 
+  /* X-ray mode: neon green for chips and the switch, and a deeper line color that holds contrast on white. */
+  --xray: oklch(0.88 0.27 142);
+  --xray-foreground: oklch(0.25 0.06 142);
+  --xray-line: light-dark(oklch(0.55 0.17 145), oklch(0.88 0.27 142));
+
   --radius: 0.5rem;
 
   --duration-fast: 150ms;
@@ -85,6 +90,9 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-xray: var(--xray);
+  --color-xray-foreground: var(--xray-foreground);
+  --color-xray-line: var(--xray-line);
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -407,6 +415,92 @@
     color-mix(in oklch, var(--foreground) 7%, transparent),
     transparent
   );
+}
+
+/* The X-ray switch breathes a soft neon glow until the visitor has tried it once. */
+@utility xray-beacon {
+  animation: xray-beacon 2.8s ease-in-out infinite;
+}
+
+@keyframes xray-beacon {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 1px color-mix(in oklch, var(--xray) 45%, transparent),
+      0 0 10px 0 color-mix(in oklch, var(--xray) 30%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 0 0 1px color-mix(in oklch, var(--xray) 70%, transparent),
+      0 0 18px 2px color-mix(in oklch, var(--xray) 55%, transparent);
+  }
+}
+
+/* The logo's gradient stops, swapped to neon in X-ray mode. */
+[data-wordmark] {
+  --logo-stop-start: var(--primary);
+  --logo-stop-middle: var(--accent-foreground);
+  --logo-stop-end: var(--muted-foreground);
+}
+
+:root[data-xray="on"] [data-wordmark] {
+  --logo-stop-start: var(--xray);
+  --logo-stop-middle: var(--xray-line);
+  --logo-stop-end: var(--xray);
+  background:
+    linear-gradient(var(--card), var(--card)) padding-box,
+    conic-gradient(
+      from var(--stroke-angle),
+      var(--xray),
+      transparent 30%,
+      var(--xray-line) 55%,
+      transparent 80%,
+      var(--xray)
+    )
+    border-box;
+  box-shadow:
+    0 0 0 1px color-mix(in oklch, var(--xray) 25%, transparent),
+    0 0 18px -4px var(--xray);
+  animation-duration: 4s;
+
+  & svg {
+    filter: drop-shadow(0 0 3px color-mix(in oklch, var(--xray) 70%, transparent));
+  }
+}
+
+/*
+ * X-ray tints the page green so white cards lift off it, and the home masthead's warm glow and
+ * pointer-lit dots turn green with it.
+ */
+:root[data-xray="on"] body {
+  background-color: color-mix(in oklch, var(--background) 93%, var(--xray));
+}
+
+:root[data-xray="on"] .glow-primary {
+  background: radial-gradient(
+    closest-side,
+    color-mix(in oklch, var(--xray) 28%, transparent),
+    transparent
+  );
+}
+
+:root[data-xray="on"] [data-dot-grid] {
+  caret-color: var(--xray-line);
+}
+
+/*
+ * The sticky header blurs whatever scrolls under it. Over the animated rain that blur would be
+ * recomputed every frame, so X-ray swaps it for a nearly opaque fill.
+ */
+:root[data-xray="on"] [data-site-header] {
+  backdrop-filter: none;
+  background-color: color-mix(in oklch, var(--background) 96%, transparent);
+}
+
+/* With X-ray on, every annotated element shows its box. */
+:root[data-xray="on"] [data-xray] {
+  outline: 1px dashed var(--xray-line);
+  outline-offset: 6px;
 }
 
 /* The home masthead's two light sources drift on long, offset loops. */

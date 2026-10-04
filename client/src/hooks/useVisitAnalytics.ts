@@ -5,6 +5,7 @@ import {
   isProductionHost,
   landingAttribution,
   linkEvent,
+  onTrackedVisitEvent,
   sendVisitEvent,
   shouldCollect,
   stripCampaignParams,
@@ -43,7 +44,7 @@ function useEngagedTime() {
 }
 
 /**
- * Sends page views, leave times, and résumé and contact clicks when the policy and the visitor's
+ * Sends page views, leave times, résumé and contact clicks, and X-ray use when the policy and the visitor's
  * choice allow it. Returns the server's policy so the layout knows whether to ask for consent.
  */
 export function useVisitAnalytics(pathname: string, consent: VisitConsent) {
@@ -104,9 +105,11 @@ export function useVisitAnalytics(pathname: string, consent: VisitConsent) {
     };
     window.addEventListener("pagehide", onPageHide);
     document.addEventListener("click", onClick, { capture: true });
+    const stopTracking = onTrackedVisitEvent((event) => sendVisitEvent(event, consent));
     return () => {
       window.removeEventListener("pagehide", onPageHide);
       document.removeEventListener("click", onClick, { capture: true });
+      stopTracking();
     };
   }, [collecting, consent]);
 

@@ -312,7 +312,7 @@ export const termsOfUse = {
 /** Describes the visit analytics in server/visits; update this when its fields, providers, or retention change. */
 export const privacyPolicy = {
   title: "Privacy Policy",
-  updated: "September 25, 2026",
+  updated: "October 4, 2026",
   blocks: [
     {
       type: "paragraph",
@@ -322,7 +322,7 @@ export const privacyPolicy = {
     {
       type: "list",
       items: [
-        "The site records visits: the pages you view, your IP address, your approximate location, your network, your browser and device type, the site that sent you, and clicks on the résumé and contact links.",
+        "The site records visits: the pages you view, your IP address, your approximate location, your network, your browser and device type, the site that sent you, clicks on the résumé and contact links, and use of the X-ray view.",
         "It uses this to understand how the portfolio is used and to notify me when someone visits.",
         "Visit notifications, including your IP address, are delivered to me through Slack.",
         "Nothing is sold or used for advertising, and the site loads no third-party analytics or advertising code.",
@@ -335,6 +335,7 @@ export const privacyPolicy = {
       items: [
         "Pages viewed, in order, with the time of each, plus an estimate of how long each page was open in a visible tab. That estimate doesn't show whether anyone was reading.",
         "Clicks on the résumé download and on the email, LinkedIn, and GitHub links. The site doesn't record form contents, keystrokes, clipboard contents, or screen recordings.",
+        "Turning the X-ray view on or off, and which of its design notes you open.",
         "Your IP address.",
         "Approximate location (city, region, and country), which Cloudflare estimates from your IP address.",
         "The name and number of the network your IP address belongs to, such as an internet provider, a mobile carrier, a hosting company, or an organization's own network. The site looks this up on its own server using the public iptoasn.com dataset.",

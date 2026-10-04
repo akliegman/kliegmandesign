@@ -27,7 +27,7 @@ export function WorkFigure({ figure, sizes, aspectRatio }: WorkFigureProps) {
 
   if (media.kind === "pending" || media.specimen) {
     return (
-      <figure className="m-0">
+      <figure data-xray="work-figure" className="m-0">
         <MediaFrame media={media} aspectRatio={aspectRatio} />
         {caption && (
           <figcaption className="mt-3 text-muted-foreground text-sm">{caption}</figcaption>
@@ -37,7 +37,7 @@ export function WorkFigure({ figure, sizes, aspectRatio }: WorkFigureProps) {
   }
 
   return (
-    <figure className="m-0">
+    <figure data-xray="work-figure" className="m-0">
       <Dialog>
         <DialogTrigger className="gradient-stroke group block w-full cursor-zoom-in rounded-xl text-left">
           <MediaFrame

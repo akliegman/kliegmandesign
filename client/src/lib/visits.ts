@@ -1,7 +1,7 @@
 import { useCallback, useSyncExternalStore } from "react";
 
 /**
- * First-party visit analytics: page views and a few link clicks, sent to the site's own server.
+ * First-party visit analytics: page views, a few link clicks, and X-ray use, sent to the site's own server.
  * The server enforces the same consent rules independently.
  */
 
@@ -16,7 +16,9 @@ export type VisitEvent =
   | { type: "pageview"; path: string; previousEngagedMs: number | null }
   | { type: "leave"; path: string; engagedMs: number }
   | { type: "resume_download"; path: string }
-  | { type: "contact_click"; path: string; target: "email" | "linkedin" | "github" };
+  | { type: "contact_click"; path: string; target: "email" | "linkedin" | "github" }
+  | { type: "xray_toggle"; path: string; on: boolean }
+  | { type: "xray_note"; path: string; note: string };
 
 const CONSENT_KEY = "visit-analytics";
 const SESSION_KEY = "visit-session";
@@ -151,6 +153,23 @@ export function linkEvent(href: string, path: string): VisitEvent | null {
     return null;
   }
   return null;
+}
+
+const trackedListeners = new Set<(event: VisitEvent) => void>();
+
+/**
+ * Reports an in-page interaction that isn't a link click. Nothing is sent unless the analytics hook
+ * is listening, which it only does when the policy and the visitor's choice allow collection.
+ */
+export function trackVisitEvent(event: VisitEvent) {
+  for (const listener of trackedListeners) listener(event);
+}
+
+export function onTrackedVisitEvent(listener: (event: VisitEvent) => void) {
+  trackedListeners.add(listener);
+  return () => {
+    trackedListeners.delete(listener);
+  };
 }
 
 export function sendVisitEvent(

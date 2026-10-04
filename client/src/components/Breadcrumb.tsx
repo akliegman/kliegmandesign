@@ -9,7 +9,7 @@ export interface BreadcrumbProps {
 /** Ancestor links for a page; the last item is the current page and is not a link. */
 export function Breadcrumb({ items, label = "Breadcrumb" }: BreadcrumbProps) {
   return (
-    <nav aria-label={label}>
+    <nav data-xray="breadcrumb" aria-label={label}>
       <ol className="flex flex-wrap items-center gap-2 font-mono text-muted-foreground text-xs">
         {items.map((item, index) => (
           <li key={item.label} className="flex items-center gap-2">

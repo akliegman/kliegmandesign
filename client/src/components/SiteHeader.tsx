@@ -12,6 +12,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Wordmark } from "@/components/Wordmark";
+import { XrayToggle } from "@/components/XrayToggle";
 import { navigation, profile } from "@/content/profile";
 import { cn } from "@/lib/utils";
 
@@ -31,7 +32,10 @@ function ResumeLink({ className }: { className?: string }) {
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur-md backdrop-saturate-150">
+    <header
+      data-site-header
+      className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur-md backdrop-saturate-150"
+    >
       <div className="container-page flex h-(--header-height) items-center gap-6">
         <Wordmark />
 
@@ -44,7 +48,10 @@ export function SiteHeader() {
           <ResumeLink />
         </nav>
 
-        <ThemeToggle className="hidden md:inline-flex" />
+        <div className="hidden items-center gap-2 md:flex">
+          <ThemeToggle />
+          <XrayToggle />
+        </div>
 
         <Sheet>
           <SheetTrigger asChild>
@@ -85,6 +92,7 @@ export function SiteHeader() {
             <div className="mt-auto border-t p-5">
               <p className="type-eyebrow mb-3">Theme</p>
               <ThemeToggle withLabels />
+              <XrayToggle className="mt-4" />
             </div>
           </SheetContent>
         </Sheet>

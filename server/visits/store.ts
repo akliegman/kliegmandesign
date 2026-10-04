@@ -159,7 +159,16 @@ export function createStore(sequelize: Sequelize) {
         if (!visit) throw new Error("visit upsert returned no row");
 
         const event = payload.event;
-        const target = event.type === "contact_click" ? event.target : null;
+        const target =
+          event.type === "contact_click"
+            ? event.target
+            : event.type === "xray_toggle"
+              ? event.on
+                ? "on"
+                : "off"
+              : event.type === "xray_note"
+                ? event.note
+                : null;
         const engaged =
           event.type === "leave" ? event.engagedMs : event.type === "pageview" ? event.previousEngagedMs : null;
         await sequelize.query(

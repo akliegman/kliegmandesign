@@ -28,7 +28,7 @@ async function processJob(job: NotificationJob, deps: WorkerDeps): Promise<strin
   const table = deps.network();
   const network = ip && table ? lookupNetwork(table, ip) : UNKNOWN_NETWORK;
   const pageviews = events.filter((event) => event.type === "pageview");
-  const interactions = events.filter((event) => event.type === "resume_download" || event.type === "contact_click");
+  const interactions = events.filter((event) => event.type !== "pageview" && event.type !== "leave");
 
   if (job.kind === "summary") await store.closeVisit(visit.id);
 

@@ -187,7 +187,7 @@ function ColorRoles() {
   const roles = colorTokens.filter((token) => roleUses[token.name]);
 
   return (
-    <div className="overflow-hidden rounded-xl border">
+    <div data-xray="system-roles" className="overflow-hidden rounded-xl border">
       <table className="w-full border-collapse text-left text-sm">
         <caption className="sr-only">Semantic color roles with their light and dark values</caption>
         <thead className="bg-card">
@@ -243,7 +243,7 @@ function ColorRoles() {
 
 function ContrastTable() {
   return (
-    <div className="overflow-hidden rounded-xl border">
+    <div data-xray="system-contrast" className="overflow-hidden rounded-xl border">
       <table className="w-full border-collapse bg-card text-left text-sm">
         <caption className="sr-only">
           Contrast ratios of the color pairs the site renders, in both themes

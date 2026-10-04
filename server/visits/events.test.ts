@@ -46,6 +46,22 @@ describe("parsePayload", () => {
     assert.equal(parsePayload("not an object"), null);
   });
 
+  it("accepts X-ray toggles and notes, and rejects malformed ones", () => {
+    const base = { sessionId: SESSION, consent: "notice" };
+    assert.deepEqual(parsePayload({ ...base, event: { type: "xray_toggle", path: "/", on: true } })?.event, {
+      type: "xray_toggle",
+      path: "/",
+      on: true,
+    });
+    assert.deepEqual(
+      parsePayload({ ...base, event: { type: "xray_note", path: "/work/spellbook", note: "page-title" } })?.event,
+      { type: "xray_note", path: "/work/spellbook", note: "page-title" },
+    );
+    assert.equal(parsePayload({ ...base, event: { type: "xray_toggle", path: "/", on: "yes" } }), null);
+    assert.equal(parsePayload({ ...base, event: { type: "xray_note", path: "/", note: "<script>" } }), null);
+    assert.equal(parsePayload({ ...base, event: { type: "xray_note", path: "/", note: "a".repeat(41) } }), null);
+  });
+
   it("drops attribution values that don't fit the allowlist pattern", () => {
     const payload = parsePayload({
       sessionId: SESSION,

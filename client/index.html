@@ -32,12 +32,13 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="apple-touch-icon" href="/apple-icon-180x180.png" />
     <link rel="manifest" href="/manifest.json" />
-    <!-- Apply saved theme and motion choices before first paint (keys in src/lib/theme.ts and motion.ts). -->
+    <!-- Apply saved theme, motion, and X-ray choices before first paint (keys in src/lib/theme.ts, motion.ts, and xray.ts). -->
     <script>
       try {
         const theme = localStorage.getItem("theme");
         if (theme === "light" || theme === "dark") document.documentElement.classList.add(theme);
         if (localStorage.getItem("motion") === "paused") document.documentElement.dataset.motion = "paused";
+        if (sessionStorage.getItem("xray") === "on") document.documentElement.dataset.xray = "on";
       } catch {}
     </script>
     <title>Adam Kliegman, software engineer for design systems and frontend architecture</title>

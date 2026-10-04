@@ -14,7 +14,7 @@ export function OnThisPage({ sections }: OnThisPageProps) {
   const activeId = useActiveSection(ids);
 
   return (
-    <nav aria-label="On this page" className="text-sm">
+    <nav data-xray="on-this-page" aria-label="On this page" className="text-sm">
       <p className="type-eyebrow mb-3">On this page</p>
       <ul className="border-l">
         {sections.map(({ id, heading }) => (

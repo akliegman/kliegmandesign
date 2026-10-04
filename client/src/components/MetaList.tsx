@@ -10,7 +10,7 @@ export interface MetaListProps {
 /** Label and value pairs as a definition list, with labels set as mono eyebrows. */
 export function MetaList({ items, className }: MetaListProps) {
   return (
-    <dl className={cn("grid border-t sm:grid-cols-[9rem_1fr]", className)}>
+    <dl data-xray="page-meta" className={cn("grid border-t sm:grid-cols-[9rem_1fr]", className)}>
       {items.map(({ label, value }) => (
         <div
           key={label}

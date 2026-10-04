@@ -76,6 +76,8 @@ export function pageSequence(events: EventRow[], withTimes: boolean): string {
 export function actionList(events: EventRow[]): string {
   const actions = events.flatMap((event) => {
     if (event.type === "resume_download") return ["Résumé download"];
+    if (event.type === "xray_toggle") return event.target === "on" ? ["X-ray on"] : [];
+    if (event.type === "xray_note") return [`X-ray note (${event.target ?? "unknown"})`];
     if (event.type === "contact_click") {
       const target = event.target === "email" ? "email" : event.target === "linkedin" ? "LinkedIn" : "GitHub";
       return [`Contact click (${target})`];

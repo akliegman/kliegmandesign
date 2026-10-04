@@ -7,7 +7,7 @@ export function WorkNav() {
   const companies = [...new Set(work.map((item) => item.company))];
 
   return (
-    <nav aria-label="Case studies" className="flex flex-col gap-6 text-sm">
+    <nav data-xray="case-nav" aria-label="Case studies" className="flex flex-col gap-6 text-sm">
       {companies.map((company) => (
         <div key={company}>
           <p className="type-eyebrow mb-2">{company}</p>

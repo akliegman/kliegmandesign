@@ -2,20 +2,25 @@ import { useId } from "react";
 import { Link } from "react-router";
 
 import { profile } from "@/content/profile";
+import { useXray } from "@/lib/xray";
 
 /**
  * The site logo and the link home: an "AK" monogram drawn in open strokes (an A without its
  * crossbar, a K without its upright) inside a tile with the site's turning gradient border. The
  * name is visually hidden text, so the link keeps an accessible name. The strokes draw in on load,
  * and the K's arms kick out on hover and keyboard focus; under reduced motion the mark just appears.
+ * In X-ray mode the strokes redraw in neon green and the tile's border turns faster and glows.
  */
 export function Wordmark() {
   const gradientId = useId();
+  const { on: xray } = useXray();
 
   return (
     <Link to="/" viewTransition className="group flex items-center rounded-lg">
-      <span className="icon-tile size-9 shadow-xs">
+      <span data-wordmark className="icon-tile size-9 shadow-xs">
         <svg
+          // Remounting on an X-ray change replays the stroke drawing in the new color.
+          key={xray ? "xray" : "plain"}
           viewBox="0 0 32 32"
           aria-hidden="true"
           className="size-6! overflow-visible"
@@ -35,9 +40,9 @@ export function Wordmark() {
               x2="30"
               y2="28"
             >
-              <stop offset="0" style={{ stopColor: "var(--primary)" }} />
-              <stop offset="0.55" style={{ stopColor: "var(--accent-foreground)" }} />
-              <stop offset="1" style={{ stopColor: "var(--muted-foreground)" }} />
+              <stop offset="0" style={{ stopColor: "var(--logo-stop-start)" }} />
+              <stop offset="0.55" style={{ stopColor: "var(--logo-stop-middle)" }} />
+              <stop offset="1" style={{ stopColor: "var(--logo-stop-end)" }} />
             </linearGradient>
           </defs>
           <path pathLength={1} className="logo-stroke" d="M4.5 25 L11 7 L17.5 25" />

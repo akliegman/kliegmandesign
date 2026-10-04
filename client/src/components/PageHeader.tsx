@@ -16,7 +16,9 @@ export function PageHeader({ kicker, title, lede, children, className }: PageHea
   return (
     <header className={cn("flex animate-rise flex-col gap-4", className)}>
       {kicker}
-      <h1 className="type-title max-w-[22ch]">{title}</h1>
+      <h1 data-xray="page-title" className="type-title max-w-[22ch]">
+        {title}
+      </h1>
       {lede && <p className="type-lede max-w-[64ch]">{lede}</p>}
       {children}
     </header>

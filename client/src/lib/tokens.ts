@@ -93,5 +93,7 @@ export const CONTRAST_PAIRS = [
   },
   { foreground: "input", background: "background", minimum: 3, use: "Control boundaries" },
   { foreground: "ring", background: "background", minimum: 3, use: "Focus outline" },
+  { foreground: "xray-foreground", background: "xray", minimum: 4.5, use: "X-ray labels" },
+  { foreground: "xray-line", background: "background", minimum: 3, use: "X-ray outlines" },
   { foreground: "ring", background: "card", minimum: 3, use: "Focus outline on cards" },
 ] as const;

@@ -88,7 +88,7 @@ export function AboutPage() {
           <h2 id="experience" className="type-heading">
             Experience
           </h2>
-          <ol className="mt-6 border-t">
+          <ol data-xray="about-experience" className="mt-6 border-t">
             {experience.map((role) => (
               <li
                 key={role.company}
@@ -117,7 +117,7 @@ export function AboutPage() {
           <h2 id="skills" className="type-heading">
             Skills
           </h2>
-          <dl className="mt-6 grid gap-6 sm:grid-cols-2">
+          <dl data-xray="about-skills" className="mt-6 grid gap-6 sm:grid-cols-2">
             {skills.map(({ group, items }) => (
               <div key={group}>
                 <dt className="type-eyebrow mb-2.5">{group}</dt>

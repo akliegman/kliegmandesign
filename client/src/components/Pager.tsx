@@ -20,7 +20,11 @@ const linkClass =
 /** Previous and next links at the end of a sequence of pages, such as the case studies. */
 export function Pager({ previous, next, className }: PagerProps) {
   return (
-    <nav aria-label="Previous and next" className={cn("grid gap-3 sm:grid-cols-2", className)}>
+    <nav
+      data-xray="pager"
+      aria-label="Previous and next"
+      className={cn("grid gap-3 sm:grid-cols-2", className)}
+    >
       {previous ? (
         <Link to={previous.to} viewTransition className={linkClass}>
           <span className="type-eyebrow inline-flex items-center gap-1.5">
