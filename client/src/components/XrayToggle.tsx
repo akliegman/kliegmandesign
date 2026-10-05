@@ -11,7 +11,8 @@ export interface XrayToggleProps {
 /**
  * The X-ray switch, set on the same muted track as the theme control. The whole pill is the switch,
  * so its visible "X-ray" text is its accessible name. It glows until the visitor has tried it once,
- * and a tooltip says what it does. Styles key off aria-checked because the tooltip trigger sets
+ * and a tooltip says what it does. The thumb and track meet 3:1 against each other in both states
+ * (see CONTRAST_PAIRS), so on and off are told apart by more than position alone. Styles key off aria-checked because the tooltip trigger sets
  * its own data-state on the same element. X toggles it from anywhere (see XrayLayer).
  */
 export function XrayToggle({ className }: XrayToggleProps) {
@@ -38,9 +39,9 @@ export function XrayToggle({ className }: XrayToggleProps) {
             X-ray
             <span
               aria-hidden="true"
-              className="relative h-5 w-9 shrink-0 rounded-full bg-foreground/15 transition-colors group-aria-checked:bg-xray group-aria-checked:shadow-[0_0_10px_var(--xray)]"
+              className="relative h-5 w-9 shrink-0 rounded-full bg-muted-foreground transition-colors group-aria-checked:bg-xray group-aria-checked:shadow-[inset_0_0_0_1px_var(--xray-line),0_0_10px_var(--xray)]"
             >
-              <Switch.Thumb className="block size-4 translate-x-0.5 translate-y-0.5 rounded-full bg-card shadow-xs transition-transform duration-(--duration-base) ease-emphasized group-aria-checked:translate-x-4.5" />
+              <Switch.Thumb className="block size-4 translate-x-0.5 translate-y-0.5 rounded-full bg-card shadow-xs transition-[translate,background-color] duration-(--duration-base) ease-emphasized group-aria-checked:translate-x-4.5 group-aria-checked:bg-xray-foreground" />
             </span>
           </Switch.Root>
         </Tooltip.Trigger>

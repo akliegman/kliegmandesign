@@ -25,7 +25,7 @@ function ResumeLink({ className }: { className?: string }) {
       href={profile.resumePath}
       className={cn(navLinkClass, "inline-flex items-center gap-1.5", className)}
     >
-      Résumé <span className="font-mono text-[0.6875rem] text-muted-foreground">PDF</span>
+      Résumé
     </a>
   );
 }

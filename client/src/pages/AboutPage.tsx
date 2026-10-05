@@ -50,9 +50,7 @@ export function AboutPage() {
               </a>
             </Button>
             <Button asChild variant="outline" size="sm">
-              <a href={profile.resumePath}>
-                Résumé <span className="font-mono text-muted-foreground text-xs">PDF</span>
-              </a>
+              <a href={profile.resumePath}>Résumé</a>
             </Button>
           </div>
         </div>

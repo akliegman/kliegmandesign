@@ -51,9 +51,7 @@ export function HomePage() {
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline">
-                <a href={profile.resumePath}>
-                  Résumé <span className="font-mono text-muted-foreground text-xs">PDF</span>
-                </a>
+                <a href={profile.resumePath}>Résumé</a>
               </Button>
             </div>
           </div>
