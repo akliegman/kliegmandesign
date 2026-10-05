@@ -788,7 +788,8 @@ export const sideProjects: SideProject[] = [
   },
   {
     title: "Storybook design system",
-    summary: "A small design system and component library built with Next.js and Storybook.",
+    summary:
+      "A design system with semantic tokens, 21 accessible components, and contrast-tested light and dark themes, documented in Storybook.",
     href: "https://storybook.adamkliegman.com/",
     codeHref: "https://github.com/akliegman/design-system",
   },
